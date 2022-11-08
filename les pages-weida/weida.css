@@ -1,0 +1,182 @@
+.Touches-de-navigation a{
+    color: black;
+    TEXT-DECORATION: none
+}
+
+#p1{
+    position: fixed;
+    top: 10px;
+    right: 550px;
+    font-size: 40px;
+
+}
+
+#p2{
+    position: fixed;
+    top: 10px;
+    right: 430px;
+    font-size: 40px;
+    
+}
+
+#p3{
+    position: fixed;
+    top: 10px;
+    right: 220px;
+    font-size: 40px;
+    
+}
+
+#p4{
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    font-size: 40px;
+    padding: 1px;
+    border: 5px solid #C9E265;
+    border-radius: 15px;
+    background-clip:padding-box;
+    background-color: #C9E265;
+
+}
+
+#p4 a{
+    color:white;
+    TEXT-DECORATION: none;
+    font-size: 30px;
+}
+
+#p5{
+
+    position: fixed;
+    top: 650px;
+    right: 100px;
+}
+
+#p5 a{
+    color: black;
+}
+
+.clear{
+    clear: both;
+}
+
+
+h1{
+    text-align: center;
+    font-size: 45px;
+}
+
+h2{
+    position: relative;
+    left: 880px;
+}
+
+.div1{
+    text-align:center;
+}
+
+.div1 a{
+ 
+    color:white;
+    TEXT-DECORATION: none
+}
+
+#b1{
+    width:300px;
+    font-size: 45px;
+    margin:20px 600px;
+    padding: 10px;
+    border: 5px solid #C9E265;
+    border-radius: 15px;
+    background-clip:padding-box;
+    background-color: #C9E265;
+}
+
+#b2{
+    width:300px;
+    font-size: 45px;
+    margin:20px 600px;
+    padding: 10px;
+    border: 5px solid #C9E265;
+    border-radius: 15px;
+    background-clip:padding-box;
+    background-color: #C9E265;
+}
+
+#b3{
+    width:300px;
+    font-size: 45px;
+    margin:20px 600px;
+    padding: 10px;
+    border: 5px solid #C9E265;
+    border-radius: 15px;
+    background-clip:padding-box;
+    background-color: #C9E265;
+}
+
+
+
+.input0{
+
+    display: flex;
+    width: auto;
+    height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#input1{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 600px;
+    height: 60px;
+    margin: 20px auto;
+
+}
+
+#input2{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 600px;
+    height: 60px;
+    margin: 20px auto;
+
+}
+
+#input3{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 600px;
+    height: 60px;
+    margin: 20px auto;
+
+}
+
+#input4{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 600px;
+    height: 60px;
+    margin: 20px auto;
+
+}
+
+#input5{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 600px;
+    height: 60px;
+    margin: 20px auto;
+
+}
+
+#img2{
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    top: 2px;
+    right: 20px;
+}
