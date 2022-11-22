@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Carmen</title>
+    <link rel="stylesheet" href="./style/inscription_patient.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <nav class="navBar">
+      <div class="logo-container">
+        <img src="./assets/logo.svg" />
+        <a href="index.html">Carmen</a>
+      </div>
+      <ul class="nav-list" id="nav-list">
+        <li class="list-item">
+          <a href="#cgu">CGU</a>
+        </li>
+        <li class="list-item">
+          <a href="#faq">FAQ</a>
+        </li>
+        <li class="list-item">
+          <a href="#contact">Contact</a>
+        </li>
+        <li class="list-item">
+          <a href="connection.html" class="button-connexion">Connexion</a>
+        </li>
+      </ul>
+      <div class="menu" id="toggle-button" onclick="toggleNav()">
+        <div class="menu-line-1"></div>
+        <div class="menu-line-2"></div>
+        <div class="menu-line-3"></div>
+      </div>
+    </nav>
+    <form action="">
+    <div class="titre">
+      <h1> Inscriptions </br><p>-patient</p></h1>
+    </div>
+
+      <ul class="choix" id="choix">
+
+        <li class="list-choix">
+          <label id="code"for="code_patient">Code patient:
+            <input type="text" id="nom" name="code_famille" required
+                   minlength="4" maxlength="20" size="100" placeholder="Code famille" required >
+                  </label>
+        </li>
+        <li class="list-choix">
+          <label id="name"for="nom">nom:
+            <input type="text" id="nom" name="nom" required
+                   minlength="4" maxlength="20" size="100" placeholder="Nom"  required  autocomplete="name">
+                  </label>
+        </li>
+        <li class="list-choix">
+          <label id="phone" for="telephone">telephone:
+            <input type="text" id="nom" name="telephone" required
+                   minlength="4" maxlength="20" size="100"placeholder="contact-telephone"  required >
+                  </label>
+        </li>
+        <li class="list-choix">
+          <label id="password" for="MDP">mots de passe:
+            <input type="password" id="pwd" name="MDP" required 
+                   minlength="4" maxlength="20" size="100"placeholder=" mots de passe" autocomplete="on"  required >
+                   <div class="password-icon">
+                    <img id="images" src="./assets/eye.svg" class="feather-eye" onclick="hide()">
+                  </div>
+            </input>
+          </label>
+        </li>
+        <span id="msg"></span> 
+        <li class="list-choix">
+          <label id="password2" for="MDP2">repetez le mots de passe:
+            <input  type="password" id="pwd2" name="MDP2" required patern="MDP"
+                   minlength="4" maxlength="20" size="100" placeholder="repeter le mots de passe">
+                   <div class="password-icon">
+                    <img id="images2"src="./assets/eye.svg" class="feather-eye" onclick="hide2()">
+                  </div>
+                </label>
+
+                   
+
+        </li>
+        <li class="list-choix">
+          <input  class="valider"type="submit" value="Valider">
+
+            
+          </li>
+      </ul>
+    </form>
+
+      
+    <div class="footer-section">
+      <!-- Section -->
+      <hr />
+      <div class="footer-container">
+        <a class="item-footer" href="#contact">Contact</a>
+        <a class="item-footer" href="#cgu">
+          Conditions générales d'utilisations
+        </a>
+        <a class="item-footer" href="#faq">FAQ</a>
+      </div>
+    </div>
+  </body>
+
+<script>
+    function toggleNav() {
+      const burgerMenu = document.getElementById("toggle-button");
+      const navListe = document.getElementById("nav-list");
+      burgerMenu.classList.toggle("change");
+      navListe.classList.toggle("active");
+    }
+    function hide2() {
+  var x = document.getElementById("pwd2");
+  var y = document.getElementById("images2");
+  var v= y.getAttribute("src")
+  if (x.type === "password") {
+    x.type = "text";
+    v = "./assets/eye-off.svg"
+    y.setAttribute("src", v);
+  } else {
+    x.type = "password";
+    v = "./assets/eye.svg";
+    y.setAttribute("src", v);
+  }
+}
+function hide() {
+  var x = document.getElementById("pwd");
+  var y = document.getElementById("images");
+  var v= y.getAttribute("src")
+  if (x.type === "password") {
+    x.type = "text";
+    v = "./assets/eye-off.svg";
+    y.setAttribute("src", v);
+  } else {
+    x.type = "password";
+    v = "./assets/eye.svg";
+    y.setAttribute("src", v);
+  }
+}
+
+
+
+</script>
+</html>

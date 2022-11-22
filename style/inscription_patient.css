@@ -1,0 +1,292 @@
+:root {
+    --primary: #697068;
+    --green: #c9e265;
+    --green-back: #c9e26540;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .navBar {
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container img {
+    height: 100px;
+  }
+  
+  .logo-container a {
+    font-size: 22px;
+    text-decoration: none;
+    color: var(--primary);
+    font-family: "Lato", sans-serif;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+  }
+  
+  .nav-list .list-item {
+    display: inline-flex;
+    padding-right: 40px;
+  }
+  
+  .nav-list .list-item a {
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 22px;
+    font-family: "Inter", sans-serif;
+  }
+  .choix {
+    list-style-type: none;
+  }
+  
+
+  
+
+  .nav-list .list-item .button-connexion {
+    background: var(--green);
+    color: white;
+    font-weight: bold;
+    width: 130px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+  }
+
+  .nav-list .list-item .button-connexion:hover {
+    opacity: 0.8;
+  }
+  
+  .menu {
+    display: none;
+  }
+  
+  .menu-line-1,
+  .menu-line-2,
+  .menu-line-3 {
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary);
+    margin-bottom: 4px;
+    transition: 0.3s ease;
+  }
+  
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section hr {
+    margin-top: 50px;
+    width: 90%;
+  }
+  
+  .footer-section .footer-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .footer-section .footer-container .item-footer {
+    font-family: "Crimson Text", serif;
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .footer-section .footer-container .item-footer:hover {
+    opacity: 0.8;
+  }
+  
+  
+  
+  @media screen and (max-width: 600px) {
+
+    .choix .list-choix{
+      width: 25%;
+      padding-left: 25%;
+    }
+  
+    .footer-section .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  
+    .footer-section .footer-container .item-footer {
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .navBar {
+      flex-direction: column;
+    }
+  
+    .nav-list {
+      width: 90%;
+      text-align: center;
+      padding-left: 0px;
+      display: none;
+    }
+  
+    .nav-list .list-item {
+      display: block;
+      border-top: 1px solid var(--primary);
+      margin-bottom: 5px;
+      padding-right: 0;
+    }
+  
+    .nav-list .list-item .button-connexion {
+      display: inline-flex;
+      margin-top: 5px;
+    }
+  
+    .menu {
+      display: block;
+      margin-right: 20px;
+      position: absolute;
+      right: 0;
+      top: 42px;
+    }
+  
+    .active {
+      display: block;
+    }
+  
+    .change .menu-line-1 {
+      transform: translateY(6px) rotate(-45deg);
+    }
+  
+    .change .menu-line-2 {
+      opacity: 0;
+    }
+  
+    .change .menu-line-3 {
+      transform: translateY(-6px) rotate(45deg);
+    }
+  }
+
+.titre{
+  text-align: center;
+}
+#nom{
+  text-decoration: none;
+  height: 50px;
+
+}
+#pwd{
+  text-decoration: none;
+  height: 50px;
+
+}
+#pwd2{
+  text-decoration: none;
+  height: 50px;
+
+}
+#password{
+  padding-left: 65.72px;
+}
+#phone{
+  padding-left: 92.4px;
+}
+#name{
+  padding-left: 126.15px;
+}
+#code{
+  padding-left: 71.51px;
+}
+
+
+label {
+  position: relative;
+}
+
+label input {
+  color:black;
+
+  width: 703.2px;
+  height: 56px;
+
+
+}
+
+label input:focus {
+  border-color: #ff4754;
+}
+
+label .password-icon {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+
+  color: #000000;
+  transition: all 0.2s;
+}
+
+
+#msg{
+text-align: center;
+}
+.valider{
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  border:none ;
+}
+
+@media screen and (max-width: 930px){
+  .choix .list-choix{
+    padding-left: 0%;
+    
+  }
+  .choix{
+    padding-inline: 0%;
+  }
+  #password{
+    padding-left: 0px;
+
+  }
+  #phone{
+    padding-left: 0px;
+  }
+  #name{
+    padding-left: 0px;
+  }
+  #code{
+    padding-left: 0px;
+  }
+
+  
+}
+
+  
