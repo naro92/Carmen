@@ -1,0 +1,305 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+.bandeau{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img{
+   height: 100px;
+}
+
+.logo-container a {
+  font-size: 22px;
+  text-decoration: none;
+  color: var(--primary);
+  font-family: "Lato", sans-serif;
+}
+.nav-list {
+  list-style-type: none;
+}
+
+.nav-list .list-item {
+  display: inline-flex;
+  padding-right: 40px;
+}
+.nav-list .list-item a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 22px;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-list .list-item .button-connexion {
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  width: 130px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-list .list-item .button-connexion:hover {
+  opacity: 0.8;
+}
+
+.title_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #C9E265;
+  border-radius: 8px;
+}
+.title h1{
+  color: white;
+  font-family: "inter", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+.main_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.main_container .main{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+.main_container .main .main_left, .main_container .main .main_right{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.main_container .main .main_left .frequence_cardiaque,.main_container .main .main_left .temperature{
+  background-color: #D9D9D9;
+} 
+.main_container .main .main_left .frequence_title_container{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+.main_container .main .main_left .frequence_title_container img{
+  width: 82px;
+  height: 51px;
+  display: flex;
+  padding-left: 20px;
+  
+}
+
+.main_container .main .main_left .frequence_title_container h1{
+  display: flex;
+  align-items: center;
+  padding-left: 45px;
+  font-family: "lato", sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+}
+.main_container .main .main_left p{
+  height: 50px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF6A6A;
+  font-family: "inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+}
+.main_container .main .main_left .bpm_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_container .main .main_left .script_frequence{
+  background-color: black;
+  height: 150px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.main_container .main .main_left .temperature{
+  margin-top: 50px;
+}
+.main_container .main .main_left .temperature .temperature_title_container{
+  display: flex;
+  align-items: center;
+}
+.main_container .main .main_left .temperature .temperature_title_container img{
+  height: 49px;
+  width: 51px;
+  margin-left: 30px;
+}
+.main_container .main .main_left .temperature .temperature_title_container h1{
+  font-family: "lato", sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+  padding-left: 100px;
+}
+.main_container .main .main_left .temperature .value_temperature{
+  margin-top: 200px;
+}
+.main_container .main .main_right{
+  background-color: #D9D9D9;
+  height: 635px;
+  width: 400px;
+}
+
+.main_container .main .main_right .title_container_right{
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.main_container .main .main_right .title_container_right img{
+  height: 55px;
+  width: 66px;
+  padding-left: 15px;
+}
+
+.main_container .main .main_right .title_container_right h1{
+  font-family: "lato", sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+  padding-left: 75px;
+}
+
+.main_container .main .main_right .info_patient .list_info_patient{
+  list-style-type: none;
+}
+.main_container .main .main_right .info_patient .list_info_patient p{
+  font-family: "lato", sans-serif;
+  font-size: 18px;
+  font-weight: regular;
+}
+
+.main_container .main .main_right hr{
+  width: 80%;
+}
+.main_container .main .main_right .dernier_bilan_container h1{
+  font-family: "lato", sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+  padding-left: 40px;
+
+}
+
+.main_container .main .main_right .dernier_bilan_container .btn_bilan_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 140px;
+  margin-left: 110px;
+  height: 50px;
+  width: 180px;
+  background-color: #C9E265;
+  border-radius: 8px;
+}
+.main_container .main .main_right .dernier_bilan_container .btn_bilan_container a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.main_container .main .main_right .dernier_bilan_container .btn_bilan_container a:hover{
+  opacity: 0.8;
+}
+
+.main_container .bilan_container{
+  height: 100px;
+  background-color: #D9D9D9;
+  width: 80%;
+  margin-top: 30px;
+
+}
+
+
+.main_container .bilan_container{
+  display: flex;
+  align-items: center;
+
+}
+.main_container .bilan_container .btn_container{
+  height: 50px;
+  width: 400px;
+  background-color: #C9E265;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-left: 300px;
+}
+.main_container .bilan_container .btn_container a{
+  text-decoration: none;
+   color: white;
+   font-family: "inter", sans-serif;
+   font-size: 20px;
+   font-weight: bold;
+}
+.main_container .bilan_container .btn_container a:hover{
+  opacity: 0.8;
+}
+
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.footer-section hr {
+  margin-top: 50px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+.list_container a:hover{
+opacity: 0.8;
+}
