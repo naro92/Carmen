@@ -1,0 +1,99 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Rambla", sans-serif;
+  font-size: 80px;
+}
+
+.description-faq {
+  text-align: center;
+  color: var(--primary);
+  font-size: 24px;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.question-container {
+  background-color: rgba(201, 226, 101, 0.25);
+  border-radius: 8px;
+  text-align: center;
+  width: 50vw;
+  font-family: "Inter", sans-serif;
+  border: var(--primary) 2px solid;
+}
+
+.titre-question {
+  text-decoration: underline;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.contenu-question {
+  color: var(--primary);
+  font-size: 15px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-section hr {
+  margin-top: 50px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-section .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .footer-section .footer-container .item-footer {
+    font-size: 14px;
+  }
+}

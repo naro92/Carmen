@@ -1,0 +1,224 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.bvn {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.bvn .message_bvn h1 {
+  font-family: "Candal", sans-serif !important;
+  font-size: 96px;
+  color: var(--green);
+}
+
+.bvn .message_bvn p {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
+}
+
+.bvn .img_bvn img {
+  height: 524px;
+}
+
+.bordure {
+  height: 60px;
+  width: 100%;
+  background-color: rgba(201, 226, 101, 0.42);
+}
+
+.tableau-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableau_bord {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "patients chambres rechercher"
+    "chat FAQ profil";
+  grid-gap: 20px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+.tableau_bord > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  width: 300px;
+  height: 250px;
+  gap: 20px;
+}
+
+.tableau_bord div > .tableauLink {
+  background-color: var(--green);
+  padding: 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+}
+
+.list_patients {
+  grid-area: patients;
+}
+
+.list_chambres {
+  grid-area: chambres;
+}
+
+.list_rechercher {
+  grid-area: rechercher;
+}
+
+.list_chat {
+  grid-area: chat;
+}
+
+.list_FAQ {
+  grid-area: FAQ;
+}
+
+.list_profil {
+  grid-area: profil;
+}
+
+.alerte_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.alerte {
+  background-color: #d9d9d9;
+  width: 80%;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header-alerte {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header-alerte img {
+  height: 96px;
+}
+
+.header-alerte h1 {
+  background-color: white;
+  padding: 10px;
+  color: var(--green);
+  font-family: "Candal", sans-serif !important;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-section hr {
+  margin-top: 50px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1000px) {
+  .img_bvn {
+    display: none;
+  }
+
+  .message_bvn {
+    text-align: center;
+  }
+
+  .bvn .message_bvn h1 {
+    font-size: 45px;
+  }
+
+  .bvn .message_bvn p {
+    font-size: 20px;
+  }
+
+  .tableau_bord {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "patients"
+      "chambres"
+      "rechercher"
+      "chat"
+      "FAQ"
+      "profil";
+  }
+
+  .tableau_bord div > img {
+    height: 100px;
+  }
+
+  .tableau_bord > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #d9d9d9;
+    border-radius: 8px;
+    height: 150px;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
