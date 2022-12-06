@@ -4,29 +4,18 @@ Dossier MVC
 
 Contient le code mvc du site internet
 
-## Il manque 2 fichiers :
+Chaque dossier corepsond à une partie du site.
 
-- dans le dossier app, il faut créer un fichier **.htaccess** qui contiendra :
+- le dossier public : correspond à la partie que l'utilisateur aura accès
+- le dossier app : correspond à tous les fichiers du site.
 
-```
-Options -Indexes
-```
+## Explications des dossiers :
 
-- dans le dossier public, il faut créer un autre fichier **.htaccess** qui contiendra :
-
-```
-Options -MultiViews
-RewriteEngine On
-
-RewriteBase /public
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-```
-
-**Attention :** Il faut bien coller **exactement** ces codes dans ces fichiers dans les bons dossiers, sinon le projet ne fonctionne pas !
-Ces fichiers permettent de gérer la réecriture d'url pour le site !
-
-Il n'est pas possible de mettre ces fichiers dans le github
+- dossier public :
+  - index.php : page appelée par l'utilisateur
+  - assets : images accessibles au public
+- dossier app :
+  - dossier controllers : controlleurs
+  - dossier models : modeles
+  - dossiers views : vues du site
+  - dossier core : routing mvc et base des controlleurs 
