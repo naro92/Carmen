@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Classe familleModel
+ * Classe medecinModel
  * 
- * Model famille
+ * Model medecin
  * 
- * Permet de gerer les données des familles
+ * Permet de gerer les données des medecins
  */
-class FamilleModel {
+class MedecinModel {
 
-    public function connexionFamille(PDO $bdd, String $email, String $password){
-        $query = 'SELECT * FROM famille WHERE adresse_mail="'.$email.'" AND mdp="'.$password.'"';
+    public function connexionMedecin(PDO $bdd, String $email, String $password){
+        $query = 'SELECT * FROM medecin WHERE adresse_mail="'.$email.'" AND mdp="'.$password.'"';
         $params = array();
         $return = '';
         $statement = $bdd->prepare($query);
@@ -25,7 +25,7 @@ class FamilleModel {
 	    return $connectionSuccessful;
     }
 
-    public function inscriptionFamille(PDO $bdd, String $nom, String $email, String $password){
+    public function inscriptionMedecin(PDO $bdd, String $nom, String $email, String $password){
         $query = 'SELECT * FROM patient WHERE adresse_mail="'.$email.'" ';
 
 		$params = array();
