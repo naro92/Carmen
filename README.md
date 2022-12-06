@@ -18,7 +18,7 @@ Options -Indexes
 Options -MultiViews
 RewriteEngine On
 
-RewriteBase /mvcExample/public
+RewriteBase /public
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
