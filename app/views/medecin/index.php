@@ -14,7 +14,7 @@ function load_header($view, $data = []){
 
 <body>
 
-  <?php load_header('/header/index', ['button' => 'Deconnexion', 'link' => '/mvcExample/public/']); ?>
+  <?php load_header('/header/index', ['button' => 'Deconnexion', 'link' => '/mvcExample/public/connexion/deconnexion']); ?>
 
   <div class="bvn">
       <div class="message_bvn">

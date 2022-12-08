@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Classe Medecin
+ * Classe Patient
  * 
- * Classe qui se charge d'afficher les différentes pages du medecin
+ * Classe qui se charge d'afficher les différentes pages du patient
  */
-class Medecin extends Controller {
+class Patient extends Controller {
 
     public function index(){
         session_start();
-        if (!isset($_SESSION['user']) && !isset($_SESSION['role']) ) {
+        if (!isset($_SESSION['user']) && !isset($_SESSION['role'])) {
 	        header ('Location: /mvcExample/public/');
 	        exit();
         }
-        if ($_SESSION['role']!="medecin"){
+        if ($_SESSION['role']!="patient"){
             header ('Location: /mvcExample/public/');
 	        exit();
         }
-        $this->view('medecin/index');
+        $this->view('patient/index');
     }
 
     public function error(){

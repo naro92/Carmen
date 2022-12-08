@@ -17,15 +17,15 @@ class Connexion extends Controller {
     }
 
     public function personnel(){
-        $this->view('connexion/personnel');
+        $this->view('connexion/personnel', ['error' => NULL]);
     }
 
     public function patient(){
-        $this->view('connexion/patient');
+        $this->view('connexion/patient', ['error' => NULL]);
     }
 
     public function famille(){
-        $this->view('connexion/famille');
+        $this->view('connexion/famille', ['error' => NULL]);
     }
 
     public function connexionPatient(){
@@ -48,7 +48,7 @@ class Connexion extends Controller {
 		    header('Location: /mvcExample/public/patient');
 		    exit();
         } else {
-            echo "There was an error !";
+            $this->view('connexion/patient', ['error' => 'Mauvais identifiants ou mot de passe !']);
         }
     }
 
@@ -59,12 +59,12 @@ class Connexion extends Controller {
             $password = hash('sha3-256', $_POST['password']);
         }
 
-        $patient = $this->model('MedecinModel');
+        $medecin = $this->model('MedecinModel');
 
         $bdd = new PDO('mysql:host=localhost:3306;dbname=mydb;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $patient->connexionMedecin = $patient->connexionMedecin($bdd, $email, $password);
+        $medecin->connexionMedecin = $medecin->connexionMedecin($bdd, $email, $password);
 
-        if($patient->connexionMedecin){
+        if($medecin->connexionMedecin){
             echo "Connection is successful !";
             session_start();
 		    $_SESSION['user'] = $email;
@@ -72,7 +72,7 @@ class Connexion extends Controller {
 		    header('Location: /mvcExample/public/medecin');
 		    exit();
         } else {
-            echo "There was an error !";
+            $this->view('connexion/personnel', ['error' => 'Mauvais identifiants ou mot de passe !']);
         }
     }
 
@@ -83,12 +83,12 @@ class Connexion extends Controller {
             $password = hash('sha3-256', $_POST['password']);
         }
 
-        $patient = $this->model('FamilleModel');
+        $famille = $this->model('FamilleModel');
 
         $bdd = new PDO('mysql:host=localhost:3306;dbname=mydb;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $patient->connexionMedecin = $patient->connexionFamille($bdd, $email, $password);
+        $famille->connexionFamille = $famille->connexionFamille($bdd, $email, $password);
 
-        if($patient->connexionMedecin){
+        if($famille->connexionfamille){
             echo "Connection is successful !";
             session_start();
 		    $_SESSION['user'] = $email;
@@ -96,7 +96,31 @@ class Connexion extends Controller {
 		    header('Location: /mvcExample/public/medecin');
 		    exit();
         } else {
-            echo "There was an error !";
+            $this->view('connexion/famille', ['error' => 'Mauvais identifiants ou mot de passe !']);
+        }
+    }
+
+    public function connexionAdmin(){
+
+        if ((isset($_POST['email']) && !empty($_POST['email'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
+            $email = $_POST['email'];
+            $password = hash('sha3-256', $_POST['password']);
+        }
+
+        $admin = $this->model('AdminModel');
+
+        $bdd = new PDO('mysql:host=localhost:3306;dbname=mydb;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $admin->connexionAdmin = $admin->connexionAdmin($bdd, $email, $password);
+
+        if($admin->connexionAdmin){
+            echo "Connection is successful !";
+            session_start();
+		    $_SESSION['user'] = $email;
+            $_SESSION['role'] = "admin";
+		    header('Location: /mvcExample/public/admin/dashboard');
+		    exit();
+        } else {
+            $this->view('connexion/admin', ['error' => 'Mauvais identifiants ou mot de passe !']);
         }
     }
 

@@ -5,7 +5,7 @@ function load_header($view, $data = []){
 ?>
 
 <head>
-        <title>Inscription personnel</title>
+        <title>Connexion admin</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/header.css'; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/inscription.css'; ?>" />
@@ -17,15 +17,15 @@ function load_header($view, $data = []){
     <?php load_header('/header/index', ['button' => 'Inscription', 'link' => '/mvcExample/public/inscription/']); ?>
 
     <div class="form-container">
-      <h1 class="title">Connexion Famille</h1>
+      <h1 class="title">Connexion Administrateur</h1>
       <p><?php echo $data['error'];?></p>
-      <form class="form">
+      <form class="form" action="/mvcExample/public/connexion/connexionAdmin" method="post">
         <div class="form-group">
-          <input required type="mail" pattern=".{4,}" title="Enter valid email address" />
+          <input required type="mail" name="email" pattern=".{4,}" title="Enter valid email address" />
             <label>Email</label>
         </div>
         <div class="form-group">
-          <input type="password" required pattern=".{4,}" title="Enter valid email address" />
+          <input type="password" required name="password" pattern=".{4,}" title="Enter valid email address" />
             <label>Mot de passe</label>
         </div>
         <button type="submit" class="button-validate">

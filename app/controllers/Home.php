@@ -12,13 +12,17 @@
  */
 class Home extends Controller{
 
-    public function index($name = ''){
-        // on charge le modele 'User'
-        $user = $this->model('Test');
-        $user->name = $name;
+    public function index(){
+        session_start();
+        if (isset($_SESSION['user']) && isset($_SESSION['role']) ){
+            $dashboard = $_SESSION['role'];
+        } else {
+            $dashboard = "Connexion";
+        }
+
 
         // on va charger la vue et lui envoyer les données que l'on veut lui envoyer
-        $this->view('home/index', ['name' => $user->name]);
+        $this->view('home/index', ['dashboard' => $dashboard]);
     }
 
     public function cgu(){

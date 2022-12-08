@@ -14,7 +14,8 @@
           <a href="/mvcExample/public/home/contact/">Contact</a>
         </li>
         <li class="list-item">
-          <a href="<?php echo $data['link'];?>" class="button-connexion"><?php echo $data['button'];?></a>
+          <a href="<?php echo $data['link'];?>" class="button-connexion"><?php echo $data['button'];?>
+          </a>
         </li>
       </ul>
       <div class="menu" id="toggle-button" onclick="toggleNav()">

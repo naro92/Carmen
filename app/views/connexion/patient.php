@@ -18,6 +18,7 @@ function load_header($view, $data = []){
 
     <div class="form-container">
       <h1 class="title">Connexion Patient</h1>
+      <p><?php echo $data['error'];?></p>
       <form class="form" action="/mvcExample/public/connexion/connexionPatient" method="post">
         <div class="form-group">
           <input required name="email" type="mail" pattern=".{4,}" title="Enter valid email address" />

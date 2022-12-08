@@ -56,6 +56,14 @@ h1 {
   font-size: 15px;
 }
 
+.cgu-container {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .footer-section {
   display: flex;
   flex-direction: column;
