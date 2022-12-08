@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Classe Medecin
+ * Classe Admin
  * 
- * Classe qui se charge d'afficher les différentes pages du medecin
+ * Classe qui se charge d'afficher les différentes pages de l'administration
  */
 class Admin extends Controller {
 
