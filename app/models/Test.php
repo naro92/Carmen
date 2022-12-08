@@ -1,21 +1,21 @@
 <?php
 
-class Test{
+class Test
+{
+  public $test;
 
-    public $test;
-
-    public function getAll(PDO $bdd, String $table, String $name){
-        if ($name == NULL) {
-            $query = 'SELECT * FROM ' . $table ;
-            $params = array();
-        } else {
-            $query = 'SELECT * FROM ' . $table . ' WHERE username LIKE ?';
-            $params = array("%" . $name . "%");
-        }
-        $statement = $bdd->prepare($query);
-        $statement->execute($params);
-        $return = $statement->fetchAll();
-        return $return;
+  public function getAll(PDO $bdd, string $table, string $name)
+  {
+    if ($name == null) {
+      $query = "SELECT * FROM " . $table;
+      $params = [];
+    } else {
+      $query = "SELECT * FROM " . $table . " WHERE username LIKE ?";
+      $params = ["%" . $name . "%"];
     }
-
+    $statement = $bdd->prepare($query);
+    $statement->execute($params);
+    $return = $statement->fetchAll();
+    return $return;
+  }
 }

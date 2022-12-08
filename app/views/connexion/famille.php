@@ -1,24 +1,29 @@
 <?php
-function load_header($view, $data = []){
-        require_once '../app/views/' . $view . '.php';
-    }
-?>
+function load_header($view, $data = [])
+{
+  require_once "../app/views/" . $view . ".php";
+} ?>
 
 <head>
-        <title>Inscription personnel</title>
+        <title>Connexion famillel</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/header.css'; ?>" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/inscription.css'; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/header.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/inscription.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
 
-    <?php load_header('/header/index', ['button' => 'Inscription', 'link' => '/mvcExample/public/inscription/']); ?>
+    <?php load_header("/header/index", [
+      "button" => "Inscription",
+      "link" => "/mvcExample/public/inscription/",
+    ]); ?>
 
     <div class="form-container">
       <h1 class="title">Connexion Famille</h1>
-      <p><?php echo $data['error'];?></p>
+      <p><?php echo $data["error"]; ?></p>
       <form class="form">
         <div class="form-group">
           <input required type="mail" pattern=".{4,}" title="Enter valid email address" />
@@ -35,4 +40,4 @@ function load_header($view, $data = []){
       
     </div>
 
-    <?php require_once("../app/views/footer/index.php"); ?>
+    <?php require_once "../app/views/footer/index.php"; ?>

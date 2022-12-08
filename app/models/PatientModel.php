@@ -2,51 +2,70 @@
 
 /**
  * Classe patientModel
- * 
+ *
  * Model patient
- * 
+ *
  * Permet de gerer les données des patients
  */
-class PatientModel {
-
-    public function connexionPatient(PDO $bdd, String $email, String $password){
-        $query = 'SELECT * FROM patient WHERE adresse_mail="'.$email.'" AND mdp="'.$password.'"';
-        $params = array();
-        $return = '';
-        $statement = $bdd->prepare($query);
-        $statement->execute($params);
-        $count = $statement->rowCount();
-        if($count > 0){
-            $connectionSuccessful = 1;
-        } else {
-            $connectionSuccessful = 0;
-        }
-                     
-	    return $connectionSuccessful;
+class PatientModel
+{
+  /**
+   * connexionPatient
+   *
+   * @param  PDO $bdd
+   * @param  string $email
+   * @param  string $password
+   * @return bool $connectionSuccessful
+   */
+  public function connexionPatient(PDO $bdd, string $email, string $password)
+  {
+    $query =
+      'SELECT * FROM patient WHERE adresse_mail="' .
+      $email .
+      '" AND mdp="' .
+      $password .
+      '"';
+    $params = [];
+    $return = "";
+    $statement = $bdd->prepare($query);
+    $statement->execute($params);
+    $count = $statement->rowCount();
+    if ($count > 0) {
+      $connectionSuccessful = 1;
+    } else {
+      $connectionSuccessful = 0;
     }
 
-    public function inscriptionPatient(PDO $bdd, String $nom, String $email, String $password){
-        $query = 'SELECT * FROM patient WHERE adresse_mail="'.$email.'" ';
+    return $connectionSuccessful;
+  }
 
-		$params = array();
-        $statement = $bdd->prepare($query);
-        $statement->execute($params);
-        $count = $statement->rowCount();
-        if($count > 0){
-			// S'il est deja utilisé on dit que la personne est deja inscrite
-            return "Un utilisateur possède déjà votre adresse mail !";
-        } else {
-			// Sinon on ajoute toutes les données dans la database
-			$sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
-			$stmt= $bdd->prepare($sql);
-        	$exec = $stmt->execute([$email, $nom, $password]);
-            if($exec){
-                $return = "inscription successful !";
-            } else {
-                $return = "Il y a une erreur";
-            }
-		}
+  public function inscriptionPatient(
+    PDO $bdd,
+    string $nom,
+    string $email,
+    string $password
+  ) {
+    $query = 'SELECT * FROM patient WHERE adresse_mail="' . $email . '" ';
 
-        return $return;
+    $params = [];
+    $statement = $bdd->prepare($query);
+    $statement->execute($params);
+    $count = $statement->rowCount();
+    if ($count > 0) {
+      // S'il est deja utilisé on dit que la personne est deja inscrite
+      return "Un utilisateur possède déjà votre adresse mail !";
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
+      $stmt = $bdd->prepare($sql);
+      $exec = $stmt->execute([$email, $nom, $password]);
+      if ($exec) {
+        $return = "inscription successful !";
+      } else {
+        $return = "Il y a une erreur";
+      }
     }
+
+    return $return;
+  }
 }

@@ -1,20 +1,25 @@
 <?php
-function load_header($view, $data = []){
-        require_once '../app/views/' . $view . '.php';
-    }
-?>
+function load_header($view, $data = [])
+{
+  require_once "../app/views/" . $view . ".php";
+} ?>
 
 <head>
         <title>Accueil</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/home.css'; ?>" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/header.css'; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/home.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/header.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
 
-  <?php load_header('/header/index', ['button' => ucfirst($data['dashboard']), 'link' => '/mvcExample/public/'.$data['dashboard']]); ?>
+  <?php load_header("/header/index", [
+    "button" => ucfirst($data["dashboard"]),
+    "link" => "/mvcExample/public/" . $data["dashboard"],
+  ]); ?>
 
     <div class="main-title">
       <!-- Section -->
@@ -27,7 +32,7 @@ function load_header($view, $data = []){
           </p>
         </div>
         <div class="image-title">
-          <img src="<?php echo ROOT_PATH . '/assets/logo.svg';?>" />
+          <img src="<?php echo ROOT_PATH . "/assets/logo.svg"; ?>" />
           <a href="#decouverte">Découvrir ⇓</a>
         </div>
       </div>
@@ -57,7 +62,7 @@ function load_header($view, $data = []){
       </div>
     </div>
 
-    <?php require_once("../app/views/footer/index.php") ?>
+    <?php require_once "../app/views/footer/index.php"; ?>
 
 </body>
 

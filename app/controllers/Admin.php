@@ -1,31 +1,51 @@
 <?php
 
 /**
- * Classe Admin
- * 
- * Classe qui se charge d'afficher les différentes pages de l'administration
+ * Classe Medecin
+ *
+ * Classe qui se charge d'afficher les différentes pages du medecin
  */
-class Admin extends Controller {
+class Admin extends Controller
+{
+  /**
+   * index
+   *
+   * @return void
+   */
+  public function index()
+  {
+    $this->view("connexion/admin", ["error" => null]);
+  }
 
-    public function index(){
-        $this->view('connexion/admin', ['error' => NULL]);
+  /**
+   * error
+   *
+   * @return void
+   */
+  public function error()
+  {
+    $this->view("error/404");
+  }
+
+  /**
+   * dashboard
+   *
+   * permet à l'administrateur de voir son dashboard
+   * si ce n'est pas un administrateur, redirige l'utilisateur vers la page d'accueil
+   *
+   * @return void
+   */
+  public function dashboard()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
     }
-
-    public function error(){
-        $this->view('error/404');
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /mvcExample/public/");
+      exit();
     }
-
-    public function dashboard(){
-        session_start();
-        if (!isset($_SESSION['user']) && !isset($_SESSION['role']) ) {
-	        header ('Location: /mvcExample/public/');
-	        exit();
-        }
-        if ($_SESSION['role']!="admin"){
-            header ('Location: /mvcExample/public/');
-	        exit();
-        }
-        $this->view('admin/index');
-    }
-
+    $this->view("admin/index");
+  }
 }

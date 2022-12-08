@@ -1,19 +1,25 @@
 <?php
-function load_header($view, $data = []){
-        require_once '../app/views/' . $view . '.php';
-    }
-?>
+function load_header($view, $data = [])
+{
+  require_once "../app/views/" . $view . ".php";
+} ?>
 
 <head>
         <title>Connexion</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH . '/style/connexion.css'; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/connexion.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
 
-    <?php load_header('/header/index', ['button' => 'Inscription', 'link' => '/mvcExample/public/inscription/']); ?>
+    <?php load_header("/header/index", [
+      "button" => "Inscription",
+      "link" => "/mvcExample/public/inscription/",
+    ]); ?>
+
+    <h1 class="title">Connexion</h1>
 
     <nav class="nav_connection">
       <ul class="choix" id="choix">
@@ -33,4 +39,4 @@ function load_header($view, $data = []){
       </ul>
     </nav>
 
-    <?php require_once("../app/views/footer/index.php"); ?>
+    <?php require_once "../app/views/footer/index.php"; ?>
