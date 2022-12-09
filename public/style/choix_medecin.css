@@ -1,0 +1,133 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+.btn_retour a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 22px;
+  font-family: "Inter", sans-serif;
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-radius: 8px;
+  padding-left: 20px;
+}
+
+.btn_retour {
+  padding-left: 50px;
+  padding-top: 60px;
+}
+
+.btn_retour :hover {
+  opacity: 0.8;
+}
+
+.title_container h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.main .main_bloc {
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+  gap: 10px;
+}
+
+.main .main_bloc a {
+  text-decoration: none;
+  color: white;
+}
+.main #constante_vitale img {
+  width: 200px;
+}
+.main #rapport_medical img {
+  width: 200px;
+}
+.main .main_bloc .btn_constante_vitale {
+  background-color: #c9e265;
+  height: 35px;
+  width: 200px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+.main .main_bloc .btn_constante_vitale a {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main .main_bloc .btn_rapport_medical {
+  background-color: #c9e265;
+  height: 35px;
+  width: 200px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.main .main_bloc .btn_rapport_medical a {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+.main .main_bloc a:hover {
+  opacity: 0.8;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.footer-section hr {
+  margin-top: 50px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+.list_container a:hover {
+  opacity: 0.8;
+}

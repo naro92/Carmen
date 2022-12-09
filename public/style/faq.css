@@ -105,3 +105,13 @@ h1 {
     font-size: 14px;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .question .question-container {
+    width: 80vw;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+}

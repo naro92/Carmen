@@ -30,4 +30,9 @@ class Medecin extends Controller
   {
     $this->view("error/404");
   }
+
+  public function choix()
+  {
+    $this->view("medecin/choix");
+  }
 }
