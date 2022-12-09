@@ -18,7 +18,7 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => ucfirst($data["dashboard"]),
-    "link" => "/mvcExample/public/" . $data["dashboard"],
+    "link" => "/Carmen/public/" . $data["dashboard"],
   ]); ?>
 
     <div class="main-title">

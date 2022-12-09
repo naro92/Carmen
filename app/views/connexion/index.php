@@ -16,7 +16,7 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => "/mvcExample/public/inscription/",
+      "link" => "Carmen/public/inscription/",
     ]); ?>
 
     <h1 class="title">Connexion</h1>
