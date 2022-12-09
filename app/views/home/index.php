@@ -18,7 +18,7 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => ucfirst($data["dashboard"]),
-    "link" => "/Carmen/public/" . $data["dashboard"],
+    "link" => ROOT_PATH . "/" . $data["dashboard"],
   ]); ?>
 
     <div class="main-title">
@@ -58,7 +58,7 @@ function load_header($view, $data = [])
       <div class="plus-container">
         <h1 class="plus-title">En savoir plus :</h1>
         <p class="plus-text">Une question sur le domaine hospitalier?</p>
-        <a class="button-plus-faq" href="/mvcExample/public/home/faq/">Visiter notre FAQ</a>
+        <a class="button-plus-faq" href="<?php echo ROOT_PATH . '/home/faq/'?>">Visiter notre FAQ</a>
       </div>
     </div>
 

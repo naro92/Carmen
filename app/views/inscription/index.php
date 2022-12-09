@@ -16,7 +16,7 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Connexion",
-      "link" => "/mvcExample/public/connexion/",
+      "link" => ROOT_PATH . "/connexion/",
     ]); ?>
 
     <h1 class="title">Inscription</h1>
@@ -33,7 +33,8 @@ function load_header($view, $data = [])
           <a href="/mvcExample/public/inscription/famille" class="button-Personnels">Famille</a>
         </li>
         <li class="list-choix">
-          <p>Vous avez déjà un compte ? <a href="/mvcExample/public/connexion/">Connectez-vous </a> ici !</p>
+          <p>Vous avez déjà un compte ? <a href="<?php echo ROOT_PATH .
+            "/connexion/"; ?>">Connectez-vous </a> ici !</p>
 
         </li>
       </ul>

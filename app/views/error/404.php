@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 * Vue : erreur 404
 */
@@ -6,7 +6,8 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/mvcExample/public/style/404.css" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/404.css"; ?>" />
     </head>
 
     <body>

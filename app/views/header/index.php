@@ -5,13 +5,13 @@
       </div>
       <ul class="nav-list" id="nav-list">
         <li class="list-item">
-          <a href="/mvcExample/public/home/cgu/">CGU</a>
+          <a href="<?php echo ROOT_PATH . '/home/cgu/'?>">CGU</a>
         </li>
         <li class="list-item">
-          <a href="/mvcExample/public/home/faq/">FAQ</a>
+          <a href="<?php echo ROOT_PATH . '/home/faq/'?>">FAQ</a>
         </li>
         <li class="list-item">
-          <a href="/mvcExample/public/home/contact/">Contact</a>
+          <a href="<?php echo ROOT_PATH . '/home/contact/'?>">Contact</a>
         </li>
         <li class="list-item">
           <a href="<?php echo $data['link'];?>" class="button-connexion"><?php echo $data['button'];?>

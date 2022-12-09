@@ -18,10 +18,10 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Connexion",
-    "link" => "/mvcExample/public/connexion/",
+    "link" => ROOT_PATH . "/connexion/",
   ]); ?>
     <div class="btn_retour">
-      <a href="/mvcExample/public/medecin"> <= Retour</a>
+      <a href="<?php echo ROOT_PATH . "medecin"; ?>"> <= Retour</a>
     </div>
 
     <div class="title_container">

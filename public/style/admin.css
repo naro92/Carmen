@@ -1,0 +1,29 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Rambla", sans-serif;
+  font-size: 45px;
+  color: var(--green);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+p {
+  font-size: 25px;
+  color: var(--primary);
+  font-family: "Palanquin Dark", sans-serif;
+  margin-top: -30px;
+  text-align: center;
+}

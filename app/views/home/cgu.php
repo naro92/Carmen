@@ -14,7 +14,7 @@ function load_header($view, $data = []){
 
 <body>
 
-  <?php load_header('/header/index', ['button' => 'Connexion', 'link' => '/mvcExample/public/connexion/']); ?>
+  <?php load_header('/header/index', ['button' => 'Connexion', 'link' => ROOT_PATH . '/connexion/']); ?>
   <h1>Conditions Générales d'Utilisation</h1>
   <p class="description-faq">Conditions générales d'utilisations de notre service :</p>
   <div class="cgu-container">
@@ -26,4 +26,6 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
 Etiam ac eros sit amet turpis placerat aliquam. In vitae cursus metus. Duis ultricies nisi non tempus tempus. Maecenas scelerisque bibendum magna nec blandit. Pellentesque aliquam aliquam libero, sed maximus eros malesuada vitae. Pellentesque condimentum odio varius iaculis maximus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur et mauris orci. Donec mattis, tellus at fermentum sagittis, orci odio scelerisque odio, a facilisis sapien diam vel neque. Etiam a risus massa. Fusce purus lectus, scelerisque ut est ut, imperdiet rhoncus nisl. Aliquam non elementum urna. Mauris non porta odio. Nam nec tincidunt eros. Fusce egestas est eu urna cursus, sit amet laoreet quam malesuada.
   </div>
 </div>
+
+<?php require_once "../app/views/footer/index.php"; ?>
 </body>
