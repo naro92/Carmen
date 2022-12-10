@@ -35,4 +35,9 @@ class Medecin extends Controller
   {
     $this->view("medecin/choix");
   }
+
+  public function constantes()
+  {
+    $this->view("medecin/constantes");
+  }
 }

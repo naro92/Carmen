@@ -1,0 +1,221 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+body {
+  margin: 0;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.title {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c9e265;
+  border-radius: 8px;
+  color: white;
+}
+
+.dashboard {
+  width: 80%;
+  margin: auto;
+}
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0.3fr;
+  grid-template-areas:
+    "freq freq patient"
+    "temp temp patient"
+    "suivi suivi suivi";
+  grid-gap: 20px;
+  text-align: center;
+}
+
+.grid-container:has(> div:hover) > div:not(:hover) {
+  opacity: 1;
+}
+
+.grid-container > div {
+  background-color: #d9d9d9;
+}
+
+.grid-container > div > h3 {
+  text-decoration: underline;
+}
+
+#freq {
+  grid-area: freq;
+  border-radius: 10px;
+  transition: opacity 30ms linear;
+}
+
+.frequence_title_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bpm_container {
+  display: flex;
+  justify-content: center;
+}
+
+.bpm_container p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff6a6a;
+  width: 150px;
+  height: 50px;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+#temp {
+  grid-area: temp;
+  border-radius: 10px;
+  transition: opacity 30ms linear;
+}
+
+.temperature_title_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#patient {
+  grid-area: patient;
+  border-radius: 5px;
+  transition: opacity 30ms linear;
+}
+
+#patient hr {
+  width: 80%;
+}
+
+.patient_title_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dernier_bilan_container h1 {
+  font-family: "lato", sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+}
+
+.btn_bilan_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.btn_bilan_container a {
+  background-color: #c9e265;
+  border-radius: 8px;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+#suivi_patient {
+  grid-area: suivi;
+  border-radius: 5px;
+  transition: opacity 30ms linear;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#suivi_patient .btn_container {
+  background-color: #c9e265;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#suivi_patient .btn_container a {
+  text-decoration: none;
+  color: white;
+  font-family: "inter", sans-serif;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 100px;
+    grid-template-areas:
+      "patient"
+      "freq"
+      "temp"
+      "suivi";
+  }
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-section hr {
+  margin-top: 50px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-section .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .footer-section .footer-container .item-footer {
+    font-size: 14px;
+  }
+}
