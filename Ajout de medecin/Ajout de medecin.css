@@ -285,7 +285,7 @@ fieldset{
     color: white;
     border: white;
     position: relative;
-    left:  23px;
+    left:  39px;
 }
 
 .file {
@@ -304,6 +304,8 @@ fieldset{
     line-height:20px;
     font-size: 20px;
     margin: 23px;
+    position: relative;
+    left: 8%;
 }
 .file #input_choisis {
     position: absolute;
