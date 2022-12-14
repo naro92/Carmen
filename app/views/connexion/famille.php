@@ -18,7 +18,7 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => ROOT_PATH . "/inscription/",
+      "link" => "/mvcExample/public/inscription/",
     ]); ?>
 
     <div class="form-container">

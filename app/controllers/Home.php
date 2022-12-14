@@ -35,6 +35,17 @@ class Home extends Controller
    */
   public function cgu()
   {
+    // on Charge le model de la faq
+    $faq = $this->model("Faq");
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+    // on va appeler la fonction dans le model qui permet d'inserer le titre et la contenu de la faq
+    $faq->insert = $faq->insertQuestion($bdd, "faq", "Contenu faq");
+
     $this->view("home/cgu");
   }
 

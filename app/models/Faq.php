@@ -16,11 +16,11 @@ class Faq
    * @param  string $table
    * @return array $vue contient les elements de la faq
    */
-  public function getFaq(PDO $bdd, string $table)
+  public function getFaq(PDO $bdd)
   {
     $vue = [];
     $params = [];
-    $query = "SELECT * FROM " . $table;
+    $query = "SELECT * FROM faq";
     $statement = $bdd->prepare($query);
     $statement->execute($params);
 
@@ -57,12 +57,8 @@ class Faq
    *
    * @return void
    */
-  public function updateQuestion(
-    PDO $bdd,
-    string $id,
-    string $titre,
-    string $contenu
-  ) {
+  public function updateQuestion(string $id, string $titre, string $contenu)
+  {
     $id = $_POST["id"];
     $newTitre = $_POST["titre"];
     $newContenu = $_POST["contenu"];

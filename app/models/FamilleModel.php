@@ -19,16 +19,13 @@ class FamilleModel
    */
   public function connexionFamille(PDO $bdd, string $email, string $password)
   {
-    $query =
-      'SELECT * FROM famille WHERE adresse_mail="' .
-      $email .
-      '" AND mdp="' .
-      $password .
-      '"';
-    $params = [];
-    $return = "";
+    $query = "SELECT * FROM famille WHERE adresse_mail=:email and mdp=:pass";
+
     $statement = $bdd->prepare($query);
-    $statement->execute($params);
+    $statement->execute([
+      "email" => $email,
+      "pass" => $password,
+    ]);
     $count = $statement->rowCount();
     if ($count > 0) {
       $connectionSuccessful = 1;
@@ -54,11 +51,10 @@ class FamilleModel
     string $email,
     string $password
   ) {
-    $query = 'SELECT * FROM patient WHERE adresse_mail="' . $email . '" ';
+    $query = "SELECT * FROM patient WHERE adresse_mail=:email";
 
-    $params = [];
     $statement = $bdd->prepare($query);
-    $statement->execute($params);
+    $statement->execute(["email" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
       // S'il est deja utilisé on dit que la personne est deja inscrite

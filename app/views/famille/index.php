@@ -18,7 +18,7 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Connexion",
-    "link" => ROOT_PATH . "/connexion/",
+    "link" => "/mvcExample/public/connexion/",
   ]); ?>
   <div class="bvn">
       <div class="message_bvn">

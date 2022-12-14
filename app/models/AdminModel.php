@@ -20,15 +20,13 @@ class AdminModel
   public function connexionAdmin(PDO $bdd, string $email, string $password)
   {
     $query =
-      'SELECT * FROM administrateur WHERE adresse_mail="' .
-      $email .
-      '" AND mdp="' .
-      $password .
-      '"';
-    $params = [];
-    $return = "";
+      "SELECT * FROM administrateur WHERE adresse_mail=:email and mdp=:pass";
+
     $statement = $bdd->prepare($query);
-    $statement->execute($params);
+    $statement->execute([
+      "email" => $email,
+      "pass" => $password,
+    ]);
     $count = $statement->rowCount();
     if ($count > 0) {
       $connectionSuccessful = 1;

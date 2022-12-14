@@ -18,14 +18,14 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
-    "link" => ROOT_PATH . "/connexion/deconnexion",
+    "link" => "/mvcExample/public/connexion/deconnexion",
   ]); ?>
 
   <div class="bvn">
       <div class="message_bvn">
         <h1>
           Bienvenue <br />
-          [NOM]
+          <?php echo $data["prenom"]; ?>
         </h1>
         <p>
           L'interface de gestion pour les <br />
@@ -64,8 +64,7 @@ function load_header($view, $data = [])
 
         <div class="list_FAQ">
           <img src="<?php echo ROOT_PATH . "/assets/faq.png"; ?>" />
-          <a href="<?php echo ROOT_PATH .
-            "/home/faq/"; ?>" class="tableauLink">FAQ</a>
+          <a href="/mvcExample/public/home/faq/" class="tableauLink">FAQ</a>
         </div>
 
         <div class="list_profil">

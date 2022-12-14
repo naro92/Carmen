@@ -18,14 +18,13 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => ROOT_PATH . "/inscription/",
+      "link" => "/mvcExample/public/inscription/",
     ]); ?>
 
     <div class="form-container">
       <h1 class="title">Connexion Personnel</h1>
       <p><?php echo $data["error"]; ?></p>
-      <form class="form"  action="<?php echo ROOT_PATH .
-        "/connexion/connexionMedecin"; ?>" method="post">
+      <form class="form"  action="/mvcExample/public/connexion/connexionMedecin" method="post">
         <div class="form-group">
           <input required name="email" type="mail" pattern=".{4,}" title="Enter valid email address" />
             <label>Email</label>

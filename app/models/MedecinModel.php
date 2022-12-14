@@ -19,16 +19,12 @@ class MedecinModel
    */
   public function connexionMedecin(PDO $bdd, string $email, string $password)
   {
-    $query =
-      'SELECT * FROM medecin WHERE adresse_mail="' .
-      $email .
-      '" AND mdp="' .
-      $password .
-      '"';
-    $params = [];
-    $return = "";
+    $query = "SELECT * FROM medecin WHERE adresse_mail=:email and mdp=:pass";
     $statement = $bdd->prepare($query);
-    $statement->execute($params);
+    $statement->execute([
+      "email" => $email,
+      "pass" => $password,
+    ]);
     $count = $statement->rowCount();
     if ($count > 0) {
       $connectionSuccessful = 1;
@@ -54,11 +50,10 @@ class MedecinModel
     string $email,
     string $password
   ) {
-    $query = 'SELECT * FROM patient WHERE adresse_mail="' . $email . '" ';
+    $query = "SELECT * FROM patient WHERE adresse_mail=:mail";
 
-    $params = [];
     $statement = $bdd->prepare($query);
-    $statement->execute($params);
+    $statement->execute(["mail" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
       // S'il est deja utilisé on dit que la personne est deja inscrite
@@ -74,6 +69,17 @@ class MedecinModel
         $return = "Il y a une erreur";
       }
     }
+
+    return $return;
+  }
+
+  public function getPrenom(PDO $bdd, string $email)
+  {
+    $query = "SELECT prenom FROM medecin WHERE adresse_mail=:mail";
+
+    $statement = $bdd->prepare($query);
+    $statement->execute(["mail" => $email]);
+    $return = $statement->fetchColumn();
 
     return $return;
   }
