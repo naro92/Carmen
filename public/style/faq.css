@@ -36,32 +36,45 @@ h1 {
 }
 
 .question-container {
-  background-color: rgba(201, 226, 101, 0.25);
+  width: 80%;
   border-radius: 8px;
-  text-align: center;
-  width: 50vw;
-  font-family: "Inter", sans-serif;
-  border: var(--primary) 2px solid;
 }
 
-.titre-question {
-  text-decoration: underline;
-  color: var(--primary);
-  font-weight: bold;
+summary {
   font-size: 20px;
+  background-color: var(--green);
+  font-weight: 600;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border-radius: 0.25rem;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
 }
 
-.contenu-question {
-  color: var(--primary);
-  font-size: 15px;
+.faq__content {
+  background-color: white;
+  padding-left: 40px;
 }
 
-.cgu-container {
-  width: 500px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+details > summary:details-marker {
+  display: none;
+}
+
+details[open] summary ~ * {
+  animation: sweep 0.5s ease-in-out;
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    margin-top: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
 }
 
 @media screen and (max-width: 750px) {

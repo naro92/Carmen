@@ -21,4 +21,10 @@ class Famille extends Controller
   {
     $this->view("error/404");
   }
+
+  public function chat()
+  {
+    $this->view("famille/chat");
+    // php à rajouter
+  }
 }

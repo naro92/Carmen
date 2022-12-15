@@ -5,14 +5,14 @@ function load_header($view, $data = [])
 } ?>
 
 <head>
-        <title>CGU</title>
+        <title>Gestion patient</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/gestionPatient.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/header.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
-            "/style/footer.css"; ?>" />
+          "/style/footer.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -42,7 +42,7 @@ function load_header($view, $data = [])
             <th>Action</th>
           </tr>
         </thead>
-        <tbody> <?php while ($row) ?> <tr>
+        <tbody> <?php while ($row) { ?> <tr>
             <td height='50'> <?php echo htmlspecialchars($row["id"]); ?> </td>
             <td> <?php echo htmlspecialchars($row["prenom"]); ?> </td>
             <td> <?php echo htmlspecialchars($row["nom"]); ?> </td>
@@ -55,7 +55,7 @@ function load_header($view, $data = [])
 												<?php echo $row["id"]; ?>">Supprimer </a>
               </div>
             </td>
-          </tr> <?php endwhile; ?> </tbody>
+          </tr> <?php } ?> </tbody>
       </table>
     </div>
 

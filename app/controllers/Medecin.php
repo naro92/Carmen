@@ -51,4 +51,10 @@ class Medecin extends Controller
   {
     $this->view("medecin/constantes");
   }
+
+  public function chat()
+  {
+    $this->view("medecin/chat");
+    // php à rajouter
+  }
 }

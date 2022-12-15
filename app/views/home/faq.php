@@ -24,15 +24,23 @@ function load_header($view, $data = [])
   ]); ?>
   <h1>Foire aux questions</h1>
   <p class="description-faq">Une question, un soucis ?<br/> Peut être que les réponses à celles-ci sont-ici :</p>
-  <div class="question">
+  <div class="question"> 
+  
+
   <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
 
 foreach ($data["faq"]["questions"] as $row) {
     echo '<div class="question-container">';
-    echo '<h5 class="titre-question">' . $row["titre"] . "</h5>";
-    echo '<p class="contenu-question">' . $row["contenu"] . "</p>";
+    echo "<details>";
+    echo "<summary>" . $row["titre"] . "</summary>";
+    echo '<div class="faq__content">';
+    echo "<p>" . $row["contenu"] . "</p>";
+    echo "</div>";
+    echo "</details>";
     echo "</div>";
   } ?>
+  </div>
+
   </div>
 
   <?php require_once "../app/views/footer/index.php"; ?>

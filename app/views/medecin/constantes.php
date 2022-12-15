@@ -5,7 +5,7 @@ function load_header($view, $data = [])
 } ?>
 
 <head>
-        <title>CGU</title>
+        <title>Constantes vitales</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/constantes.css"; ?>" />

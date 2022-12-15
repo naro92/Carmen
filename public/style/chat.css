@@ -1,0 +1,249 @@
+body {
+  background-color: white;
+  font-family: sans-serif;
+}
+
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+.bandeau {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 100px;
+}
+
+.logo-container a {
+  font-size: 22px;
+  text-decoration: none;
+  color: var(--primary);
+  font-family: "Lato", sans-serif;
+}
+.nav-list {
+  list-style-type: none;
+}
+
+.nav-list .list-item {
+  display: inline-flex;
+  padding-right: 40px;
+}
+.nav-list .list-item a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 22px;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-list .list-item .button-connexion {
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  width: 130px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-list .list-item .button-connexion:hover {
+  opacity: 0.8;
+}
+
+.btn_retour a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 22px;
+  font-family: "Inter", sans-serif;
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-radius: 8px;
+  padding-left: 20px;
+}
+.btn_retour {
+  padding-left: 50px;
+  padding-top: 60px;
+}
+.btn_retour :hover {
+  opacity: 0.8;
+}
+.main_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main_container .title_container h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+.main_container .main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main_container .main .main_bloc {
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+}
+.main_container .main {
+  width: 815px;
+}
+.main_container .main .main_bloc a {
+  text-decoration: none;
+  color: white;
+}
+.main_container .main #constante_vitale img {
+  width: 200px;
+  height: 200px;
+  padding-top: 15px;
+}
+.main_container .main #rapport_medical img {
+  width: 200px;
+  height: 210px;
+  padding-top: 5px;
+}
+.main_container .main .main_bloc .btn_constante_vitale {
+  background-color: #c9e265;
+  height: 35px;
+  width: 200px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+.main_container .main .main_bloc .btn_constante_vitale a {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main_container .main .main_bloc .btn_rapport_medical {
+  background-color: #c9e265;
+  height: 35px;
+  width: 200px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.main_container .main .main_bloc .btn_rapport_medical a {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+.main_container .main .main_bloc a:hover {
+  opacity: 0.8;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.footer-section hr {
+  margin-top: 10px;
+  width: 90%;
+}
+
+.footer-section .footer-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.footer-section .footer-container .item-footer {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section .footer-container .item-footer:hover {
+  opacity: 0.8;
+}
+
+.list_container a:hover {
+  opacity: 0.8;
+}
+
+#chat-box {
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0px;
+}
+#message-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#message-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+#chat-input {
+  width: 44.5%;
+  height: 60px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  position: absolute;
+  bottom: 15%;
+  left: 23%;
+  font-size: 20px;
+}
+#chat-button {
+  width: 100px;
+  height: 40px;
+  background-color: #c9e265;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 16.3%;
+  right: 23%;
+  font-size: 20px;
+}
+#li-chat {
+  font-size: 20px;
+}
+#img2 {
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  top: 2px;
+  right: 20px;
+}
+#a_chat {
+  color: black;
+  text-decoration: none;
+}

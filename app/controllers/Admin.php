@@ -48,4 +48,19 @@ class Admin extends Controller
     }
     $this->view("admin/index");
   }
+
+  public function ajoutAdmin()
+  {
+    $this->view("admin/ajoutAdmin");
+  }
+
+  public function ajoutCapteurs()
+  {
+    $this->view("admin/ajoutCapteurs");
+  }
+
+  public function ajoutMedecin()
+  {
+    $this->view("admin/ajoutMedecin");
+  }
 }
