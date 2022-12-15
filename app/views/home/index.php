@@ -11,6 +11,8 @@ function load_header($view, $data = [])
           "/style/home.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/header.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/footer.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -58,7 +60,8 @@ function load_header($view, $data = [])
       <div class="plus-container">
         <h1 class="plus-title">En savoir plus :</h1>
         <p class="plus-text">Une question sur le domaine hospitalier?</p>
-        <a class="button-plus-faq" href="<?php echo ROOT_PATH . '/home/faq/'?>">Visiter notre FAQ</a>
+        <a class="button-plus-faq" href="<?php echo ROOT_PATH .
+          "/home/faq/"; ?>">Visiter notre FAQ</a>
       </div>
     </div>
 

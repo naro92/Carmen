@@ -79,14 +79,7 @@ class Inscription extends Controller
 
     $patient = $this->model("Patient");
 
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
     $patient->inscriptionPatient = $patient->inscriptionPatient(
-      $bdd,
       $nom,
       $email,
       $password

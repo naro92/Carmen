@@ -16,8 +16,15 @@ class Faq
    * @param  string $table
    * @return array $vue contient les elements de la faq
    */
-  public function getFaq(PDO $bdd)
+  public function getFaq()
   {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $vue = [];
     $params = [];
     $query = "SELECT * FROM faq";
@@ -42,8 +49,15 @@ class Faq
    * @param  string $contenu
    * @return void
    */
-  public function insertQuestion(PDO $bdd, string $titre, string $contenu)
+  public function insertQuestion(string $titre, string $contenu)
   {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $sql = "INSERT INTO faq (titre, contenu) VALUES (?,?)";
     $stmt = $bdd->prepare($sql);
     $stmt->execute([$titre, $contenu]);

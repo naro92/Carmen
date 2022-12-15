@@ -17,8 +17,15 @@ class MedecinModel
    * @param  string $password
    * @return bool $connectionSuccessful
    */
-  public function connexionMedecin(PDO $bdd, string $email, string $password)
+  public function connexionMedecin(string $email, string $password)
   {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $query = "SELECT * FROM medecin WHERE adresse_mail=:email and mdp=:pass";
     $statement = $bdd->prepare($query);
     $statement->execute([
@@ -45,11 +52,17 @@ class MedecinModel
    * @return void
    */
   public function inscriptionMedecin(
-    PDO $bdd,
     string $nom,
     string $email,
     string $password
   ) {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $query = "SELECT * FROM patient WHERE adresse_mail=:mail";
 
     $statement = $bdd->prepare($query);
@@ -73,8 +86,15 @@ class MedecinModel
     return $return;
   }
 
-  public function getPrenom(PDO $bdd, string $email)
+  public function getPrenom(string $email)
   {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $query = "SELECT prenom FROM medecin WHERE adresse_mail=:mail";
 
     $statement = $bdd->prepare($query);

@@ -17,8 +17,15 @@ class FamilleModel
    * @param  string $password
    * @return bool $connectionSuccessful
    */
-  public function connexionFamille(PDO $bdd, string $email, string $password)
+  public function connexionFamille(string $email, string $password)
   {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $query = "SELECT * FROM famille WHERE adresse_mail=:email and mdp=:pass";
 
     $statement = $bdd->prepare($query);
@@ -46,11 +53,17 @@ class FamilleModel
    * @return void
    */
   public function inscriptionFamille(
-    PDO $bdd,
     string $nom,
     string $email,
     string $password
   ) {
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
     $query = "SELECT * FROM patient WHERE adresse_mail=:email";
 
     $statement = $bdd->prepare($query);

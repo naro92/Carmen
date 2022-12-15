@@ -11,6 +11,8 @@ function load_header($view, $data = [])
           "/style/faq.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/header.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/footer.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -24,7 +26,8 @@ function load_header($view, $data = [])
   <p class="description-faq">Une question, un soucis ?<br/> Peut être que les réponses à celles-ci sont-ici :</p>
   <div class="question">
   <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
-  foreach ($data["faq"]["questions"] as $row) {
+
+foreach ($data["faq"]["questions"] as $row) {
     echo '<div class="question-container">';
     echo '<h5 class="titre-question">' . $row["titre"] . "</h5>";
     echo '<p class="contenu-question">' . $row["contenu"] . "</p>";

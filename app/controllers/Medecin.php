@@ -25,14 +25,9 @@ class Medecin extends Controller
     }
 
     $prenomMedecin = $this->model("MedecinModel");
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
-    $prenomMedecin->fetch = $prenomMedecin->getPrenom($bdd, $_SESSION["user"]);
+    $prenomMedecin->fetch = $prenomMedecin->getPrenom($_SESSION["user"]);
 
     $this->view("medecin/index", ["prenom" => $prenomMedecin->fetch]);
   }
@@ -52,7 +47,8 @@ class Medecin extends Controller
     $this->view("medecin/gestionPatient");
   }
 
-  public function constantes(){
-     $this->view("medecin/constantes");
+  public function constantes()
+  {
+    $this->view("medecin/constantes");
   }
 }

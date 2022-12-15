@@ -1,0 +1,50 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Rambla", sans-serif;
+  font-size: 80px;
+}
+
+.mail-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 500px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px #888888;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#submit-btn {
+  background-color: var(--green);
+  color: #ffffff;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+#submit-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

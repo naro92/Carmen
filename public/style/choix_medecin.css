@@ -99,34 +99,6 @@
 .main .main_bloc a:hover {
   opacity: 0.8;
 }
-.footer-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 70px;
-}
-
-.footer-section hr {
-  margin-top: 50px;
-  width: 90%;
-}
-
-.footer-section .footer-container {
-  display: flex;
-  justify-content: space-around;
-  gap: 40px;
-}
-
-.footer-section .footer-container .item-footer {
-  font-family: "Crimson Text", serif;
-  font-size: 24px;
-  text-decoration: none;
-  color: black;
-}
-
-.footer-section .footer-container .item-footer:hover {
-  opacity: 0.8;
-}
 
 .list_container a:hover {
   opacity: 0.8;

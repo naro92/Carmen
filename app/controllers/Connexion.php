@@ -78,17 +78,7 @@ class Connexion extends Controller
 
     $patient = $this->model("PatientModel");
 
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $patient->connexionPatient = $patient->connexionPatient(
-      $bdd,
-      $email,
-      $password
-    );
+    $patient->connexionPatient = $patient->connexionPatient($email, $password);
 
     if ($patient->connexionPatient) {
       echo "Connection is successful !";
@@ -124,17 +114,7 @@ class Connexion extends Controller
 
     $medecin = $this->model("MedecinModel");
 
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $medecin->connexionMedecin = $medecin->connexionMedecin(
-      $bdd,
-      $email,
-      $password
-    );
+    $medecin->connexionMedecin = $medecin->connexionMedecin($email, $password);
 
     if ($medecin->connexionMedecin) {
       echo "Connection is successful !";
@@ -170,17 +150,7 @@ class Connexion extends Controller
 
     $famille = $this->model("FamilleModel");
 
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $famille->connexionFamille = $famille->connexionFamille(
-      $bdd,
-      $email,
-      $password
-    );
+    $famille->connexionFamille = $famille->connexionFamille($email, $password);
 
     if ($famille->connexionfamille) {
       echo "Connection is successful !";
@@ -216,13 +186,7 @@ class Connexion extends Controller
 
     $admin = $this->model("AdminModel");
 
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $admin->connexionAdmin = $admin->connexionAdmin($bdd, $email, $password);
+    $admin->connexionAdmin = $admin->connexionAdmin($email, $password);
 
     if ($admin->connexionAdmin) {
       echo "Connection is successful !";

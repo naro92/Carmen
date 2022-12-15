@@ -11,6 +11,8 @@ function load_header($view, $data = [])
           "/style/gestionPatient.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/header.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+            "/style/footer.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -40,9 +42,7 @@ function load_header($view, $data = [])
             <th>Action</th>
           </tr>
         </thead>
-        <tbody> <?php
-        include "read.php";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?> <tr>
+        <tbody> <?php while ($row) ?> <tr>
             <td height='50'> <?php echo htmlspecialchars($row["id"]); ?> </td>
             <td> <?php echo htmlspecialchars($row["prenom"]); ?> </td>
             <td> <?php echo htmlspecialchars($row["nom"]); ?> </td>
@@ -55,8 +55,7 @@ function load_header($view, $data = [])
 												<?php echo $row["id"]; ?>">Supprimer </a>
               </div>
             </td>
-          </tr> <?php endwhile;
-        ?> </tbody>
+          </tr> <?php endwhile; ?> </tbody>
       </table>
     </div>
 

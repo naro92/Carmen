@@ -147,35 +147,6 @@ body {
   font-family: "Candal", sans-serif !important;
 }
 
-.footer-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.footer-section hr {
-  margin-top: 50px;
-  width: 90%;
-}
-
-.footer-section .footer-container {
-  display: flex;
-  justify-content: space-around;
-  gap: 40px;
-}
-
-.footer-section .footer-container .item-footer {
-  font-family: "Crimson Text", serif;
-  font-size: 24px;
-  text-decoration: none;
-  color: black;
-}
-
-.footer-section .footer-container .item-footer:hover {
-  opacity: 0.8;
-}
-
 @media screen and (max-width: 1000px) {
   .img_bvn {
     display: none;

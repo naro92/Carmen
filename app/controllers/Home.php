@@ -35,17 +35,6 @@ class Home extends Controller
    */
   public function cgu()
   {
-    // on Charge le model de la faq
-    $faq = $this->model("Faq");
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    // on va appeler la fonction dans le model qui permet d'inserer le titre et la contenu de la faq
-    $faq->insert = $faq->insertQuestion($bdd, "faq", "Contenu faq");
-
     $this->view("home/cgu");
   }
 
@@ -58,14 +47,9 @@ class Home extends Controller
   {
     // on charge le model de la faq
     $faq = $this->model("Faq");
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
-    $faq->fetch = $faq->getFaq($bdd, "faq");
+    $faq->fetch = $faq->getFaq();
     // on charge la vue avec tous les elements de la faq
     $this->view("home/faq", ["faq" => $faq->fetch]);
   }
@@ -78,18 +62,9 @@ class Home extends Controller
    * @param  mixed $fetch
    * @return void
    */
-  public function contact($fetch = "")
+  public function contact()
   {
-    $test = $this->model("Test");
-    $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mvc;charset=utf8",
-      "root",
-      "root",
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $test->fetch = $test->getAll($bdd, "users", $fetch);
-
-    $this->view("home/contact", ["test" => $test->fetch]);
+    $this->view("home/contact");
   }
 
   /**

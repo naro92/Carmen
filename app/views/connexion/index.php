@@ -9,6 +9,8 @@ function load_header($view, $data = [])
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/connexion.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/footer.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
