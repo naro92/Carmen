@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Ajout de chambres.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "bandeau">
+        <div class="Touches-de-navigation">
+          <a href="#Accueil"> <img width="340px", height="138px" src="Ajout de chambres/logo.png" alt="Image not found"></a>
+      </div>
+        <ul class="nav-list" id="navlist">
+        <li class="list-item">
+          <a href="#">Les utilisateurs</a>
+        </li>
+        <li class="list-item">
+          <a href="#cgu">cgu</a>
+        </li>
+        <li class="list-item">
+          <a href="#faq">Contact</a>
+        </li>
+        <li class="list-item">
+          <a href="#contact">Déconnexion</a>
+        </li>
+      </ul>
+      </div>
+
+      <form action="ajout_de_chambres.php" method="post" enctype="multipart/form-data">
+
+        Position:
+        <select name="position" id="select_position">
+            <option value="RDC">RDC</option>
+            <option value="1 étage">1 étage</option>
+            <option value="2 étage">2 étage</option>
+            <option value="3 étage">3 étage</option>
+        </select><br>
+        Numéro de chambres:
+        <input type="text" name="Numéro_de_chambres" id="nbchambre"><br>
+        Nombre de lits:
+            <input id="nblits_1" type="radio" name="Nombre_de_lits" value="1">1
+            <input id="nblits_2" type="radio" name="Nombre_de_lits" value="2">2 <br>
+        Responsable:
+        <input type="text" name="responsable" id="responsable"><br>
+        Capteurs:
+        <input id="capteurs_1" type="checkbox" name="capteurs" value="Capteurs d'air">Capteurs d'air <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="capteurs_2" type="checkbox" name="capteurs" value="Capteurs de température">Capteurs de température <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="capteurs_3" type="checkbox" name="capteurs" value="Capteurs de signes vitaux">Capteurs de signes vitaux <br>
+
+        <input type="submit" id="submit_chambres" value="soumettre">
+
+      </form>
+
+      <div id="div_border" style="z-index:-100;position: relative;">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <div class="footer-section">
+      <hr />
+      <div class="footer-container">
+        <a class="item-footer" href="#contact">Contact</a>
+        <a class="item-footer" href="#cgu">
+          Conditions générales d'utilisations
+        </a>
+        <a class="item-footer" href="#faq">FAQ</a>
+      </div>
+    </div>
+</body>
+</html>
