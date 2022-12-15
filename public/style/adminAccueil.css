@@ -1,0 +1,29 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Rambla", sans-serif;
+  font-size: 80px;
+}
+
+.liens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}

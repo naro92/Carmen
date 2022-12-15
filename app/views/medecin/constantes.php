@@ -56,10 +56,12 @@ function load_header($view, $data = [])
             <h1>Patient</h1>
           </div>
           <div class="infos_patients">
-            <p>Nom :</p>
-            <p>Prénom :</p>
-            <p>Age :</p>
-            <p>Sexe :</p>
+            <p>Nom : <?php echo $data["patient"]["patients"][0]["nom"]; ?></p>
+            <p>Prénom : <?php echo $data["patient"]["patients"][0][
+              "prenom"
+            ]; ?></p>
+            <p>Age : <?php echo $data["patient"]["patients"][0]["age"]; ?></p>
+            <p>Sexe : <?php echo $data["patient"]["patients"][0]["sexe"]; ?></p>
           </div>
           <hr />
           <div class="dernier_bilan_container">

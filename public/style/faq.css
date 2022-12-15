@@ -63,7 +63,7 @@ details > summary:details-marker {
 }
 
 details[open] summary ~ * {
-  animation: sweep 0.5s ease-in-out;
+  animation: sweep 0.5s ease;
 }
 
 @keyframes sweep {
@@ -85,4 +85,12 @@ details[open] summary ~ * {
   h1 {
     font-size: 40px;
   }
+}
+
+.cgu-container {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

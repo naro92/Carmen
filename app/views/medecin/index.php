@@ -46,7 +46,8 @@ function load_header($view, $data = [])
       <div class="tableau_bord">
         <div class="list_patients">
           <img src="<?php echo ROOT_PATH . "/assets/patient.png"; ?>" />
-          <a href="#mespatients" class="tableauLink">Mes Patients</a>
+          <a href="<?php echo ROOT_PATH .
+            "/medecin/patient/"; ?>" class="tableauLink">Mes Patients</a>
         </div>
 
         <div class="list_chambres">
@@ -56,7 +57,8 @@ function load_header($view, $data = [])
 
         <div class="list_rechercher">
           <img src="<?php echo ROOT_PATH . "/assets/rechercher.png"; ?>" />
-          <a href="#rechercher" class="tableauLink">Rechercher</a>
+          <a href="<?php echo ROOT_PATH .
+            "/medecin/rechercher/"; ?>" class="tableauLink">Rechercher</a>
         </div>
 
         <div class="list_chat">

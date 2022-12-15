@@ -24,7 +24,7 @@ function load_header($view, $data = [])
   ]); ?>
     
     <div class="btn_retour">
-      <a href=".\acceuil medecin.html"> &#10229 Retour</a>
+      <a href="/mvcExample/public/medecin/"> &#10229 Retour</a>
     </div>
 
     <div class="title_container">
@@ -42,20 +42,22 @@ function load_header($view, $data = [])
             <th>Action</th>
           </tr>
         </thead>
-        <tbody> <?php while ($row) { ?> <tr>
-            <td height='50'> <?php echo htmlspecialchars($row["id"]); ?> </td>
-            <td> <?php echo htmlspecialchars($row["prenom"]); ?> </td>
-            <td> <?php echo htmlspecialchars($row["nom"]); ?> </td>
-            <td id="case_mail"> <?php echo htmlspecialchars(
-              $row["mail"]
-            ); ?> </td>
-            <td>
-              <div class="btn_container">
-                <a href="supprimer.php?id=
-												<?php echo $row["id"]; ?>">Supprimer </a>
-              </div>
-            </td>
-          </tr> <?php } ?> </tbody>
+        <tbody>
+          <?php foreach ($data["data"]["patients"] as $row) {
+            echo "<tr>";
+            echo '<td height="50">' . $row["id"] . "</td>";
+            echo "<td>" . $row["prenom"] . "</td>";
+            echo "<td>" . $row["nom"] . "</td>";
+            echo '<td id="case_mail">' . $row["email"] . "</td>";
+            echo '<td><div class="btn_container"><a href="supprimer.php?id=' .
+              $row["id"] .
+              '">Supprimer</a></div></td>';
+            echo '<td><div class="btn_container"><a href="/mvcExample/public/medecin/choix/' .
+              $row["id"] .
+              '">Choix</a></div></td>';
+            echo "</tr>";
+          } ?>
+        </tbody>
       </table>
     </div>
 

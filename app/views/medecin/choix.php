@@ -34,7 +34,8 @@ function load_header($view, $data = [])
         <img src="img/chat_2.png" />
         <div class="btn_constante_vitale">
           <a href="<?php echo ROOT_PATH .
-            "/medecin/constantes"; ?>">Constantes vitales</a>
+            "/medecin/constantes/" .
+            $data["idPatient"]; ?>">Constantes vitales</a>
         </div>
       </div>
       <div class="main_bloc" id="rapport_medical">

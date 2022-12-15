@@ -26,7 +26,7 @@ function load_header($view, $data = [])
   <h1>Contact :</h1>
 
   <div class="mail-container">
-  <form action="sendmail.php" method="POST"> 
+  <form method="POST"> 
         <label for="name">Nom :</label>
         <input type="text" name="name" id="name" required>
         <br>
