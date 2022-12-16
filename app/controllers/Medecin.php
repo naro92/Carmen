@@ -114,8 +114,6 @@ class Medecin extends Controller
       ];
     }
 
-    print_r($vue);
-
     $this->view("medecin/constantes", ["patient" => $vue]);
   }
 
@@ -210,5 +208,16 @@ class Medecin extends Controller
     } else {
       echo "veuillez remplir des champs";
     }
+
+    while ($obj = $stmt->fetch()) {
+      $vue["patients"][] = [
+        "id" => htmlspecialchars($obj["idpatient"]),
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+        "email" => htmlspecialchars($obj["adresse_mail"]),
+      ];
+    }
+
+    $this->view("medecin/resultat", ["recherche" => $vue]);
   }
 }
