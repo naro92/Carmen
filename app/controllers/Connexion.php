@@ -152,12 +152,12 @@ class Connexion extends Controller
 
     $famille->connexionFamille = $famille->connexionFamille($email, $password);
 
-    if ($famille->connexionfamille) {
+    if ($famille->connexionFamille) {
       echo "Connection is successful !";
       session_start();
       $_SESSION["user"] = $email;
       $_SESSION["role"] = "famille";
-      header("Location: /mvcExample/public/medecin");
+      header("Location: /mvcExample/public/famille");
       exit();
     } else {
       $this->view("connexion/famille", [

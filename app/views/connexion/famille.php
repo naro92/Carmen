@@ -26,13 +26,13 @@ function load_header($view, $data = [])
     <div class="form-container">
       <h1 class="title">Connexion Famille</h1>
       <p><?php echo $data["error"]; ?></p>
-      <form class="form">
+      <form class="form" action="/mvcExample/public/connexion/connexionFamille" method="post">
         <div class="form-group">
-          <input required type="mail" pattern=".{4,}" title="Enter valid email address" />
+          <input required type="mail" name="email" pattern=".{4,}" title="Enter valid email address" />
             <label>Email</label>
         </div>
         <div class="form-group">
-          <input type="password" required pattern=".{4,}" title="Enter valid email address" />
+          <input type="password" name="password" required pattern=".{4,}" title="Enter valid email address" />
             <label>Mot de passe</label>
         </div>
         <button type="submit" class="button-validate">

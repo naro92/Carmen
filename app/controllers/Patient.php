@@ -23,7 +23,19 @@ class Patient extends Controller
       header("Location: /mvcExample/public/");
       exit();
     }
-    $this->view("patient/index");
+    $bdd = new PDO(
+      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
+      "root",
+      "root",
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+
+    $query = "SELECT prenom FROM patient WHERE adresse_mail=:mail";
+
+    $statement = $bdd->prepare($query);
+    $statement->execute(["mail" => $_SESSION["user"]]);
+    $return = $statement->fetchColumn();
+    $this->view("patient/index", ["prenom" => $return]);
   }
 
   public function error()
@@ -33,16 +45,29 @@ class Patient extends Controller
 
   public function modifierProfil()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "patient") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $this->view("patient/modifProfil");
-  }
-
-  public function chat()
-  {
-    $this->view("patient/chat");
   }
 
   public function modifierProfilAction()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "patient") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $bdd = new PDO(
       "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
       "root",

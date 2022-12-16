@@ -19,8 +19,8 @@ function load_header($view, $data = [])
 <body>
 
   <?php load_header("/header/index", [
-    "button" => "Connexion",
-    "link" => "/mvcExample/public/connexion/",
+    "button" => "Deconnexion",
+    "link" => "/mvcExample/public/connexion/deconnexion",
   ]); ?>
   
   <div id="chat-box">

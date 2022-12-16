@@ -15,6 +15,7 @@ class Medecin extends Controller
   public function index()
   {
     session_start();
+
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
       header("Location: /mvcExample/public/");
       exit();
@@ -39,16 +40,43 @@ class Medecin extends Controller
 
   public function rechercher()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $this->view("medecin/rechercher");
   }
 
   public function choix(int $id = 0)
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $this->view("medecin/choix", ["idPatient" => $id]);
   }
 
   public function patient()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $host = "localhost";
     $dbname = "mydb";
     $username = "root";
@@ -56,7 +84,13 @@ class Medecin extends Controller
 
     $dsn = "mysql:host=$host;dbname=$dbname";
     // récupérer tous les utilisateurs
-    $sql = "SELECT * FROM patient";
+    $sql =
+      "SELECT p.*
+    FROM patient p
+    INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin
+    WHERE m.adresse_mail like '" .
+      $_SESSION["user"] .
+      "'";
 
     try {
       $pdo = new PDO($dsn, $username, $password);
@@ -84,6 +118,15 @@ class Medecin extends Controller
 
   public function constantes(int $id = 0)
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $host = "localhost";
     $dbname = "mydb";
     $username = "root";
@@ -119,12 +162,22 @@ class Medecin extends Controller
 
   public function chat()
   {
+    session_start();
     $this->view("medecin/chat");
     // php à rajouter
   }
 
   public function search()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $test_nom = false;
     $test_prenom = false;
     $test_email = false;

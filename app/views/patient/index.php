@@ -1,10 +1,37 @@
 <?php
+function load_header($view, $data = [])
+{
+  require_once "../app/views/" . $view . ".php";
+} ?>
+
+<head>
+        <title>Administrateur</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/adminAccueil.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/header.css"; ?>" />
+        <link rel="stylesheet" href="<?php echo ROOT_PATH .
+          "/style/footer.css"; ?>" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+<?php load_header("/header/index", [
+  "button" => "Deconnexion",
+  "link" => "/mvcExample/public/connexion/deconnexion",
+]); ?>
+
+<h1>Patient :</h1>
+
+<p style="text-align: center;">Bienvenue <?php echo $data["prenom"]; ?></p>
+
+<div class="liens">
+    <a href="/mvcExample/public/patient/modifierProfil">Modifier son profil</a>
+</div>
 
 
-echo "Cette page n'est visible que par les patients !";
+<?php require_once "../app/views/footer/index.php"; ?>
 
-
-
-?>
-
-<a href="/mvcExample/public/connexion/deconnexion">Deconnexion</a>
+</body>
