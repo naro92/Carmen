@@ -18,15 +18,13 @@ function load_header($view, $data = [])
 
 <body>
 
-  <?php load_header("/header/index", [
-    "button" => "Connexion",
-    "link" => "/mvcExample/public/connexion/",
-  ]); ?>
+<?php load_header("/header/index", [
+  "button" => ucfirst($data["dashboard"]),
+  "link" => ROOT_PATH . "/" . $data["dashboard"],
+]); ?>
   <h1>Foire aux questions</h1>
   <p class="description-faq">Une question, un soucis ?<br/> Peut être que les réponses à celles-ci sont-ici :</p>
-  <div class="question"> 
-  
-
+  <div class="question">
   <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
 
 foreach ($data["faq"]["questions"] as $row) {
@@ -39,8 +37,6 @@ foreach ($data["faq"]["questions"] as $row) {
     echo "</details>";
     echo "</div>";
   } ?>
-  </div>
-
   </div>
 
   <?php require_once "../app/views/footer/index.php"; ?>

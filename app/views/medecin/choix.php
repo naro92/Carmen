@@ -23,7 +23,7 @@ function load_header($view, $data = [])
     "link" => "/mvcExample/public/connexion/deconnexion",
   ]); ?>
     <div class="btn_retour">
-      <a href="<?php echo ROOT_PATH . "/medecin"; ?>"> <= Retour</a>
+      <a href="<?php echo ROOT_PATH . "/medecin"; ?>"> &#10229 Retour</a>
     </div>
 
     <div class="title_container">
@@ -31,7 +31,7 @@ function load_header($view, $data = [])
     </div>
     <div class="main">
       <div class="main_bloc" id="constante_vitale">
-        <img src="img/chat_2.png" />
+        <img src="<?php echo ROOT_PATH . "/assets/chat_2.png"; ?>" />
         <div class="btn_constante_vitale">
           <a href="<?php echo ROOT_PATH .
             "/medecin/constantes/" .
@@ -39,7 +39,7 @@ function load_header($view, $data = [])
         </div>
       </div>
       <div class="main_bloc" id="rapport_medical">
-        <img src="img/profil.png" />
+        <img src="<?php echo ROOT_PATH . "/assets/profil.png"; ?>" />
         <div class="btn_rapport_medical">
           <a href="#rapport">Rapport médical</a>
         </div>

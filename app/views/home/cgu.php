@@ -18,10 +18,10 @@ function load_header($view, $data = [])
 
 <body>
 
-  <?php load_header("/header/index", [
-    "button" => "Connexion",
-    "link" => ROOT_PATH . "/connexion/",
-  ]); ?>
+<?php load_header("/header/index", [
+  "button" => ucfirst($data["dashboard"]),
+  "link" => ROOT_PATH . "/" . $data["dashboard"],
+]); ?>
   <h1>Conditions Générales d'Utilisation</h1>
   <p class="description-faq">Conditions générales d'utilisations de notre service :</p>
   <div class="cgu-container">

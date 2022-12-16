@@ -35,7 +35,13 @@ class Home extends Controller
    */
   public function cgu()
   {
-    $this->view("home/cgu");
+    session_start();
+    if (isset($_SESSION["user"]) && isset($_SESSION["role"])) {
+      $dashboard = $_SESSION["role"];
+    } else {
+      $dashboard = "Connexion";
+    }
+    $this->view("home/cgu", ["dashboard" => $dashboard]);
   }
 
   /**
@@ -45,13 +51,19 @@ class Home extends Controller
    */
   public function faq()
   {
+    session_start();
+    if (isset($_SESSION["user"]) && isset($_SESSION["role"])) {
+      $dashboard = $_SESSION["role"];
+    } else {
+      $dashboard = "Connexion";
+    }
     // on charge le model de la faq
     $faq = $this->model("Faq");
 
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
     $faq->fetch = $faq->getFaq();
     // on charge la vue avec tous les elements de la faq
-    $this->view("home/faq", ["faq" => $faq->fetch]);
+    $this->view("home/faq", ["faq" => $faq->fetch, "dashboard" => $dashboard]);
   }
 
   /**
@@ -64,7 +76,13 @@ class Home extends Controller
    */
   public function contact()
   {
-    $this->view("home/contact");
+    session_start();
+    if (isset($_SESSION["user"]) && isset($_SESSION["role"])) {
+      $dashboard = $_SESSION["role"];
+    } else {
+      $dashboard = "Connexion";
+    }
+    $this->view("home/contact", ["dashboard" => $dashboard]);
   }
 
   /**
