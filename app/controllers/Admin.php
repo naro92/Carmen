@@ -14,6 +14,15 @@ class Admin extends Controller
    */
   public function index()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /mvcExample/public/");
+      exit();
+    }
     $this->view("connexion/admin", ["error" => null]);
   }
 

@@ -33,7 +33,7 @@ function load_header($view, $data = [])
       <div class="grid-container">
         <div id="freq">
           <div class="frequence_title_container">
-            <img src="logo frequence.png" />
+            <img src="<?php echo ROOT_PATH . "/assets/bpm_image.svg"; ?>" />
             <h1>Fréquence cardiaque</h1>
           </div>
           <div class="schema_frequence">Schema a mettre ici</div>
@@ -44,7 +44,7 @@ function load_header($view, $data = [])
 
         <div id="temp">
           <div class="temperature_title_container">
-            <img src="logo temperature.png" />
+            <img src="<?php echo ROOT_PATH . "/assets/temp_image.svg"; ?>" />
             <h1>Température</h1>
           </div>
           <div>Schema Température</div>
@@ -52,7 +52,7 @@ function load_header($view, $data = [])
 
         <div id="patient">
           <div class="patient_title_container">
-            <img src="profil vitale.png" />
+            <img src="<?php echo ROOT_PATH . "/assets/profil_image.svg"; ?>" />
             <h1>Patient</h1>
           </div>
           <div class="infos_patients">
@@ -74,7 +74,7 @@ function load_header($view, $data = [])
 
         <div id="suivi_patient">
           <div class="img_container">
-            <img src="logo.png" />
+            <img src="<?php echo ROOT_PATH . "/assets/logo.png"; ?>" />
           </div>
           <div class="btn_container">
             <a href="#suivi">Accéder au suivi du patient</a>

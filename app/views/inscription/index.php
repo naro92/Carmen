@@ -11,6 +11,8 @@ function load_header($view, $data = [])
           "/style/inscription.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/footer.css"; ?>" />
+          <link rel="stylesheet" href="<?php echo ROOT_PATH .
+            "/style/header.css"; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 

@@ -66,7 +66,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 }
 
 .bpm_container {
@@ -96,7 +97,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 }
 
 #patient {
@@ -113,7 +115,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 }
 
 .dernier_bilan_container h1 {
