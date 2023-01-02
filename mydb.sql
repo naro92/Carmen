@@ -2,10 +2,10 @@
 -- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 07, 2022 at 08:37 AM
--- Server version: 5.7.24
--- PHP Version: 8.0.1
+-- Hôte : localhost:3306
+-- Généré le : lun. 02 jan. 2023 à 14:09
+-- Version du serveur : 5.7.24
+-- Version de PHP : 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydb`
+-- Base de données : `mydb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrateur`
+-- Structure de la table `administrateur`
 --
 
 CREATE TABLE `administrateur` (
@@ -38,10 +38,17 @@ CREATE TABLE `administrateur` (
   `adresse_mail` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `administrateur`
+--
+
+INSERT INTO `administrateur` (`idadministrateur`, `nom`, `prenom`, `age`, `sexe`, `mdp`, `adresse`, `adresse_mail`) VALUES
+(1, 'Kerdrel', 'Tugdual', 20, 'male', '819d90f708c2678ca0dec4cc99e2804b828f0c117c920b41e0d02c1366086fdb', '23 rue des branlos', 'admin@admin.com');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alerte`
+-- Structure de la table `alerte`
 --
 
 CREATE TABLE `alerte` (
@@ -57,7 +64,7 @@ CREATE TABLE `alerte` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assignation_chambre`
+-- Structure de la table `assignation_chambre`
 --
 
 CREATE TABLE `assignation_chambre` (
@@ -71,7 +78,7 @@ CREATE TABLE `assignation_chambre` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `capteurs`
+-- Structure de la table `capteurs`
 --
 
 CREATE TABLE `capteurs` (
@@ -86,7 +93,7 @@ CREATE TABLE `capteurs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chambre`
+-- Structure de la table `chambre`
 --
 
 CREATE TABLE `chambre` (
@@ -96,7 +103,7 @@ CREATE TABLE `chambre` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat`
+-- Structure de la table `chat`
 --
 
 CREATE TABLE `chat` (
@@ -114,7 +121,7 @@ CREATE TABLE `chat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `codefamille`
+-- Structure de la table `codefamille`
 --
 
 CREATE TABLE `codefamille` (
@@ -129,7 +136,7 @@ CREATE TABLE `codefamille` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `codepatient`
+-- Structure de la table `codepatient`
 --
 
 CREATE TABLE `codepatient` (
@@ -144,7 +151,7 @@ CREATE TABLE `codepatient` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `famille`
+-- Structure de la table `famille`
 --
 
 CREATE TABLE `famille` (
@@ -159,10 +166,17 @@ CREATE TABLE `famille` (
   `codefamille` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `famille`
+--
+
+INSERT INTO `famille` (`idfamille`, `nom`, `prenom`, `adresse_mail`, `mdp`, `medecin_idmedecin`, `patient_idpatient`, `patient_medecin_idmedecin`, `codefamille`) VALUES
+(2, 'Autier', 'Fabrice', 'fabrice.autier@famille.fr', '81d890f309e8b4485d129b8a8a24d3794c3dc7d5c7e11737c499e98b9d7f00f8', 2, 2, 2, 0);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faq`
+-- Structure de la table `faq`
 --
 
 CREATE TABLE `faq` (
@@ -172,20 +186,19 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `faq`
+-- Déchargement des données de la table `faq`
 --
 
 INSERT INTO `faq` (`idquestion`, `titre`, `contenu`) VALUES
-(1, 'Faq', 'Test faq'),
-(2, 'Faq 2', 'Test faq 2'),
-(3, 'faq', 'Contenu faq'),
-(4, 'faq', 'Contenu faq'),
-(5, 'faq', 'Contenu faq');
+(28, 'Qu\'est-ce que Carmen ?', 'Carmen est un outil en ligne qui permet aux patients d\'accéder à leurs bilans médicaux, aux médecins de consulter les constantes vitales des patients et de communiquer avec leur famille, et aux administrateurs de gérer les patients, les capteurs et les médecins.'),
+(29, 'Qui peut utiliser Carmen ?', 'Carmen est accessible aux patients, aux médecins et aux administrateurs de l\'hôpital.'),
+(30, 'Comment puis-je accéder à Carmen ?', 'Pour accéder à Carmen, vous devez disposer d\'un compte utilisateur valide et vous connecter en utilisant vos identifiants. Si vous êtes un patient, vous pouvez demander à votre médecin ou à l\'administration de l\'hôpital de vous créer un compte.'),
+(31, 'Comment puis-je contacter l\'assistance technique si j\'ai des problèmes avec le site ?', 'Si vous rencontrez des difficultés lors de l\'utilisation du site, vous pouvez contacter l\'assistance technique en utilisant le formulaire de contact. Vous pouvez également vous renseigner auprès de votre médecin ou de l\'administration de l\'hôpital pour obtenir de l\'aide.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medecin`
+-- Structure de la table `medecin`
 --
 
 CREATE TABLE `medecin` (
@@ -198,16 +211,18 @@ CREATE TABLE `medecin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `medecin`
+-- Déchargement des données de la table `medecin`
 --
 
 INSERT INTO `medecin` (`idmedecin`, `nom`, `prenom`, `age`, `adresse_mail`, `mdp`) VALUES
-(1, 'A assigner', 'A assigner', '0', 'test@test.com', '157f5fecda4c52fa78bbaaf89e4d10013dcb7a2e842c735238288d6a4043ed70');
+(1, 'A assigner', 'A assigner', '0', 'test@test.com', '157f5fecda4c52fa78bbaaf89e4d10013dcb7a2e842c735238288d6a4043ed70'),
+(2, 'Cymes', 'Michel', '65', 'michel.cymes@medecin.com', '4a11d3db11391248b569f1babe5d80782788372d6a4027b4f414562e22b77947'),
+(3, 'Pasteur', 'Louis', '74', 'louis.pasteur@medecin.fr', 'a733549fc0a65c88641040f92d602d89000a2492fefa0a7bbf020e7f3a1c621b');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient`
+-- Structure de la table `patient`
 --
 
 CREATE TABLE `patient` (
@@ -227,16 +242,20 @@ CREATE TABLE `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `patient`
+-- Déchargement des données de la table `patient`
 --
 
 INSERT INTO `patient` (`idpatient`, `nom`, `age`, `sexe`, `mdp`, `adresse`, `medecin_idmedecin`, `date_arrivee`, `date_depart`, `telephone`, `codepatient`, `prenom`, `adresse_mail`) VALUES
-(1, 'Kerdrel', NULL, NULL, 'f1845abacf3c2cbc9414043a1e3e3ffb42d33fb421424ae9f867e0086151ff92', NULL, 1, '2022-12-06 20:04:19', '2022-12-06 20:04:19', NULL, 0, NULL, 'tugdualk@hotmail.com');
+(1, 'Audren de Kerdrel', 2121, 'Male', 'f1845abacf3c2cbc9414043a1e3e3ffb42d33fb421424ae9f867e0086151ff92', '44 rue de Lille', 1, '2022-12-06 20:04:19', '2022-12-06 20:04:19', 768505097, 0, 'Tugdual', 'tugdualk@hotmail.com'),
+(2, 'Champagne', 20, 'Male', '125a44359fb6f9122e7503f14dd67c155537f70e856bf5a8fb194dc1ab21482a', '10 rue des plantes', 2, '2022-12-16 06:41:43', '2022-12-16 06:41:43', 646086817, 0, 'Mathis', 'mathis.champagne@patient.fr'),
+(3, 'Autier', 21, 'Male', '3a3f4e7a0a9bccdd29d25f1b09fc8fc6f1bcea2cf33fa110e4f8a4ec63b16247', '40 rue du Bac', 2, '2022-12-16 06:42:51', '2022-12-16 06:42:51', 746352416, 0, 'Arno', 'arno.autier@patient.fr'),
+(4, 'Rodallec', 20, 'Male', '9fbd49c2de67c9bd38edf15043361d86e06a90bc01f1b4f26dde6f7c15fea75f', '40 rue de Beaune', 3, '2022-12-16 06:44:57', '2022-12-16 06:44:57', 567463514, 0, 'Clement', 'clement.rodallec@patient.fr'),
+(5, 'Cermak', NULL, NULL, '63ccd22b19bcc5a530990f54cfa10a17f995b178a1530ccda32348393d0807d3', NULL, 1, '2022-12-16 10:06:06', '2022-12-16 10:06:06', NULL, 0, NULL, 'hugo.cermak@patient.fr');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient_has_chambre`
+-- Structure de la table `patient_has_chambre`
 --
 
 CREATE TABLE `patient_has_chambre` (
@@ -250,7 +269,7 @@ CREATE TABLE `patient_has_chambre` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rapport`
+-- Structure de la table `rapport`
 --
 
 CREATE TABLE `rapport` (
@@ -264,17 +283,17 @@ CREATE TABLE `rapport` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `administrateur`
+-- Index pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
   ADD PRIMARY KEY (`idadministrateur`);
 
 --
--- Indexes for table `alerte`
+-- Index pour la table `alerte`
 --
 ALTER TABLE `alerte`
   ADD PRIMARY KEY (`idalerte`,`medecin_idmedecin`,`patient_idpatient`,`patient_medecin_idmedecin`),
@@ -282,7 +301,7 @@ ALTER TABLE `alerte`
   ADD KEY `fk_alerte_Patient1_idx` (`patient_idpatient`,`patient_medecin_idmedecin`);
 
 --
--- Indexes for table `assignation_chambre`
+-- Index pour la table `assignation_chambre`
 --
 ALTER TABLE `assignation_chambre`
   ADD PRIMARY KEY (`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`,`chambre_numero`),
@@ -290,7 +309,7 @@ ALTER TABLE `assignation_chambre`
   ADD KEY `fk_Patient_has_Chambre1_Patient1_idx` (`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`);
 
 --
--- Indexes for table `capteurs`
+-- Index pour la table `capteurs`
 --
 ALTER TABLE `capteurs`
   ADD PRIMARY KEY (`idcapteurs`,`chambre_numero`,`medecin_idmedecin`),
@@ -298,13 +317,13 @@ ALTER TABLE `capteurs`
   ADD KEY `fk_Capteurs_Médecin1_idx` (`medecin_idmedecin`);
 
 --
--- Indexes for table `chambre`
+-- Index pour la table `chambre`
 --
 ALTER TABLE `chambre`
   ADD PRIMARY KEY (`numero`);
 
 --
--- Indexes for table `chat`
+-- Index pour la table `chat`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`idchat`,`medecin_idmedecin`,`famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`),
@@ -312,47 +331,47 @@ ALTER TABLE `chat`
   ADD KEY `fk_Chat_Famille1_idx` (`famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`);
 
 --
--- Indexes for table `codefamille`
+-- Index pour la table `codefamille`
 --
 ALTER TABLE `codefamille`
   ADD PRIMARY KEY (`codefamille`,`Famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`,`famille_codefamille`),
   ADD KEY `fk_codefamille_Famille1_idx` (`Famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`,`famille_codefamille`);
 
 --
--- Indexes for table `codepatient`
+-- Index pour la table `codepatient`
 --
 ALTER TABLE `codepatient`
   ADD PRIMARY KEY (`codepatient`,`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`,`patient_codepatient`),
   ADD KEY `fk_codepatient_Patient1_idx` (`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`,`patient_codepatient`);
 
 --
--- Indexes for table `famille`
+-- Index pour la table `famille`
 --
 ALTER TABLE `famille`
   ADD PRIMARY KEY (`idfamille`,`medecin_idmedecin`,`patient_idpatient`,`patient_medecin_idmedecin`,`codefamille`),
   ADD KEY `fk_Famille_Patient1_idx` (`patient_idpatient`,`patient_medecin_idmedecin`);
 
 --
--- Indexes for table `faq`
+-- Index pour la table `faq`
 --
 ALTER TABLE `faq`
   ADD PRIMARY KEY (`idquestion`);
 
 --
--- Indexes for table `medecin`
+-- Index pour la table `medecin`
 --
 ALTER TABLE `medecin`
   ADD PRIMARY KEY (`idmedecin`);
 
 --
--- Indexes for table `patient`
+-- Index pour la table `patient`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`idpatient`,`medecin_idmedecin`,`date_arrivee`,`date_depart`,`codepatient`),
   ADD KEY `fk_Patient_Médecin1_idx` (`medecin_idmedecin`);
 
 --
--- Indexes for table `patient_has_chambre`
+-- Index pour la table `patient_has_chambre`
 --
 ALTER TABLE `patient_has_chambre`
   ADD PRIMARY KEY (`Patient_idPatient`,`Patient_Médecin_idMédecin`,`Patient_dateArrivée`,`Patient_dateDépart`,`Chambre_numero`),
@@ -360,7 +379,7 @@ ALTER TABLE `patient_has_chambre`
   ADD KEY `fk_Patient_has_Chambre_Patient1_idx` (`Patient_idPatient`,`Patient_Médecin_idMédecin`,`Patient_dateArrivée`,`Patient_dateDépart`);
 
 --
--- Indexes for table `rapport`
+-- Index pour la table `rapport`
 --
 ALTER TABLE `rapport`
   ADD PRIMARY KEY (`idrapport`,`medecin_idmedecin`,`famille_idfamille`,`famille_medecin_idmedecin`,`patient_idpatient`,`patient_medecin_idmedecin`),
@@ -369,140 +388,146 @@ ALTER TABLE `rapport`
   ADD KEY `fk_Rapport_Patient1_idx` (`patient_idpatient`,`patient_medecin_idmedecin`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `alerte`
+-- AUTO_INCREMENT pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+  MODIFY `idadministrateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `alerte`
 --
 ALTER TABLE `alerte`
   MODIFY `idalerte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `capteurs`
+-- AUTO_INCREMENT pour la table `capteurs`
 --
 ALTER TABLE `capteurs`
   MODIFY `idcapteurs` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `chambre`
+-- AUTO_INCREMENT pour la table `chambre`
 --
 ALTER TABLE `chambre`
   MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `chat`
+-- AUTO_INCREMENT pour la table `chat`
 --
 ALTER TABLE `chat`
   MODIFY `idchat` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `codefamille`
+-- AUTO_INCREMENT pour la table `codefamille`
 --
 ALTER TABLE `codefamille`
   MODIFY `codefamille` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `codepatient`
+-- AUTO_INCREMENT pour la table `codepatient`
 --
 ALTER TABLE `codepatient`
   MODIFY `codepatient` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `famille`
+-- AUTO_INCREMENT pour la table `famille`
 --
 ALTER TABLE `famille`
-  MODIFY `idfamille` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idfamille` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `faq`
+-- AUTO_INCREMENT pour la table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `idquestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idquestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `medecin`
+-- AUTO_INCREMENT pour la table `medecin`
 --
 ALTER TABLE `medecin`
-  MODIFY `idmedecin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmedecin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `patient`
+-- AUTO_INCREMENT pour la table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `idpatient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpatient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `rapport`
+-- AUTO_INCREMENT pour la table `rapport`
 --
 ALTER TABLE `rapport`
   MODIFY `idrapport` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `alerte`
+-- Contraintes pour la table `alerte`
 --
 ALTER TABLE `alerte`
   ADD CONSTRAINT `fk_alerte_Médecin1` FOREIGN KEY (`medecin_idmedecin`) REFERENCES `medecin` (`idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_alerte_Patient1` FOREIGN KEY (`patient_idpatient`,`patient_medecin_idmedecin`) REFERENCES `patient` (`idpatient`, `medecin_idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `assignation_chambre`
+-- Contraintes pour la table `assignation_chambre`
 --
 ALTER TABLE `assignation_chambre`
   ADD CONSTRAINT `fk_Patient_has_Chambre1_Chambre1` FOREIGN KEY (`chambre_numero`) REFERENCES `chambre` (`numero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Patient_has_Chambre1_Patient1` FOREIGN KEY (`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`) REFERENCES `patient` (`idpatient`, `medecin_idmedecin`, `date_arrivee`, `date_depart`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `capteurs`
+-- Contraintes pour la table `capteurs`
 --
 ALTER TABLE `capteurs`
   ADD CONSTRAINT `fk_Capteurs_Chambre1` FOREIGN KEY (`chambre_numero`) REFERENCES `chambre` (`numero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Capteurs_Médecin1` FOREIGN KEY (`medecin_idmedecin`) REFERENCES `medecin` (`idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `chat`
+-- Contraintes pour la table `chat`
 --
 ALTER TABLE `chat`
   ADD CONSTRAINT `fk_Chat_Famille1` FOREIGN KEY (`famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`) REFERENCES `famille` (`idfamille`, `medecin_idmedecin`, `patient_idpatient`, `patient_medecin_idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Chat_Médecin1` FOREIGN KEY (`medecin_idmedecin`) REFERENCES `medecin` (`idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `codefamille`
+-- Contraintes pour la table `codefamille`
 --
 ALTER TABLE `codefamille`
   ADD CONSTRAINT `fk_codefamille_Famille1` FOREIGN KEY (`Famille_idfamille`,`famille_medecin_idmedecin`,`famille_patient_idpatient`,`famille_patient_medecin_idmedecin`,`famille_codefamille`) REFERENCES `famille` (`idfamille`, `medecin_idmedecin`, `patient_idpatient`, `patient_medecin_idmedecin`, `codefamille`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `codepatient`
+-- Contraintes pour la table `codepatient`
 --
 ALTER TABLE `codepatient`
   ADD CONSTRAINT `fk_codepatient_Patient1` FOREIGN KEY (`patient_idpatient`,`patient_medecin_idmedecin`,`patient_date_arrivee`,`patient_date_depart`,`patient_codepatient`) REFERENCES `patient` (`idpatient`, `medecin_idmedecin`, `date_arrivee`, `date_depart`, `codepatient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `famille`
+-- Contraintes pour la table `famille`
 --
 ALTER TABLE `famille`
   ADD CONSTRAINT `fk_Famille_Patient1` FOREIGN KEY (`patient_idpatient`,`patient_medecin_idmedecin`) REFERENCES `patient` (`idpatient`, `medecin_idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `patient`
+-- Contraintes pour la table `patient`
 --
 ALTER TABLE `patient`
   ADD CONSTRAINT `fk_Patient_Médecin1` FOREIGN KEY (`medecin_idmedecin`) REFERENCES `medecin` (`idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `patient_has_chambre`
+-- Contraintes pour la table `patient_has_chambre`
 --
 ALTER TABLE `patient_has_chambre`
   ADD CONSTRAINT `fk_Patient_has_Chambre_Chambre1` FOREIGN KEY (`Chambre_numero`) REFERENCES `chambre` (`numero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Patient_has_Chambre_Patient1` FOREIGN KEY (`Patient_idPatient`,`Patient_Médecin_idMédecin`,`Patient_dateArrivée`,`Patient_dateDépart`) REFERENCES `patient` (`idpatient`, `medecin_idmedecin`, `date_arrivee`, `date_depart`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `rapport`
+-- Contraintes pour la table `rapport`
 --
 ALTER TABLE `rapport`
   ADD CONSTRAINT `fk_Rapport_Famille1` FOREIGN KEY (`famille_idfamille`,`famille_medecin_idmedecin`) REFERENCES `famille` (`idfamille`, `medecin_idmedecin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
