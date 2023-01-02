@@ -11,6 +11,8 @@ Chaque dossier corepsond à une partie du site.
 
 ## Explications des dossiers :
 
+Tous les dossiers sont normalements dans un dossier parent appelé `mvcExample`
+
 - dossier public :
   - index.php : page appelée par l'utilisateur
   - assets : images accessibles au public
