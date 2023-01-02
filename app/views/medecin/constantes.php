@@ -36,7 +36,6 @@ function load_header($view, $data = [])
             <img src="<?php echo ROOT_PATH . "/assets/bpm_image.svg"; ?>" />
             <h1>Fréquence cardiaque</h1>
           </div>
-          <div class="schema_frequence">Schema a mettre ici</div>
           <div class="bpm_container">
             <p>? Bpm</p>
           </div>
@@ -47,7 +46,9 @@ function load_header($view, $data = [])
             <img src="<?php echo ROOT_PATH . "/assets/temp_image.svg"; ?>" />
             <h1>Température</h1>
           </div>
-          <div>Schema Température</div>
+          <div class="bpm_container">
+            <p>? °C</p>
+          </div>
         </div>
 
         <div id="patient">

@@ -24,7 +24,7 @@ function load_header($view, $data = [])
   ]); ?>
   
   <div class = "btn_retour">
-	<a href="/mvcExample/public/medecin//">	&#10229 Retour</a>
+	<a href="/mvcExample/public/medecin/">	&#10229 Retour</a>
 </div>
 <div class="title_container">
 <h1>Rechercher un patient<h1>

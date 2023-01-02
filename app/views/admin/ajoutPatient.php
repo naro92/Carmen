@@ -8,7 +8,7 @@ function load_header($view, $data = [])
         <title>Ajouter un administrateur</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
-          "/style/ajoutAdmin.css"; ?>" />
+          "/style/ajoutPatient.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
           "/style/header.css"; ?>" />
         <link rel="stylesheet" href="<?php echo ROOT_PATH .
@@ -26,7 +26,7 @@ function load_header($view, $data = [])
   <div class="admin-add">
   <form class="form-container">
   <header>
-    <h1 class="title">Ajouter un administrateur</h1>
+    <h1 class="title">Ajouter un patient</h1>
   </header>
 
   <div class="form">
@@ -62,6 +62,11 @@ function load_header($view, $data = [])
     <div class="field">
       <label for="city">Email</label>
       <input class="input" type="text" name="mail">
+    </div>
+
+    <div class="field">
+      <label for="city">Téléphone</label>
+      <input class="input" type="text" name="phone">
     </div>
 
     <div class="btn-container">

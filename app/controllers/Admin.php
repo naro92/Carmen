@@ -15,12 +15,8 @@ class Admin extends Controller
   public function index()
   {
     session_start();
-    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
-      exit();
-    }
-    if ($_SESSION["role"] != "admin") {
-      header("Location: /mvcExample/public/");
+    if ($_SESSION["role"] == "admin") {
+      header("Location: /mvcExample/public/admin/dashboard");
       exit();
     }
     $this->view("connexion/admin", ["error" => null]);
@@ -71,5 +67,20 @@ class Admin extends Controller
   public function ajoutMedecin()
   {
     $this->view("admin/ajoutMedecin");
+  }
+
+  public function ajoutPatient()
+  {
+    $this->view("admin/ajoutPatient");
+  }
+
+  public function addPatientFunc()
+  {
+    // Generer un code patient aléatoire
+    // il faudra vérifier que le code patient ne soit pas deja utilisé par un autre patient
+    $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $length_of_string = 7;
+
+    $codePatient = substr(str_shuffle($str_result), 0, $length_of_string);
   }
 }
