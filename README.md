@@ -15,7 +15,9 @@ Ceci est réalisé grâce à des fichiers de configurations .htaccess
 
 ## Explications des dossiers :
 
-Tous les dossiers sont normalements dans un dossier parent appelé `mvcExample`
+~~Tous les dossiers sont normalements dans un dossier parent appelé `mvcExample`~~
+
+Les dernieres modifications générales font en sorte de ne plusa voir besoin du dossier parent `mvcExample` !
 
 - dossier public :
   - index.php : page appelée par l'utilisateur
