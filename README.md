@@ -17,7 +17,7 @@ Ceci est réalisé grâce à des fichiers de configurations .htaccess
 
 ~~Tous les dossiers sont normalements dans un dossier parent appelé `mvcExample`~~
 
-Les dernieres modifications générales font en sorte de ne plusa voir besoin du dossier parent `mvcExample` !
+Les dernieres modifications générales font en sorte de ne plus avoir besoin du dossier parent `mvcExample` !
 
 - dossier public :
   - index.php : page appelée par l'utilisateur
@@ -27,3 +27,4 @@ Les dernieres modifications générales font en sorte de ne plusa voir besoin du
   - dossier models : modeles
   - dossiers views : vues du site
   - dossier core : routing mvc et base des controlleurs 
+index.php : redirige automatiquement l'utilisateur vers le dossier public
