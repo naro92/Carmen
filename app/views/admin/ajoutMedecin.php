@@ -20,7 +20,7 @@ function load_header($view, $data = [])
 
 <?php load_header("/header/index", [
   "button" => "Deconnexion",
-  "link" => "/mvcExample/public/connexion/deconnexion",
+  "link" => "/public/connexion/deconnexion",
 ]); ?>
   
 

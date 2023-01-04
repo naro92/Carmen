@@ -10,7 +10,7 @@
 class App
 {
   // creation des controleurs, methodes et parametres par défauts
-  protected $controller = "home";
+  protected $controller = "Home";
   protected $method = "index";
   protected $params = [];
 
@@ -21,12 +21,12 @@ class App
 
     // si la premiere valeur du tableau est un fichier qui existe
     if (isset($url[0])) {
-      if (file_exists("../app/controllers/" . $url[0] . ".php")) {
-        $this->controller = $url[0];
+      if (file_exists($_SERVER['DOCUMENT_ROOT'].'/app/controllers/' . ucfirst($url[0]) . ".php")) {
+        $this->controller = ucfirst($url[0]);
         unset($url[0]);
       } else {
         // si le controlleur demandé n'existe pas
-        $this->controller = "home"; //on va sur le controlleur home
+        $this->controller = "Home"; //on va sur le controlleur home
         unset($url[0]);
         $this->method = "error"; // on charge la methode error pour afficher la page 404
         unset($url[1]);
@@ -34,7 +34,7 @@ class App
     }
 
     // on l'appele
-    require_once "../app/controllers/" . $this->controller . ".php";
+    require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/' . $this->controller . ".php");
 
     $this->controller = new $this->controller();
 

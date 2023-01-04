@@ -20,9 +20,9 @@ class AdminModel
   public function connexionAdmin(string $email, string $password)
   {
     $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
+      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      USERNAME,
+      PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 

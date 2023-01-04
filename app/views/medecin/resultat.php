@@ -20,11 +20,11 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
-    "link" => "/mvcExample/public/connexion/deconnexion",
+    "link" => "/public/connexion/deconnexion",
   ]); ?>
   
 <div class = "btn_retour">
-	<a href="/mvcExample/public/medecin/rechercher">&#10229 Retour</a>
+	<a href="/public/medecin/rechercher">&#10229 Retour</a>
 </div>
 <div class="title_container">
     <h1>Résultat de votre recherche<h1>

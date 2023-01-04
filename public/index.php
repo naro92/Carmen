@@ -9,6 +9,12 @@ define(
   )
 );
 
+define("HOST", "176.31.132.185");
+define("PORT", "3306");
+define("DBNAME", "tfqtbp_carmenws_db");
+define("USERNAME", "tfqtbp_carmenws_db");
+define("PASSWORD", "3tVX07Ga5u!i_D*%");
+
 // permet de bootstrapper tout le reste de l'application
 
 require_once "../app/init.php";

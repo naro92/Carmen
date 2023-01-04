@@ -19,9 +19,9 @@ class Faq
   public function getFaq()
   {
     $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
+      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      USERNAME,
+      PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
@@ -52,9 +52,9 @@ class Faq
   public function insertQuestion(string $titre, string $contenu)
   {
     $bdd = new PDO(
-      "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-      "root",
-      "root",
+      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      USERNAME,
+      PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
@@ -79,9 +79,9 @@ class Faq
 
     try {
       $bdd = new PDO(
-        "mysql:host=localhost:3306;dbname=mydb;charset=utf8",
-        "root",
-        "root",
+        "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+        USERNAME,
+        PASSWORD,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
       );
 

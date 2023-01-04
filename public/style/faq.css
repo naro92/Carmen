@@ -66,6 +66,14 @@ details[open] summary ~ * {
   animation: sweep 0.5s ease;
 }
 
+.legal-notice{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 @keyframes sweep {
   0% {
     opacity: 0;
@@ -88,9 +96,11 @@ details[open] summary ~ * {
 }
 
 .cgu-container {
-  width: 500px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
 }

@@ -20,16 +20,16 @@ function load_header($view, $data = [])
 
 <?php load_header("/header/index", [
   "button" => "Deconnexion",
-  "link" => "/mvcExample/public/connexion/deconnexion",
+  "link" => "/public/connexion/deconnexion",
 ]); ?>
 
 <h1>Administration</h1>
 
 <div class="liens">
-    <a href="/mvcExample/public/admin/ajoutAdmin">Ajouter des administrateurs</a>
-    <a href="/mvcExample/public/admin/ajoutMedecin">Ajouter des medecins</a>
-    <a href="/mvcExample/public/admin/ajoutCapteurs">Ajouter des capteurs</a>
-    <a href="/mvcExample/public/admin/ajoutPatient">Ajouter des patients</a>
+    <a href="/public/admin/ajoutAdmin">Ajouter des administrateurs</a>
+    <a href="/public/admin/ajoutMedecin">Ajouter des medecins</a>
+    <a href="/public/admin/ajoutCapteurs">Ajouter des capteurs</a>
+    <a href="/public/admin/ajoutPatient">Ajouter des patients</a>
 </div>
 
 

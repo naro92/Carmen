@@ -85,7 +85,7 @@ class Connexion extends Controller
       session_start();
       $_SESSION["user"] = $email;
       $_SESSION["role"] = "patient";
-      header("Location: /mvcExample/public/patient");
+      header("Location: /public/patient");
       exit();
     } else {
       $this->view("connexion/patient", [
@@ -121,7 +121,7 @@ class Connexion extends Controller
       session_start();
       $_SESSION["user"] = $email;
       $_SESSION["role"] = "medecin";
-      header("Location: /mvcExample/public/medecin");
+      header("Location: /public/medecin");
       exit();
     } else {
       $this->view("connexion/personnel", [
@@ -157,7 +157,7 @@ class Connexion extends Controller
       session_start();
       $_SESSION["user"] = $email;
       $_SESSION["role"] = "famille";
-      header("Location: /mvcExample/public/famille");
+      header("Location: /public/famille");
       exit();
     } else {
       $this->view("connexion/famille", [
@@ -193,7 +193,7 @@ class Connexion extends Controller
       session_start();
       $_SESSION["user"] = $email;
       $_SESSION["role"] = "admin";
-      header("Location: /mvcExample/public/admin/dashboard");
+      header("Location: /public/admin/dashboard");
       exit();
     } else {
       $this->view("connexion/admin", [
@@ -214,7 +214,7 @@ class Connexion extends Controller
     session_start();
     session_unset();
     session_destroy();
-    header("Location: /mvcExample/public");
+    header("Location: /public");
     exit();
   }
 }

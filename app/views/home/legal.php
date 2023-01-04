@@ -26,9 +26,9 @@ function load_header($view, $data = [])
       <h1>Mentions légales</h1>
       <p>
         Propriétaire et éditeur du site : SSH<br>
-        Adresse : [Adresse postale de SSH]<br>
-        Téléphone : [Numéro de téléphone de SSH]<br>
-        Email : [Adresse email de SSH]
+        Adresse : 10 rue de Vanve<br>
+        Téléphone : 0123456789<br>
+        Email : contact@carmen.wstr.fr
       </p>
       <p>
         Directeur de la publication : [Nom et prénom du directeur de la publication]
@@ -38,7 +38,7 @@ function load_header($view, $data = [])
       </p>
       <p>
         Hébergeur du site : WebStrator<br>
-        Adresse : [Adresse de WebStrator]
+        Adresse : 141 avenue de Lavaur 81100 Castres
       </p>
       <p>
         Le site est destiné aux administrateurs, au personnel hospitalier, aux patients et aux familles.
@@ -56,3 +56,7 @@ function load_header($view, $data = [])
         Le site peut contenir des liens vers des sites tiers. Nous n'avons aucun contrôle sur le contenu de ces sites et déclinons toute responsabilité quant à leur contenu. L'inclusion de liens vers ces sites ne signifie pas que nous approuvons leur contenu.
       </p>
     </div>
+
+    <?php require_once "../app/views/footer/index.php"; ?>
+
+</body>

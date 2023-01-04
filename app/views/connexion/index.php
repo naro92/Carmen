@@ -18,7 +18,7 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => "/mvcExample/public/inscription/",
+      "link" => "/public/inscription/",
     ]); ?>
 
     <h1 class="title">Connexion</h1>
@@ -26,16 +26,16 @@ function load_header($view, $data = [])
     <nav class="nav_connection">
       <ul class="choix" id="choix">
         <li class="list-choix">
-          <a href="/mvcExample/public/connexion/personnel" class="button-Personnels">Personnel</a>
+          <a href="/public/connexion/personnel" class="button-Personnels">Personnel</a>
         </li>
         <li class="list-choix">
-          <a href="/mvcExample/public/connexion/patient" class="button-Personnels">Patient</a>
+          <a href="/public/connexion/patient" class="button-Personnels">Patient</a>
         </li>
         <li class="list-choix">
-          <a href="/mvcExample/public/connexion/famille" class="button-Personnels">Famille</a>
+          <a href="/public/connexion/famille" class="button-Personnels">Famille</a>
         </li>
         <li class="list-choix">
-          <p>Vous n'avez pas de compte ? <a href="/mvcExample/public/inscription/">Inscrivez-vous </a> ici !</p>
+          <p>Vous n'avez pas de compte ? <a href="/public/inscription/">Inscrivez-vous </a> ici !</p>
 
         </li>
       </ul>

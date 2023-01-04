@@ -20,7 +20,7 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
-    "link" => "/mvcExample/public/connexion/deconnexion",
+    "link" => "/public/connexion/deconnexion",
   ]); ?>
   
   <div class="form-container">
@@ -28,7 +28,7 @@ function load_header($view, $data = [])
         <img src="<?php echo ROOT_PATH . "/assets/profil.png"; ?>"/>
        </div>
        <h1 style="text-align: center;">Modifier profil :</h1>
-        <form class="form" action="/mvcExample/public/patient/modifierProfilAction" method="post">
+        <form class="form" action="/public/patient/modifierProfilAction" method="post">
           <div class="form-group">
             <input type="text" pattern=".{4,}" title="Enter valid email address" name="nom"/>
               <label>Nom</label>

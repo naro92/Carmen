@@ -20,13 +20,13 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => "/mvcExample/public/inscription/",
+      "link" => "/public/inscription/",
     ]); ?>
 
     <div class="form-container">
       <h1 class="title">Connexion Administrateur</h1>
       <p><?php echo $data["error"]; ?></p>
-      <form class="form" action="/mvcExample/public/connexion/connexionAdmin" method="post">
+      <form class="form" action="/public/connexion/connexionAdmin" method="post">
         <div class="form-group">
           <input required type="mail" name="email" pattern=".{4,}" title="Enter valid email address" />
             <label>Email</label>

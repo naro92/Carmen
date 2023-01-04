@@ -20,7 +20,7 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
-    "link" => "/mvcExample/public/connexion/deconnexion",
+    "link" => "/public/connexion/deconnexion",
   ]); ?>
     <div class="btn_retour">
       <a href="<?php echo ROOT_PATH . "/medecin"; ?>"> &#10229 Retour</a>

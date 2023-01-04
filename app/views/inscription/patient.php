@@ -20,12 +20,12 @@ function load_header($view, $data = [])
 
     <?php load_header("/header/index", [
       "button" => "Inscription",
-      "link" => "/mvcExample/public/inscription/",
+      "link" => "/public/inscription/",
     ]); ?>
 
     <div class="form-container">
       <h1 class="title">Inscription Patient</h1>
-      <form class="form" method="post" action="/mvcExample/public/inscription/inscriptionPatient">
+      <form class="form" method="post" action="/public/inscription/inscriptionPatient">
         <div class="form-group">
           <input required type="text" pattern=".{4,}" title="Enter valid email address" />
             <label>Code Famille</label>

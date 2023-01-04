@@ -44,17 +44,6 @@ function load_header($view, $data = [])
 <p>Veuillez remplir au minmimum un champ<p>
 </div>
 </div>
-<div class="footer-section">
-      <!-- Section -->
-      <hr />
-      <div class="footer-container">
-        <a class="item-footer" href="#contact">Contact</a>
-        <a class="item-footer" href="#cgu">
-          Conditions générales d'utilisations
-        </a>
-        <a class="item-footer" href="#faq">FAQ</a>
-      </div>
-    </div>
 
   <?php require_once "../app/views/footer/index.php"; ?>
 

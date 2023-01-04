@@ -16,11 +16,11 @@ class Patient extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "patient") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $bdd = new PDO(
@@ -47,11 +47,11 @@ class Patient extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "patient") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $this->view("patient/modifProfil");
@@ -61,11 +61,11 @@ class Patient extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "patient") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $bdd = new PDO(

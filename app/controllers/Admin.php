@@ -15,8 +15,8 @@ class Admin extends Controller
   public function index()
   {
     session_start();
-    if ($_SESSION["role"] == "admin") {
-      header("Location: /mvcExample/public/admin/dashboard");
+    if (isset($_SESSION["role"]) && $_SESSION["role"] == "admin") {
+      header("Location: /public/admin/dashboard");
       exit();
     }
     $this->view("connexion/admin", ["error" => null]);
@@ -44,11 +44,11 @@ class Admin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "admin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $this->view("admin/index");

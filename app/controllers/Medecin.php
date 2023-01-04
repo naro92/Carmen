@@ -17,11 +17,11 @@ class Medecin extends Controller
     session_start();
 
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
 
@@ -42,11 +42,11 @@ class Medecin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $this->view("medecin/rechercher");
@@ -56,11 +56,11 @@ class Medecin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $this->view("medecin/choix", ["idPatient" => $id]);
@@ -70,17 +70,17 @@ class Medecin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
-    $host = "localhost";
-    $dbname = "mydb";
-    $username = "root";
-    $password = "root";
+    $host = HOST;
+    $dbname = DBNAME;
+    $username = USERNAME;
+    $password = PASSWORD;
 
     $dsn = "mysql:host=$host;dbname=$dbname";
     // récupérer tous les utilisateurs
@@ -120,17 +120,17 @@ class Medecin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
-    $host = "localhost";
-    $dbname = "mydb";
-    $username = "root";
-    $password = "root";
+    $host = HOST;
+    $dbname = DBNAME;
+    $username = USERNAME;
+    $password = PASSWORD;
 
     $dsn = "mysql:host=$host;dbname=$dbname";
     // récupérer tous les utilisateurs
@@ -171,11 +171,11 @@ class Medecin extends Controller
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     if ($_SESSION["role"] != "medecin") {
-      header("Location: /mvcExample/public/");
+      header("Location: /public/");
       exit();
     }
     $test_nom = false;

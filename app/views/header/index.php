@@ -1,7 +1,7 @@
 <nav class="navBar">
       <div class="logo-container">
         <img src="<?php echo ROOT_PATH . '/assets/logo.svg';?>" />
-        <a href="/mvcExample/public/">Carmen</a>
+        <a href="/public/">Carmen</a>
       </div>
       <ul class="nav-list" id="nav-list">
         <li class="list-item">

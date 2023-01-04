@@ -16,7 +16,7 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body>
+<body onload="myFunction();">
 
   <?php load_header("/header/index", [
     "button" => ucfirst($data["dashboard"]),
@@ -65,10 +65,23 @@ function load_header($view, $data = [])
       </div>
     </div>
 
+    <div class="snackber-container">
+    <div id="snackbar"><p>Projet en cours de développement</br>Projet réalisé dans le cadrede l'APP de l'ISEP</p></div>
+    </div>
+
     <?php require_once "../app/views/footer/index.php"; ?>
 
 </body>
 
+<script>
+
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+</script>
 
 
 

@@ -44,6 +44,17 @@ class Home extends Controller
     $this->view("home/cgu", ["dashboard" => $dashboard]);
   }
 
+  public function legal()
+  {
+    session_start();
+    if (isset($_SESSION["user"]) && isset($_SESSION["role"])) {
+      $dashboard = $_SESSION["role"];
+    } else {
+      $dashboard = "Connexion";
+    }
+    $this->view("home/legal", ["dashboard" => $dashboard]);
+  }
+
   /**
    * faq
    *

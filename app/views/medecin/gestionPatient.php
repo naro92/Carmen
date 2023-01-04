@@ -20,11 +20,11 @@ function load_header($view, $data = [])
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
-    "link" => "/mvcExample/public/connexion/deconnexion",
+    "link" => "/public/connexion/deconnexion",
   ]); ?>
     
     <div class="btn_retour">
-      <a href="/mvcExample/public/medecin/"> &#10229 Retour</a>
+      <a href="/public/medecin/"> &#10229 Retour</a>
     </div>
 
     <div class="title_container">
@@ -52,7 +52,7 @@ function load_header($view, $data = [])
             echo '<td><div class="btn_container"><a href="supprimer.php?id=' .
               $row["id"] .
               '">Supprimer</a></div></td>';
-            echo '<td><div class="btn_container"><a href="/mvcExample/public/medecin/choix/' .
+            echo '<td><div class="btn_container"><a href="/public/medecin/choix/' .
               $row["id"] .
               '">Choix</a></div></td>';
             echo "</tr>";

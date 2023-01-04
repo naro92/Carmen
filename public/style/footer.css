@@ -13,6 +13,7 @@
 .footer-section .footer-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   gap: 20px;
 }
 
@@ -47,6 +48,10 @@
 
 .item-footer:hover::before {
   transform: scaleX(1);
+}
+
+.copyright{
+  margin: 0;
 }
 
 @media screen and (max-width: 600px) {
