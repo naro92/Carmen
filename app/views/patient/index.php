@@ -20,7 +20,7 @@ function load_header($view, $data = [])
 
 <?php load_header("/header/index", [
   "button" => "Deconnexion",
-  "link" => "/mvcExample/public/connexion/deconnexion",
+  "link" => "/public/connexion/deconnexion",
 ]); ?>
 
 <h1>Patient :</h1>
@@ -28,7 +28,7 @@ function load_header($view, $data = [])
 <p style="text-align: center;">Bienvenue <?php echo $data["prenom"]; ?></p>
 
 <div class="liens">
-    <a href="/mvcExample/public/patient/modifierProfil">Modifier son profil</a>
+    <a href="/public/patient/modifierProfil">Modifier son profil</a>
 </div>
 
 

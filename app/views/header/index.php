@@ -4,9 +4,9 @@
         <a href="/public/">Carmen</a>
       </div>
       <ul class="nav-list" id="nav-list">
-        <li class="list-item">
-          <a href="<?php echo ROOT_PATH . '/home/cgu/'?>">CGU</a>
-        </li>
+        <!-- <li class="list-item">
+          <a href="<?php //echo ROOT_PATH . '/home/cgu/'?>">CGU</a>
+        </li> -->
         <li class="list-item">
           <a href="<?php echo ROOT_PATH . '/home/faq/'?>">FAQ</a>
         </li>

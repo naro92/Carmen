@@ -81,10 +81,16 @@
     display: none;
   }
 
+  .nav-list .list-item:nth-child(1){
+    border-top: none;
+    padding-top: 0px;
+  }
+
   .nav-list .list-item {
     display: block;
     border-top: 1px solid var(--primary);
-    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-right: 0;
   }
 

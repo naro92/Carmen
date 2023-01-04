@@ -54,7 +54,7 @@
   margin: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .footer-section .footer-container {
     flex-direction: column;
     align-items: center;
