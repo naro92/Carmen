@@ -28,3 +28,9 @@ Les dernieres modifications générales font en sorte de ne plus avoir besoin du
   - dossiers views : vues du site
   - dossier core : routing mvc et base des controlleurs 
 index.php : redirige automatiquement l'utilisateur vers le dossier public
+
+## Informations de connexions de demo :
+
+- medecin : michel.cymes@medecin.com ==> MichelCymes
+- patient : mathis.champagne@patient.fr ==> MathisChampagne
+- famille : fabrice.autier@famille.fr ==> FabriceAutier
