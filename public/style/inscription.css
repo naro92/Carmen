@@ -147,7 +147,6 @@ form:valid [type="submit"]:hover {
   background: var(--green);
   color: white;
   font-weight: bold;
-  width: 130px;
   height: 40px;
   display: flex;
   align-items: center;
