@@ -30,6 +30,7 @@ function load_header($view, $data = [])
     <a href="/public/admin/ajoutMedecin">Ajouter des medecins</a>
     <a href="/public/admin/ajoutCapteurs">Ajouter des capteurs</a>
     <a href="/public/admin/ajoutPatient">Ajouter des patients</a>
+    <a href="/public/admin/faqModif">Modifier la faq</a>
 </div>
 
 

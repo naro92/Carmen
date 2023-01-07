@@ -1,0 +1,125 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.titre {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Rambla", sans-serif;
+  font-size: 80px;
+}
+
+.faq-admin-container {
+  width: 90%; /* Set the width of the div element */
+  margin: 0 auto; /* Center the div element */
+}
+
+.table-faq-admin {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-faq-admin caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+
+.table-faq-admin tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+.table-faq-admin th,
+.table-faq-admin td {
+  padding: 0.625em;
+  text-align: center;
+}
+
+.table-faq-admin th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.add-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ajouterQuestion {
+  margin-top: 5px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 780px) {
+  .titre {
+    font-size: 40px;
+  }
+
+  .table-faq-admin {
+    border: 0;
+  }
+
+  .table-faq-admin caption {
+    font-size: 1.3em;
+  }
+
+  .table-faq-admin thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .table-faq-admin tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .table-faq-admin td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  .table-faq-admin td::before {
+    /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .table-faq-admin td:last-child {
+    border-bottom: 0;
+  }
+}

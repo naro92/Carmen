@@ -19,7 +19,7 @@ class Faq
   public function getFaq()
   {
     $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
       USERNAME,
       PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -33,6 +33,7 @@ class Faq
 
     while ($obj = $statement->fetch()) {
       $vue["questions"][] = [
+        "id" => htmlspecialchars($obj["idquestion"]),
         "titre" => htmlspecialchars($obj["titre"]),
         "contenu" => htmlspecialchars($obj["contenu"]),
       ];
@@ -52,7 +53,7 @@ class Faq
   public function insertQuestion(string $titre, string $contenu)
   {
     $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
       USERNAME,
       PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -65,37 +66,70 @@ class Faq
   }
 
   /**
-   * updateQuestion
-   *
-   * FONCTION A MODIFIER
+   * updateQuestion permet de mettre à jour une question de la faq
+   * en fonction de son id
    *
    * @return void
    */
   public function updateQuestion(string $id, string $titre, string $contenu)
   {
-    $id = $_POST["id"];
-    $newTitre = $_POST["titre"];
-    $newContenu = $_POST["contenu"];
-
     try {
       $bdd = new PDO(
-        "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+        "mysql:host=" .
+          HOST .
+          ":" .
+          PORT .
+          ";dbname=" .
+          DBNAME .
+          ";charset=utf8",
         USERNAME,
         PASSWORD,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
       );
 
-      $sql = "UPDATE faq SET titre=:newTitre, contenu=:newContenu WHERE id=:id";
+      $sql =
+        "UPDATE faq SET titre=:newTitre, contenu=:newContenu WHERE idquestion=:id";
       $stmt = $bdd->prepare($sql);
       $stmt->execute([
-        "newTitre" => $newTitre,
-        "contenu" => $newContenu,
+        "newTitre" => $titre,
+        "newContenu" => $contenu,
         "id" => $id,
       ]);
-      echo "Le changement d'adresse mail a bien été effectué !";
+      echo "Faq updated!";
       echo "</br>";
-      echo "id : " . $id . " et nouveau mail : " . $newEmail;
+      echo "id : " . $id . " et nouveau titre : " . $titre;
       echo '<a href="index.php">Retour à la page d\'accueil</a>';
+    } catch (PDOException $e) {
+      echo $sql . "<br>" . $e->getMessage();
+    }
+  }
+
+  /**
+   * deleteQuestion permet de supprimer une quesiton de la faq
+   *
+   * @param  string $id
+   * @return void
+   */
+  public function deleteQuestion(string $id)
+  {
+    try {
+      $bdd = new PDO(
+        "mysql:host=" .
+          HOST .
+          ":" .
+          PORT .
+          ";dbname=" .
+          DBNAME .
+          ";charset=utf8",
+        USERNAME,
+        PASSWORD,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+      );
+
+      $sql = "DELETE FROM faq WHERE idquestion = :id ";
+
+      $stmt = $bdd->prepare($sql);
+      $stmt->execute(["id" => $id]);
     } catch (PDOException $e) {
       echo $sql . "<br>" . $e->getMessage();
     }

@@ -19,7 +19,33 @@ class Admin extends Controller
       header("Location: /public/admin/dashboard");
       exit();
     }
-    $this->view("connexion/admin", ["error" => null]);
+    $error = "";
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["email"]) &&
+        !empty($_POST["email"]) &&
+        (isset($_POST["password"]) && !empty($_POST["password"]))
+      ) {
+        $email = $_POST["email"];
+        $password = hash("sha3-256", $_POST["password"]);
+      }
+
+      $admin = $this->model("AdminModel");
+
+      $admin->connexionAdmin = $admin->connexionAdmin($email, $password);
+
+      if ($admin->connexionAdmin) {
+        echo "Connection is successful !";
+        session_start();
+        $_SESSION["user"] = $email;
+        $_SESSION["role"] = "admin";
+        header("Location: /public/admin/dashboard");
+        exit();
+      } else {
+        $error = "Mauvais identifiants ou mot de passe !";
+      }
+    }
+    $this->view("connexion/admin", ["error" => $error]);
   }
 
   /**
@@ -82,5 +108,54 @@ class Admin extends Controller
     $length_of_string = 7;
 
     $codePatient = substr(str_shuffle($str_result), 0, $length_of_string);
+  }
+
+  public function faqModif()
+  {
+    $faq = $this->model("Faq");
+
+    // on va appeler la fonction qui permet de recuperer tous les elements de la faq
+    $faq->fetch = $faq->getFaq();
+
+    $this->view("admin/faqAdmin", ["faq" => $faq->fetch]);
+  }
+
+  public function modifierFaqAction()
+  {
+    if (isset($_POST["submit-btn"])) {
+      $actualId = $_POST["id"];
+      $newTitre = $_POST["question"];
+      $newContenu = $_POST["answer"];
+
+      $faq = $this->model("Faq");
+
+      $faq->updatefaq = $faq->updateQuestion($actualId, $newTitre, $newContenu);
+      header("Location: /public/admin/faqModif");
+    }
+  }
+
+  public function supprimerFaqAction()
+  {
+    if (isset($_POST["supress-btn"])) {
+      $actualId = $_POST["id"];
+
+      $faq = $this->model("Faq");
+
+      $faq->updatefaq = $faq->deleteQuestion($actualId);
+      header("Location: /public/admin/faqModif");
+    }
+  }
+
+  public function addFaqAction()
+  {
+    if (isset($_POST["add-btn"])) {
+      $titre = $_POST["question"];
+      $reponse = $_POST["reponse"];
+
+      $faq = $this->model("Faq");
+
+      $faq->updatefaq = $faq->insertQuestion($titre, $reponse);
+      header("Location: /public/admin/faqModif");
+    }
   }
 }

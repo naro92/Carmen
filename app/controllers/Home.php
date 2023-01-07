@@ -1,5 +1,12 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "PHPMailer/src/Exception.php";
+require "PHPMailer/src/PHPMailer.php";
+require "PHPMailer/src/SMTP.php";
+
 /**
  * Classe Home
  *
@@ -93,7 +100,68 @@ class Home extends Controller
     } else {
       $dashboard = "Connexion";
     }
-    $this->view("home/contact", ["dashboard" => $dashboard]);
+    $status = "";
+    if (isset($_POST["submit-btn"])) {
+      $email = $_POST["email"];
+      $name = $_POST["name"];
+      $message = $_POST["message"];
+
+      try {
+        $mail = new PHPMailer(true);
+        //Enable verbose debug output
+        $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = ""; //Adresse email à utiliser
+        $mail->Password = ""; //Mot de passe de l'adresse email à utiliser
+
+        //Enable SSL encryption;
+        $mail->SMTPSecure = "ssl";
+
+        $mail->Port = 465; // port for ssl
+
+        $mail->isHTML(true);
+        $mail->CharSet = "utf-8";
+
+        $mail->setFrom($email, $name); // sender's email and name
+
+        $mail->addAddress("contact@carmen.wstr.fr", "Contact Admin"); // receiver's email and name
+
+        $mail->Subject = "Contact - " . $name;
+
+        $mail->Body =
+          "<h1>" .
+          $name .
+          " tente de vous contacter</h1>" .
+          "<br>" .
+          "<p>" .
+          $message .
+          "</p>" .
+          "<br>" .
+          "<p>Lui répondre : <a mailto='" .
+          $email .
+          "'>" .
+          $email .
+          "</p>";
+
+        $mail->send();
+
+        $status = "Le message a bien été envoyé !";
+
+        $mail->smtpClose();
+      } catch (Exception $e) {
+        // handle error.
+
+        $status = "Le message n'a pas pu être envoyé !"; //, $mail->ErrorInfo;
+      }
+    } else {
+      $status = "Impossible d'envoyer le mail !";
+    }
+    $this->view("home/contact", [
+      "dashboard" => $dashboard,
+      "status" => $status,
+    ]);
   }
 
   /**

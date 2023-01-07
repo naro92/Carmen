@@ -26,7 +26,7 @@ function load_header($view, $data = [])
     <div class="form-container">
       <h1 class="title">Connexion Personnel</h1>
       <p><?php echo $data["error"]; ?></p>
-      <form class="form"  action="/public/connexion/connexionMedecin" method="post">
+      <form class="form"  action="/public/connexion/personnel" method="post">
         <div class="form-group">
           <input required name="email" type="mail" pattern=".{4,}" title="Enter valid email address" />
             <label>Email</label>
@@ -35,9 +35,7 @@ function load_header($view, $data = [])
           <input type="password" required name="password" pattern=".{4,}" title="Enter valid email address" />
             <label>Mot de passe</label>
         </div>
-        <button type="submit" class="button-validate">
-          Connexion
-        </button>
+        <input id="submit-btn" class="button-validate" type="submit" value="Se connecter" name="submit-btn">
       </form>
       
     </div>

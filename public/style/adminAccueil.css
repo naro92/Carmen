@@ -27,3 +27,9 @@ h1 {
   justify-content: center;
   gap: 20px;
 }
+
+@media screen and (max-width: 780px) {
+  h1 {
+    font-size: 40px;
+  }
+}

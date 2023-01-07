@@ -26,7 +26,7 @@ function load_header($view, $data = [])
   <h1>Contact :</h1>
 
   <div class="mail-container">
-  <form method="POST"> 
+  <form method="POST" action="/public/home/contact"> 
         <label for="name">Nom :</label>
         <input type="text" name="name" id="name" required>
         <br>
@@ -36,7 +36,8 @@ function load_header($view, $data = [])
         <label for="message">Message :</label>
         <textarea name="message" id="message" rows="5" required></textarea>
         <br>
-        <input id="submit-btn" type="submit" value="Envoyer">
+        <input id="submit-btn" type="submit" value="Envoyer" name="submit-btn">
+        <p><?php echo $data["status"]; ?></p>
     </form>
   </body>
 
