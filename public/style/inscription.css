@@ -66,6 +66,12 @@ body {
   text-align: center;
 }
 
+p {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
 .form {
   display: flex;
   align-items: center;
