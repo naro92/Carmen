@@ -107,7 +107,7 @@ class db {
 }
 
 	function getpatientnom(){   //从网页获取病人名字  Récupère le nom du patient à partir de la page Web
-		return '$data["prenom"]'
+		return '$data["Nom"]'
 		//return 'x';
 	}
 
