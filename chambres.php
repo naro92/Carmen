@@ -37,55 +37,55 @@ function load_header($view, $data = [])
         <div class="chambre01">
           <div class="chambre-label">101</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre02">
           <div class="chambre-label">102</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre03">
           <div class="chambre-label">103</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre04">
           <div class="chambre-label">104</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre05">
           <div class="chambre-label">105</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre06">
           <div class="chambre-label">106</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre07">
           <div class="chambre-label">107</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre08">
           <div class="chambre-label">108</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre09">
           <div class="chambre-label">109</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
       </div>
@@ -93,55 +93,55 @@ function load_header($view, $data = [])
         <div class="chambre01">
           <div class="chambre-label">201</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre02">
           <div class="chambre-label">202</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre03">
           <div class="chambre-label">203</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre04">
           <div class="chambre-label">204</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre05">
           <div class="chambre-label">205</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre06">
           <div class="chambre-label">206</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre07">
           <div class="chambre-label">207</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre08">
           <div class="chambre-label">208</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre09">
           <div class="chambre-label">209</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
       </div>
@@ -149,55 +149,55 @@ function load_header($view, $data = [])
         <div class="chambre01">
           <div class="chambre-label">301</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre02">
           <div class="chambre-label">302</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre03">
           <div class="chambre-label">303</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre04">
           <div class="chambre-label">304</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre05">
           <div class="chambre-label">305</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre06">
           <div class="chambre-label">306</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre07">
           <div class="chambre-label">307</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre08">
           <div class="chambre-label">308</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre09">
           <div class="chambre-label">309</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
       </div>
@@ -205,55 +205,55 @@ function load_header($view, $data = [])
         <div class="chambre01">
           <div class="chambre-label">401</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre02">
           <div class="chambre-label">402</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre03">
           <div class="chambre-label">403</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre04">
           <div class="chambre-label">404</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre05">
           <div class="chambre-label">405</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre06">
           <div class="chambre-label">406</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre07">
           <div class="chambre-label">407</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre08">
           <div class="chambre-label">408</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
         <div class="chambre09">
           <div class="chambre-label">409</div>
           <div class="chambre_image">
-            <img src="img/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
           </div>
         </div>
       </div>
