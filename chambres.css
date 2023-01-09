@@ -2,32 +2,6 @@
     font-family: sans-serif;
 }
 
-.bandeau {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.bandeau > div, .accueil {
-    font-size: large;
-    font-weight: bold;
-    text-shadow: black 0.1em 0.1em 0.2em;
-}
-
-.accueil {
-    text-decoration: none;
-    color: black;
-}
-
-.logo {
-    height: 100px;
-    width: 100px;
-}
-
-.chambres-dispo {
-    margin-left: auto;
-}
-
 .header-container {
     display: flex;
     justify-content: center;
@@ -98,7 +72,10 @@ div[class^="chambre0"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex : 0 0 33.33%;
 }
 
 .chambre-label {
@@ -107,4 +84,9 @@ div[class^="chambre0"] {
     font-weight: bold;
     font-size: 14px;
     text-align: center;
+    width: 20%;
+}
+
+div[class^="chambre0"]:hover div img {
+    border: 2px solid gray;
 }
