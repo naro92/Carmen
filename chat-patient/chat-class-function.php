@@ -107,8 +107,8 @@ class db {
 }
 
 	function getpatientnom(){   //从网页获取病人名字  Récupère le nom du patient à partir de la page Web
-		//return '$data["prenom"]'
-		return 'x';
+		return '$data["prenom"]'
+		//return 'x';
 	}
 
 function getmedecinID($pi){		//通过病人ID查询对应医生ID  Recherche par ID de patient pour l'ID de médecin correspondant
