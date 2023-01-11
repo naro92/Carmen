@@ -35,3 +35,9 @@ index.php : redirige automatiquement l'utilisateur vers le dossier public
 - patient : mathis.champagne@patient.fr ==> MathisChampagne
 - famille : fabrice.autier@famille.fr ==> FabriceAutier
 - admin : admin@admin.fr ==> AdminTest
+
+
+## Info importante :
+
+Il manque la librairie PHPMailer dans le code présent sur GitHub pour l'instant. Il faudra penser à le rajouter afin de pouvoir envoyer les mails !
+Si vous voulez l'installer, alors, il suffit de télécharger la librairie sur github, de mettre le dossier dans le dossier controllers, et de le rennomer PHPMailer.
