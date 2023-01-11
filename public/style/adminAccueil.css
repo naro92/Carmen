@@ -28,8 +28,93 @@ h1 {
   gap: 20px;
 }
 
+.liens a {
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px;
+  transition: background-color 0.25s linear;
+  border-radius: 10px;
+}
+
+.liens a:hover {
+  background-color: var(--primary);
+  color: white;
+}
+.grid-container {
+  margin: auto;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.25fr 0.5fr;
+  grid-template-areas:
+    "patient medecin"
+    "actions actions";
+  grid-gap: 1rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid-container > div {
+  padding-top: 10px;
+}
+
+.grid-container > div > h3 {
+  text-decoration: underline;
+  font-family: "Rambla", sans-serif;
+  font-size: 30px;
+}
+
+#nbPatient {
+  background-color: var(--primary);
+  grid-area: patient;
+  border-radius: 10px;
+  transition: opacity 30ms linear;
+  width: 50%;
+  margin: auto;
+}
+
+#nbMedecin {
+  background-color: rgb(66, 206, 241);
+  grid-area: medecin;
+  border-radius: 10px;
+  transition: opacity 30ms linear;
+  width: 50%;
+  margin: auto;
+}
+
+#actions {
+  background-color: var(--green-back);
+  grid-area: actions;
+  border-radius: 5px;
+  transition: opacity 30ms linear;
+  padding-bottom: 10px;
+}
+
+.textNb {
+  font-size: 24px;
+}
+
+@media only screen and (max-width: 550px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas:
+      "patient"
+      "medecin"
+      "actions";
+  }
+}
+
 @media screen and (max-width: 780px) {
   h1 {
     font-size: 40px;
+  }
+
+  .grid-container > div > h3 {
+    font-size: 20px;
+  }
+
+  .textNb {
+    font-size: 20px;
   }
 }

@@ -52,7 +52,7 @@ function load_header($view, $data = [])
 
         <div class="list_chambres">
           <img src="<?php echo ROOT_PATH . "/assets/chambre.png"; ?>" />
-          <a href="/medecin/chambres" class="tableauLink">Chambres</a>
+          <a href="#chambres" class="tableauLink">Chambres</a>
         </div>
 
         <div class="list_rechercher">

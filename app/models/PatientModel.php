@@ -20,7 +20,7 @@ class PatientModel
   public function connexionPatient(string $email, string $password)
   {
     $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
       USERNAME,
       PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -48,7 +48,7 @@ class PatientModel
     string $password
   ) {
     $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
       USERNAME,
       PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -80,7 +80,7 @@ class PatientModel
   public function getAllPatient()
   {
     $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
       USERNAME,
       PASSWORD,
       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -91,6 +91,22 @@ class PatientModel
     $statement = $bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchAll();
+    return $return;
+  }
+
+  public function getNbPatient()
+  {
+    $bdd = new PDO(
+      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
+      USERNAME,
+      PASSWORD,
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+    $query = "SELECT COUNT(*) FROM patient";
+    $params = [];
+    $statement = $bdd->prepare($query);
+    $statement->execute($params);
+    $return = $statement->fetchColumn();
     return $return;
   }
 }

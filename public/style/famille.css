@@ -4,6 +4,14 @@
   --green-back: #c9e26540;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
 .bvn {
   display: flex;
   justify-content: space-around;

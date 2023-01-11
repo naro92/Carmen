@@ -4,6 +4,14 @@
   --green-back: #c9e26540;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
 .btn_retour a {
   text-decoration: none;
   color: var(--primary);
@@ -102,4 +110,11 @@
 
 .list_container a:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+   .main{
+      flex-direction: column;
+      gap: 20px;
+   }
 }

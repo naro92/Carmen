@@ -77,7 +77,17 @@ class Admin extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("admin/index");
+
+    $patient = $this->model("PatientModel");
+    $patient->nbPatient = $patient->getNbPatient();
+
+    $medecin = $this->model("MedecinModel");
+    $medecin->nbMedecin = $medecin->getNbMedecin();
+
+    $this->view("admin/index", [
+      "nbPatient" => $patient->nbPatient,
+      "nbMedecin" => $medecin->nbMedecin,
+    ]);
   }
 
   public function ajoutAdmin()

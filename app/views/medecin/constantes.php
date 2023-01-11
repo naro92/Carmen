@@ -16,7 +16,24 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body>
+<body onload="table();">
+
+<script type="text/javascript">
+      function table(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+          document.getElementById("bpm_text").innerHTML = this.responseText;
+          console.log(this.responseText);
+        }
+        xhttp.open("GET", "/public/medecin/getConstantes");
+        xhttp.send();
+        
+      }
+
+      setInterval(function(){
+        table();
+      }, 3000);
+</script>
 
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
@@ -37,7 +54,7 @@ function load_header($view, $data = [])
             <h1>Fréquence cardiaque</h1>
           </div>
           <div class="bpm_container">
-            <p>? Bpm</p>
+            <p><span id="bpm_text"></span> Bpm</p>
           </div>
         </div>
 

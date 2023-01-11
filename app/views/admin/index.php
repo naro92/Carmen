@@ -25,13 +25,28 @@ function load_header($view, $data = [])
 
 <h1>Administration</h1>
 
-<div class="liens">
+<div class="grid-container">
+  <div id="nbPatient">
+    <h3>Nombre de patients :</h3>
+    <p class="textNb"><?php echo $data["nbPatient"]; ?></p>
+  </div>
+  <div id="nbMedecin">
+    <h3>Nombre de médecins :</h3>
+    <p class="textNb"><?php echo $data["nbMedecin"]; ?></p>
+  </div>
+  <div id="actions">
+    <h3>Actions administrateur :</h3>
+    <div class="liens">
     <a href="/public/admin/ajoutAdmin">Ajouter des administrateurs</a>
     <a href="/public/admin/ajoutMedecin">Ajouter des medecins</a>
     <a href="/public/admin/ajoutCapteurs">Ajouter des capteurs</a>
     <a href="/public/admin/ajoutPatient">Ajouter des patients</a>
     <a href="/public/admin/faqModif">Modifier la faq</a>
 </div>
+  </div>
+</div>
+
+
 
 
 <?php require_once "../app/views/footer/index.php"; ?>

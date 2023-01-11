@@ -66,12 +66,6 @@ body {
   text-align: center;
 }
 
-p {
-  text-align: center;
-  color: red;
-  font-weight: bold;
-}
-
 .form {
   display: flex;
   align-items: center;
@@ -243,4 +237,10 @@ form:valid [type="submit"]:hover {
   .change .menu-line-3 {
     transform: translateY(-6px) rotate(45deg);
   }
+}
+
+p {
+  text-align: center;
+  color: red;
+  font-weight: bold;
 }

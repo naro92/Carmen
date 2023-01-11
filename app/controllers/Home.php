@@ -113,8 +113,8 @@ class Home extends Controller
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = ""; //Adresse email à utiliser
-        $mail->Password = ""; //Mot de passe de l'adresse email à utiliser
+        $mail->Username = "contact.carmen.app@gmail.com"; //Adresse email à utiliser
+        $mail->Password = "lpobpflmrecwwhkn"; //Mot de passe de l'adresse email à utiliser
 
         //Enable SSL encryption;
         $mail->SMTPSecure = "ssl";
@@ -156,7 +156,7 @@ class Home extends Controller
         $status = "Le message n'a pas pu être envoyé !"; //, $mail->ErrorInfo;
       }
     } else {
-      $status = "Impossible d'envoyer le mail !";
+      $status = "";
     }
     $this->view("home/contact", [
       "dashboard" => $dashboard,

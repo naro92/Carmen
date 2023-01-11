@@ -273,4 +273,32 @@ class Medecin extends Controller
 
     $this->view("medecin/resultat", ["recherche" => $vue]);
   }
+
+  public function getConstantes()
+  {
+    $host = HOST;
+    $dbname = DBNAME;
+    $username = USERNAME;
+    $password = PASSWORD;
+
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    // récupérer tous les utilisateurs
+    $sql =
+      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs)";
+
+    try {
+      $pdo = new PDO($dsn, $username, $password);
+      $stmt = $pdo->query($sql);
+
+      if ($stmt === false) {
+        die("Erreur");
+      }
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      print_r($row["valeurs_donnees"]);
+      return $row["valeurs_donnees"];
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
 }
