@@ -9,11 +9,11 @@ define(
   )
 );
 
-define("HOST", "176.31.132.185");
+define("HOST", "");
 define("PORT", "3306");
-define("DBNAME", "tfqtbp_carmenws_db");
-define("USERNAME", "tfqtbp_carmenws_db");
-define("PASSWORD", "!5*R_Cdb9P4%hLk3");
+define("DBNAME", "");
+define("USERNAME", "");
+define("PASSWORD", "");
 
 // permet de bootstrapper tout le reste de l'application
 
