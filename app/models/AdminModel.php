@@ -9,22 +9,38 @@
  */
 class AdminModel
 {
+  public function connect()
+  {
+    try {
+      $bdd = new PDO(
+        "mysql:host=" .
+          HOST .
+          ":" .
+          PORT .
+          ";dbname=" .
+          DBNAME .
+          ";charset=utf8",
+        USERNAME,
+        PASSWORD,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+      );
+
+      return $bdd;
+    } catch (PDOException $e) {
+      echo $sql . "<br>" . $e->getMessage();
+    }
+  }
+
   /**
    * connexionAdmin
    *
-   * @param  PDO $bdd
    * @param  string $email
    * @param  string $password
    * @return bool $connectionSuccessful
    */
   public function connexionAdmin(string $email, string $password)
   {
-    $bdd = new PDO(
-      "mysql:host=".HOST.":".PORT.";dbname=".DBNAME.";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $bdd = AdminModel::connect();
 
     $query =
       "SELECT * FROM administrateur WHERE adresse_mail=:email and mdp=:pass";

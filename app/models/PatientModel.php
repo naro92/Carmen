@@ -9,22 +9,38 @@
  */
 class PatientModel
 {
+  public function connect()
+  {
+    try {
+      $bdd = new PDO(
+        "mysql:host=" .
+          HOST .
+          ":" .
+          PORT .
+          ";dbname=" .
+          DBNAME .
+          ";charset=utf8",
+        USERNAME,
+        PASSWORD,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+      );
+
+      return $bdd;
+    } catch (PDOException $e) {
+      echo $sql . "<br>" . $e->getMessage();
+    }
+  }
+
   /**
    * connexionPatient
    *
-   * @param  PDO $bdd
    * @param  string $email
    * @param  string $password
    * @return bool $connectionSuccessful
    */
   public function connexionPatient(string $email, string $password)
   {
-    $bdd = new PDO(
-      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $bdd = PatientModel::connect();
 
     $query = "SELECT * FROM patient WHERE adresse_mail=:email and mdp=:pass";
     $statement = $bdd->prepare($query);
@@ -47,12 +63,7 @@ class PatientModel
     string $email,
     string $password
   ) {
-    $bdd = new PDO(
-      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $bdd = PatientModel::connect();
 
     $query = "SELECT * FROM patient WHERE adresse_mail=:email";
 
@@ -79,12 +90,7 @@ class PatientModel
 
   public function getAllPatient()
   {
-    $bdd = new PDO(
-      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $bdd = PatientModel::connect();
 
     $query = "SELECT * FROM patient";
     $params = [];
@@ -96,17 +102,49 @@ class PatientModel
 
   public function getNbPatient()
   {
-    $bdd = new PDO(
-      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $bdd = PatientModel::connect();
     $query = "SELECT COUNT(*) FROM patient";
     $params = [];
     $statement = $bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchColumn();
     return $return;
+  }
+
+  public function getInformations(int $id)
+  {
+    $bdd = PatientModel::connect();
+    $sql = "SELECT * FROM patient WHERE idpatient = :identification";
+
+    $statement = $bdd->prepare($sql);
+    $statement->execute(["identification" => $id]);
+
+    if ($statement === false) {
+      die("Erreur");
+    }
+
+    while ($obj = $statement->fetch()) {
+      $vue["patients"][] = [
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+        "age" => htmlspecialchars($obj["age"]),
+        "sexe" => htmlspecialchars($obj["sexe"]),
+      ];
+    }
+
+    return $vue;
+  }
+
+  public function getConstantesPatient()
+  {
+    $bdd = PatientModel::connect();
+    $sql =
+      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs)";
+
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([]);
+
+    $row = $stmt->fetch();
+    return $row["valeurs_donnees"];
   }
 }

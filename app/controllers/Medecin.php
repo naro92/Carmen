@@ -77,43 +77,12 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
-    $host = HOST;
-    $dbname = DBNAME;
-    $username = USERNAME;
-    $password = PASSWORD;
 
-    $dsn = "mysql:host=$host;dbname=$dbname";
-    // récupérer tous les utilisateurs
-    $sql =
-      "SELECT p.*
-    FROM patient p
-    INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin
-    WHERE m.adresse_mail like '" .
-      $_SESSION["user"] .
-      "'";
+    $medecin = $this->model("MedecinModel");
 
-    try {
-      $pdo = new PDO($dsn, $username, $password);
-      $statement = $pdo->prepare($sql);
-      $statement->execute([]);
+    $medecin->patients = $medecin->getPatient($_SESSION["user"]);
 
-      if ($statement === false) {
-        die("Erreur");
-      }
-    } catch (PDOException $e) {
-      echo $e->getMessage();
-    }
-
-    while ($obj = $statement->fetch()) {
-      $vue["patients"][] = [
-        "id" => htmlspecialchars($obj["idpatient"]),
-        "nom" => htmlspecialchars($obj["nom"]),
-        "prenom" => htmlspecialchars($obj["prenom"]),
-        "email" => htmlspecialchars($obj["adresse_mail"]),
-      ];
-    }
-
-    $this->view("medecin/gestionPatient", ["data" => $vue]);
+    $this->view("medecin/gestionPatient", ["data" => $medecin->patients]);
   }
 
   public function constantes(int $id = 0)
@@ -127,37 +96,12 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
-    $host = HOST;
-    $dbname = DBNAME;
-    $username = USERNAME;
-    $password = PASSWORD;
 
-    $dsn = "mysql:host=$host;dbname=$dbname";
-    // récupérer tous les utilisateurs
-    $sql = "SELECT * FROM patient WHERE idpatient = $id";
+    $patient = $this->model("PatientModel");
 
-    try {
-      $pdo = new PDO($dsn, $username, $password);
-      $statement = $pdo->prepare($sql);
-      $statement->execute([]);
+    $patient->info = $patient->getInformations($id);
 
-      if ($statement === false) {
-        die("Erreur");
-      }
-    } catch (PDOException $e) {
-      echo $e->getMessage();
-    }
-
-    while ($obj = $statement->fetch()) {
-      $vue["patients"][] = [
-        "nom" => htmlspecialchars($obj["nom"]),
-        "prenom" => htmlspecialchars($obj["prenom"]),
-        "age" => htmlspecialchars($obj["age"]),
-        "sexe" => htmlspecialchars($obj["sexe"]),
-      ];
-    }
-
-    $this->view("medecin/constantes", ["patient" => $vue]);
+    $this->view("medecin/constantes", ["patient" => $patient->info]);
   }
 
   public function chat()
@@ -178,127 +122,24 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
-    $test_nom = false;
-    $test_prenom = false;
-    $test_email = false;
-    try {
-      $bdd = new PDO("mysql:host=localhost;dbname=mydb", "root", "root");
-    } catch (Exception $e) {
-      //en cas d'erreur on affiche un message et on arrete tout
-      die("Erreur : " . $e->getMessage());
-    }
 
     $prenom = $_POST["prenom"];
     $nom = $_POST["nom"];
     $email = $_POST["email"];
 
-    $prenom = ucwords($prenom);
-    $nom = ucwords($nom);
+    $medecin = $this->model("MedecinModel");
 
-    if (empty($prenom) == false) {
-      $test_prenom = true;
-    }
-    if (empty($nom) == false) {
-      $test_nom = true;
-    }
-    if (empty($email) == false) {
-      $test_email = true;
-    }
+    $medecin->recherche = $medecin->searchPatient($prenom, $nom, $email);
 
-    if ($test_prenom == true and $test_nom == false and $test_email == false) {
-      $sql = "SELECT * from patient WHERE prenom like ?";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$prenom]);
-    } elseif (
-      $test_prenom == false and
-      $test_nom == true and
-      $test_email == false
-    ) {
-      $sql = "SELECT * from patient WHERE nom like ?";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$nom]);
-    } elseif (
-      $test_prenom == false and
-      $test_nom == false and
-      $test_email == true
-    ) {
-      $sql = "SELECT * from patient WHERE mail like ?";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$email]);
-    } elseif (
-      $test_prenom == true and
-      $test_nom == true and
-      $test_email == false
-    ) {
-      $sql = "SELECT * from patient WHERE (prenom like ? and nom like ?)";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$prenom, $nom]);
-    } elseif (
-      $test_prenom == true and
-      $test_nom == false and
-      $test_email == true
-    ) {
-      $sql = "SELECT * from patient WHERE (prenom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$prenom, $email]);
-    } elseif (
-      $test_prenom == false and
-      $test_nom == true and
-      $test_email == true
-    ) {
-      $sql = "SELECT * from patient WHERE (nom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$nom, $email]);
-    } elseif (
-      $test_prenom == true and
-      $test_nom == true and
-      $test_email == true
-    ) {
-      $sql =
-        "SELECT * from patient WHERE (prenom like ? and nom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
-      $stmt->execute([$prenom, $nom, $email]);
-    } else {
-      echo "veuillez remplir des champs";
-    }
-
-    while ($obj = $stmt->fetch()) {
-      $vue["patients"][] = [
-        "id" => htmlspecialchars($obj["idpatient"]),
-        "nom" => htmlspecialchars($obj["nom"]),
-        "prenom" => htmlspecialchars($obj["prenom"]),
-        "email" => htmlspecialchars($obj["adresse_mail"]),
-      ];
-    }
-
-    $this->view("medecin/resultat", ["recherche" => $vue]);
+    $this->view("medecin/resultat", ["recherche" => $medecin->recherche]);
   }
 
   public function getConstantes()
   {
-    $host = HOST;
-    $dbname = DBNAME;
-    $username = USERNAME;
-    $password = PASSWORD;
+    $patient = $this->model("PatientModel");
 
-    $dsn = "mysql:host=$host;dbname=$dbname";
-    // récupérer tous les utilisateurs
-    $sql =
-      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs)";
+    $patient->constantes = $patient->getConstantesPatient();
 
-    try {
-      $pdo = new PDO($dsn, $username, $password);
-      $stmt = $pdo->query($sql);
-
-      if ($stmt === false) {
-        die("Erreur");
-      }
-
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      print_r($row["valeurs_donnees"]);
-      return $row["valeurs_donnees"];
-    } catch (PDOException $e) {
-      echo $e->getMessage();
-    }
+    echo $patient->constantes;
   }
 }

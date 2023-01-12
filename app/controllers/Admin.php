@@ -31,8 +31,13 @@ class Admin extends Controller
       }
 
       $admin = $this->model("AdminModel");
+      $db_con = $this->db_con();
 
-      $admin->connexionAdmin = $admin->connexionAdmin($email, $password);
+      $admin->connexionAdmin = $admin->connexionAdmin(
+        $db_con,
+        $email,
+        $password
+      );
 
       if ($admin->connexionAdmin) {
         echo "Connection is successful !";
