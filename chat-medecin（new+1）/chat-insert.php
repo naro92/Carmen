@@ -16,7 +16,7 @@ if($_GET['say']){  //如果消息不为空 Si le message n'est pas vide
 	
 	$nom = $db->getdb()->getmedecinnom();
 
-	$patientID = $db->getdb()->getpid($userID);
+	$patientID = $db->getdb()->getpid();
 
 	$familleID = $db->getdb()->getfamailleID();
 
