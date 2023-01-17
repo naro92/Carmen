@@ -34,7 +34,7 @@ index.php : redirige automatiquement l'utilisateur vers le dossier public
 - medecin : michel.cymes@medecin.com ==> MichelCymes
 - patient : mathis.champagne@patient.fr ==> MathisChampagne
 - famille : fabrice.autier@famille.fr ==> FabriceAutier
-- admin : admin@admin.fr ==> AdminTest
+- admin : admin@admin.com ==> AdminTest
 
 
 ## Info importante :
