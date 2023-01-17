@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="ecrire_bilan.css">
+	<title>Rapport</title>
+</head>
+<body>
+<div class = "bandeau">
+        <div class="logo-container">
+           <img src="logo.png" />
+           <a href="#">Carmen</a>
+        </div>
+        <ul class="nav-list" id="nav-list">
+        <li class="list-item">
+          <a href="#cgu">CGU</a>
+        </li>
+        <li class="list-item">
+          <a href="#faq">Contacts</a>
+        </li>
+        <li class="list-item">
+          <a href="#contact">Déconnexion</a>
+        </li>
+      </ul>
+</div>
+
+<div class="btn_retour">
+	<a href="#choix">&larr; Retour</a>
+</div>
+<div class="main_container">
+	<p id="p_error"></p>
+  <form action="inserer_bilan.php" id="form_bilan" method="post">
+    <textarea name="bilan" id="bilan"></textarea>
+    <input type="submit" id="btn_submit" onclick = "return check()">
+</form>
+
+
+</div>
+
+<div class="footer-section">
+      <!-- Section -->
+      <hr />
+      <div class="footer-container">
+        <a class="item-footer" href="#contact">Contact</a>
+        <a class="item-footer" href="#cgu">
+          Conditions générales d'utilisations
+        </a>
+        <a class="item-footer" href="#faq">FAQ</a>
+      </div>
+    </div>
+    <script src="fonctions.js"></script>
+  </body>
+</html>
