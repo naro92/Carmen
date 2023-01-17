@@ -116,6 +116,15 @@ class Medecin extends Controller
   public function chat()
   {
     session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("medecin/chat");
     // php à rajouter
   }
@@ -148,6 +157,16 @@ class Medecin extends Controller
 
   public function getConstantes()
   {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
     $patient = $this->model("PatientModel");
 
     $patient = new PatientModel();

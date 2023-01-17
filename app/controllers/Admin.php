@@ -101,26 +101,71 @@ class Admin extends Controller
 
   public function ajoutAdmin()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("admin/ajoutAdmin");
   }
 
   public function ajoutCapteurs()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("admin/ajoutCapteurs");
   }
 
   public function ajoutMedecin()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("admin/ajoutMedecin");
   }
 
   public function ajoutPatient()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("admin/ajoutPatient");
   }
 
   public function addPatientFunc()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     // Generer un code patient aléatoire
     // il faudra vérifier que le code patient ne soit pas deja utilisé par un autre patient
     $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -131,6 +176,15 @@ class Admin extends Controller
 
   public function faqModif()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     $faq = $this->model("Faq");
 
     $faq = new Faq();
@@ -143,6 +197,15 @@ class Admin extends Controller
 
   public function modifierFaqAction()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     if (isset($_POST["submit-btn"])) {
       $actualId = $_POST["id"];
       $newTitre = $_POST["question"];
@@ -160,6 +223,15 @@ class Admin extends Controller
 
   public function supprimerFaqAction()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     if (isset($_POST["supress-btn"])) {
       $actualId = $_POST["id"];
 
@@ -175,6 +247,15 @@ class Admin extends Controller
 
   public function addFaqAction()
   {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
     if (isset($_POST["add-btn"])) {
       $titre = $_POST["question"];
       $reponse = $_POST["reponse"];

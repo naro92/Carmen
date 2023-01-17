@@ -41,6 +41,16 @@ class Famille extends Controller
 
   public function chat()
   {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "famille") {
+      header("Location: /public/");
+      exit();
+    }
     $this->view("famille/chat");
     // php à rajouter
   }
