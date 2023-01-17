@@ -48,6 +48,8 @@ class Connexion extends Controller
 
       $medecin = $this->model("MedecinModel");
 
+      $medecin = new MedecinModel();
+
       $medecin->connexionMedecin = $medecin->connexionMedecin(
         $email,
         $password
@@ -59,6 +61,7 @@ class Connexion extends Controller
         $_SESSION["user"] = $email;
         $_SESSION["role"] = "medecin";
         header("Location: /public/medecin");
+        unset($medecin);
         exit();
       } else {
         $error = "Mauvais identifiant ou mot de passe !";
@@ -89,6 +92,8 @@ class Connexion extends Controller
 
       $patient = $this->model("PatientModel");
 
+      $patient = new PatientModel();
+
       $patient->connexionPatient = $patient->connexionPatient(
         $email,
         $password
@@ -100,6 +105,7 @@ class Connexion extends Controller
         $_SESSION["user"] = $email;
         $_SESSION["role"] = "patient";
         header("Location: /public/patient");
+        unset($patient);
         exit();
       } else {
         $error = "Mauvais identifiants ou mot de passe !";
@@ -128,6 +134,8 @@ class Connexion extends Controller
 
       $famille = $this->model("FamilleModel");
 
+      $famille = new FamilleModel();
+
       $famille->connexionFamille = $famille->connexionFamille(
         $email,
         $password
@@ -139,6 +147,7 @@ class Connexion extends Controller
         $_SESSION["user"] = $email;
         $_SESSION["role"] = "famille";
         header("Location: /public/famille");
+        unset($famille);
         exit();
       } else {
         $error = "Mauvais identifiants ou mot de passe !";

@@ -26,7 +26,7 @@ function load_header($view, $data = [])
       <div class="message_bvn">
         <h1>
           Bienvenue <br />
-          [NOM]
+          <?php echo $data["prenom"]; ?>
         </h1>
         <p>Votre tableau de bord pour accéder à toutes nos fonctionnalités</p>
       </div>

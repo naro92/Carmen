@@ -31,13 +31,10 @@ class Admin extends Controller
       }
 
       $admin = $this->model("AdminModel");
-      $db_con = $this->db_con();
 
-      $admin->connexionAdmin = $admin->connexionAdmin(
-        $db_con,
-        $email,
-        $password
-      );
+      $admin = new AdminModel();
+
+      $admin->connexionAdmin = $admin->connexionAdmin($email, $password);
 
       if ($admin->connexionAdmin) {
         echo "Connection is successful !";
@@ -45,6 +42,7 @@ class Admin extends Controller
         $_SESSION["user"] = $email;
         $_SESSION["role"] = "admin";
         header("Location: /public/admin/dashboard");
+        unset($admin);
         exit();
       } else {
         $error = "Mauvais identifiants ou mot de passe !";
@@ -84,15 +82,21 @@ class Admin extends Controller
     }
 
     $patient = $this->model("PatientModel");
+
+    $patient = new PatientModel();
     $patient->nbPatient = $patient->getNbPatient();
 
     $medecin = $this->model("MedecinModel");
+
+    $medecin = new MedecinModel();
     $medecin->nbMedecin = $medecin->getNbMedecin();
 
     $this->view("admin/index", [
       "nbPatient" => $patient->nbPatient,
       "nbMedecin" => $medecin->nbMedecin,
     ]);
+    unset($patient);
+    unset($medecin);
   }
 
   public function ajoutAdmin()
@@ -129,6 +133,8 @@ class Admin extends Controller
   {
     $faq = $this->model("Faq");
 
+    $faq = new Faq();
+
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
     $faq->fetch = $faq->getFaq();
 
@@ -144,8 +150,11 @@ class Admin extends Controller
 
       $faq = $this->model("Faq");
 
+      $faq = new Faq();
+
       $faq->updatefaq = $faq->updateQuestion($actualId, $newTitre, $newContenu);
       header("Location: /public/admin/faqModif");
+      unset($faq);
     }
   }
 
@@ -156,8 +165,11 @@ class Admin extends Controller
 
       $faq = $this->model("Faq");
 
+      $faq = new Faq();
+
       $faq->updatefaq = $faq->deleteQuestion($actualId);
       header("Location: /public/admin/faqModif");
+      unset($faq);
     }
   }
 
@@ -169,8 +181,12 @@ class Admin extends Controller
 
       $faq = $this->model("Faq");
 
+      $faq = new Faq();
+
       $faq->updatefaq = $faq->insertQuestion($titre, $reponse);
       header("Location: /public/admin/faqModif");
+      unset($faq);
+      exit();
     }
   }
 }

@@ -1,5 +1,5 @@
 <?php
-
+require "Database.php";
 /**
  * Classe patientModel
  *
@@ -9,26 +9,21 @@
  */
 class PatientModel
 {
+  protected $bdd;
+
+  public function __construct()
+  {
+    $this->connect();
+  }
+  public function __destruct()
+  {
+    $this->bdd = null;
+  }
+
   public function connect()
   {
-    try {
-      $bdd = new PDO(
-        "mysql:host=" .
-          HOST .
-          ":" .
-          PORT .
-          ";dbname=" .
-          DBNAME .
-          ";charset=utf8",
-        USERNAME,
-        PASSWORD,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-      );
-
-      return $bdd;
-    } catch (PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage();
-    }
+    $db = new Database();
+    $this->bdd = $db->connect();
   }
 
   /**
@@ -40,10 +35,8 @@ class PatientModel
    */
   public function connexionPatient(string $email, string $password)
   {
-    $bdd = PatientModel::connect();
-
     $query = "SELECT * FROM patient WHERE adresse_mail=:email and mdp=:pass";
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute([
       "email" => $email,
       "pass" => $password,
@@ -54,7 +47,8 @@ class PatientModel
     } else {
       $connectionSuccessful = 0;
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $connectionSuccessful;
   }
 
@@ -63,11 +57,9 @@ class PatientModel
     string $email,
     string $password
   ) {
-    $bdd = PatientModel::connect();
-
     $query = "SELECT * FROM patient WHERE adresse_mail=:email";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute(["email" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
@@ -84,39 +76,40 @@ class PatientModel
         $return = "Il y a une erreur";
       }
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
   public function getAllPatient()
   {
-    $bdd = PatientModel::connect();
-
     $query = "SELECT * FROM patient";
     $params = [];
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchAll();
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
   public function getNbPatient()
   {
-    $bdd = PatientModel::connect();
     $query = "SELECT COUNT(*) FROM patient";
     $params = [];
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchColumn();
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
   public function getInformations(int $id)
   {
-    $bdd = PatientModel::connect();
     $sql = "SELECT * FROM patient WHERE idpatient = :identification";
 
-    $statement = $bdd->prepare($sql);
+    $statement = $this->bdd->prepare($sql);
     $statement->execute(["identification" => $id]);
 
     if ($statement === false) {
@@ -131,20 +124,22 @@ class PatientModel
         "sexe" => htmlspecialchars($obj["sexe"]),
       ];
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $vue;
   }
 
   public function getConstantesPatient()
   {
-    $bdd = PatientModel::connect();
     $sql =
       "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs)";
 
-    $stmt = $bdd->prepare($sql);
+    $stmt = $this->bdd->prepare($sql);
     $stmt->execute([]);
 
     $row = $stmt->fetch();
+    $stmt->closeCursor();
+    $stmt = null;
     return $row["valeurs_donnees"];
   }
 }

@@ -27,10 +27,13 @@ class Medecin extends Controller
 
     $prenomMedecin = $this->model("MedecinModel");
 
+    $prenomMedecin = new MedecinModel();
+
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
     $prenomMedecin->fetch = $prenomMedecin->getPrenom($_SESSION["user"]);
 
     $this->view("medecin/index", ["prenom" => $prenomMedecin->fetch]);
+    unset($prenomMedecin);
   }
 
   public function error()
@@ -80,9 +83,12 @@ class Medecin extends Controller
 
     $medecin = $this->model("MedecinModel");
 
+    $medecin = new MedecinModel();
+
     $medecin->patients = $medecin->getPatient($_SESSION["user"]);
 
     $this->view("medecin/gestionPatient", ["data" => $medecin->patients]);
+    unset($medecin);
   }
 
   public function constantes(int $id = 0)
@@ -99,9 +105,12 @@ class Medecin extends Controller
 
     $patient = $this->model("PatientModel");
 
+    $patient = new PatientModel();
+
     $patient->info = $patient->getInformations($id);
 
     $this->view("medecin/constantes", ["patient" => $patient->info]);
+    unset($patient);
   }
 
   public function chat()
@@ -129,17 +138,23 @@ class Medecin extends Controller
 
     $medecin = $this->model("MedecinModel");
 
+    $medecin = new MedecinModel();
+
     $medecin->recherche = $medecin->searchPatient($prenom, $nom, $email);
 
     $this->view("medecin/resultat", ["recherche" => $medecin->recherche]);
+    unset($medecin);
   }
 
   public function getConstantes()
   {
     $patient = $this->model("PatientModel");
 
+    $patient = new PatientModel();
+
     $patient->constantes = $patient->getConstantesPatient();
 
     echo $patient->constantes;
+    unset($patient);
   }
 }

@@ -69,7 +69,7 @@ h1 {
   grid-area: patient;
   border-radius: 10px;
   transition: opacity 30ms linear;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
@@ -78,7 +78,7 @@ h1 {
   grid-area: medecin;
   border-radius: 10px;
   transition: opacity 30ms linear;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 

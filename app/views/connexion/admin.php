@@ -17,7 +17,7 @@ function load_header($view, $data = [])
 </head>
 
 <body>
-
+<div class="content">
     <?php load_header("/header/index", [
       "button" => "Inscription",
       "link" => "/public/inscription/",
@@ -39,5 +39,5 @@ function load_header($view, $data = [])
       </form>
       
     </div>
-
+  </div>
     <?php require_once "../app/views/footer/index.php"; ?>

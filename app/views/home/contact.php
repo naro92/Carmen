@@ -17,7 +17,7 @@ function load_header($view, $data = [])
 </head>
 
 <body>
-
+<div class="content">
 <?php load_header("/header/index", [
   "button" => ucfirst($data["dashboard"]),
   "link" => ROOT_PATH . "/" . $data["dashboard"],
@@ -42,6 +42,7 @@ function load_header($view, $data = [])
   </body>
 
   </div>
+</div>
 
   <?php require_once "../app/views/footer/index.php"; ?>
 

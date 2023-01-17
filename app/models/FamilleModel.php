@@ -1,5 +1,5 @@
 <?php
-
+require "Database.php";
 /**
  * Classe familleModel
  *
@@ -9,26 +9,22 @@
  */
 class FamilleModel
 {
+  protected $bdd;
+
+  public function __construct()
+  {
+    $this->connect();
+  }
+
+  public function __destruct()
+  {
+    $this->bdd = null;
+  }
+
   public function connect()
   {
-    try {
-      $bdd = new PDO(
-        "mysql:host=" .
-          HOST .
-          ":" .
-          PORT .
-          ";dbname=" .
-          DBNAME .
-          ";charset=utf8",
-        USERNAME,
-        PASSWORD,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-      );
-
-      return $bdd;
-    } catch (PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage();
-    }
+    $db = new Database();
+    $this->bdd = $db->connect();
   }
 
   /**
@@ -40,11 +36,9 @@ class FamilleModel
    */
   public function connexionFamille(string $email, string $password)
   {
-    $bdd = FamilleModel::connect();
-
     $query = "SELECT * FROM famille WHERE adresse_mail=:email and mdp=:pass";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute([
       "email" => $email,
       "pass" => $password,
@@ -55,7 +49,8 @@ class FamilleModel
     } else {
       $connectionSuccessful = 0;
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $connectionSuccessful;
   }
 
@@ -72,11 +67,9 @@ class FamilleModel
     string $email,
     string $password
   ) {
-    $bdd = FamilleModel::connect();
-
     $query = "SELECT * FROM patient WHERE adresse_mail=:email";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute(["email" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
@@ -85,7 +78,7 @@ class FamilleModel
     } else {
       // Sinon on ajoute toutes les données dans la database
       $sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $exec = $stmt->execute([$email, $nom, $password]);
       if ($exec) {
         $return = "inscription successful !";
@@ -93,7 +86,20 @@ class FamilleModel
         $return = "Il y a une erreur";
       }
     }
+    $statement->closeCursor();
+    $statement = null;
+    return $return;
+  }
 
+  public function getFamillePrenom(string $email)
+  {
+    $query = "SELECT prenom FROM famille WHERE adresse_mail=:mail";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["mail" => $email]);
+    $return = $statement->fetchColumn();
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 }

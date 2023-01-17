@@ -78,10 +78,13 @@ class Home extends Controller
     // on charge le model de la faq
     $faq = $this->model("Faq");
 
+    $faq = new Faq();
+
     // on va appeler la fonction qui permet de recuperer tous les elements de la faq
     $faq->fetch = $faq->getFaq();
     // on charge la vue avec tous les elements de la faq
     $this->view("home/faq", ["faq" => $faq->fetch, "dashboard" => $dashboard]);
+    unset($faq);
   }
 
   /**

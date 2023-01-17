@@ -1,5 +1,5 @@
 <?php
-
+require "Database.php";
 /**
  * Classe familleModel
  *
@@ -9,26 +9,22 @@
  */
 class AdminModel
 {
+  protected $bdd;
+
+  public function __construct()
+  {
+    $this->connect();
+  }
+
+  public function __destruct()
+  {
+    $this->bdd = null;
+  }
+
   public function connect()
   {
-    try {
-      $bdd = new PDO(
-        "mysql:host=" .
-          HOST .
-          ":" .
-          PORT .
-          ";dbname=" .
-          DBNAME .
-          ";charset=utf8",
-        USERNAME,
-        PASSWORD,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-      );
-
-      return $bdd;
-    } catch (PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage();
-    }
+    $db = new Database();
+    $this->bdd = $db->connect();
   }
 
   /**
@@ -40,12 +36,10 @@ class AdminModel
    */
   public function connexionAdmin(string $email, string $password)
   {
-    $bdd = AdminModel::connect();
-
     $query =
       "SELECT * FROM administrateur WHERE adresse_mail=:email and mdp=:pass";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute([
       "email" => $email,
       "pass" => $password,
@@ -56,7 +50,8 @@ class AdminModel
     } else {
       $connectionSuccessful = 0;
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $connectionSuccessful;
   }
 }

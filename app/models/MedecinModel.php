@@ -1,5 +1,5 @@
 <?php
-
+require "Database.php";
 /**
  * Classe medecinModel
  *
@@ -9,26 +9,22 @@
  */
 class MedecinModel
 {
+  protected $bdd;
+
+  public function __construct()
+  {
+    $this->connect();
+  }
+
+  public function __destruct()
+  {
+    $this->bdd = null;
+  }
+
   public function connect()
   {
-    try {
-      $bdd = new PDO(
-        "mysql:host=" .
-          HOST .
-          ":" .
-          PORT .
-          ";dbname=" .
-          DBNAME .
-          ";charset=utf8",
-        USERNAME,
-        PASSWORD,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-      );
-
-      return $bdd;
-    } catch (PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage();
-    }
+    $db = new Database();
+    $this->bdd = $db->connect();
   }
 
   /**
@@ -40,10 +36,8 @@ class MedecinModel
    */
   public function connexionMedecin(string $email, string $password)
   {
-    $bdd = MedecinModel::connect();
-
     $query = "SELECT * FROM medecin WHERE adresse_mail=:email and mdp=:pass";
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute([
       "email" => $email,
       "pass" => $password,
@@ -54,7 +48,8 @@ class MedecinModel
     } else {
       $connectionSuccessful = 0;
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $connectionSuccessful;
   }
 
@@ -71,11 +66,9 @@ class MedecinModel
     string $email,
     string $password
   ) {
-    $bdd = MedecinModel::connect();
-
     $query = "SELECT * FROM patient WHERE adresse_mail=:mail";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute(["mail" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
@@ -92,7 +85,8 @@ class MedecinModel
         $return = "Il y a une erreur";
       }
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
@@ -104,14 +98,13 @@ class MedecinModel
    */
   public function getPrenom(string $email)
   {
-    $bdd = MedecinModel::connect();
-
     $query = "SELECT prenom FROM medecin WHERE adresse_mail=:mail";
 
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute(["mail" => $email]);
     $return = $statement->fetchColumn();
-
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
@@ -122,12 +115,13 @@ class MedecinModel
    */
   public function getNbMedecin()
   {
-    $bdd = MedecinModel::connect();
     $query = "SELECT COUNT(*) FROM medecin";
     $params = [];
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchColumn();
+    $statement->closeCursor();
+    $statement = null;
     return $return;
   }
 
@@ -139,8 +133,6 @@ class MedecinModel
     $test_nom = false;
     $test_prenom = false;
     $test_email = false;
-
-    $bdd = MedecinModel::connect();
 
     $prenom = ucwords($prenom);
     $nom = ucwords($nom);
@@ -157,7 +149,7 @@ class MedecinModel
 
     if ($test_prenom == true and $test_nom == false and $test_email == false) {
       $sql = "SELECT * from patient WHERE prenom like ?";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom]);
     } elseif (
       $test_prenom == false and
@@ -165,7 +157,7 @@ class MedecinModel
       $test_email == false
     ) {
       $sql = "SELECT * from patient WHERE nom like ?";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$nom]);
     } elseif (
       $test_prenom == false and
@@ -173,7 +165,7 @@ class MedecinModel
       $test_email == true
     ) {
       $sql = "SELECT * from patient WHERE mail like ?";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$email]);
     } elseif (
       $test_prenom == true and
@@ -181,7 +173,7 @@ class MedecinModel
       $test_email == false
     ) {
       $sql = "SELECT * from patient WHERE (prenom like ? and nom like ?)";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom, $nom]);
     } elseif (
       $test_prenom == true and
@@ -189,7 +181,7 @@ class MedecinModel
       $test_email == true
     ) {
       $sql = "SELECT * from patient WHERE (prenom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom, $email]);
     } elseif (
       $test_prenom == false and
@@ -197,7 +189,7 @@ class MedecinModel
       $test_email == true
     ) {
       $sql = "SELECT * from patient WHERE (nom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$nom, $email]);
     } elseif (
       $test_prenom == true and
@@ -206,7 +198,7 @@ class MedecinModel
     ) {
       $sql =
         "SELECT * from patient WHERE (prenom like ? and nom like ? and mail like ?)";
-      $stmt = $bdd->prepare($sql);
+      $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom, $nom, $email]);
     } else {
       echo "veuillez remplir des champs";
@@ -220,19 +212,19 @@ class MedecinModel
         "email" => htmlspecialchars($obj["adresse_mail"]),
       ];
     }
-
+    $stmt->closeCursor();
+    $stmt = null;
     return $vue;
   }
 
   public function getPatient(string $email)
   {
-    $bdd = MedecinModel::connect();
     $sql =
       "SELECT p.* FROM patient p INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin WHERE m.adresse_mail like '" .
       $email .
       "'";
 
-    $statement = $bdd->prepare($sql);
+    $statement = $this->bdd->prepare($sql);
     $statement->execute([]);
 
     if ($statement === false) {
@@ -247,7 +239,8 @@ class MedecinModel
         "email" => htmlspecialchars($obj["adresse_mail"]),
       ];
     }
-
+    $statement->closeCursor();
+    $statement = null;
     return $vue;
   }
 }

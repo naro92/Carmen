@@ -1,5 +1,5 @@
 <?php
-
+require "Database.php";
 /**
  * Classe FAQ
  *
@@ -9,26 +9,22 @@
  */
 class Faq
 {
+  protected $bdd;
+
+  public function __construct()
+  {
+    $this->connect();
+  }
+
+  public function __destruct()
+  {
+    $this->bdd = null;
+  }
+
   public function connect()
   {
-    try {
-      $bdd = new PDO(
-        "mysql:host=" .
-          HOST .
-          ":" .
-          PORT .
-          ";dbname=" .
-          DBNAME .
-          ";charset=utf8",
-        USERNAME,
-        PASSWORD,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-      );
-
-      return $bdd;
-    } catch (PDOException $e) {
-      echo $sql . "<br>" . $e->getMessage();
-    }
+    $db = new Database();
+    $this->bdd = $db->connect();
   }
 
   /**
@@ -38,12 +34,10 @@ class Faq
    */
   public function getFaq()
   {
-    $bdd = Faq::connect();
-
     $vue = [];
     $params = [];
     $query = "SELECT * FROM faq";
-    $statement = $bdd->prepare($query);
+    $statement = $this->bdd->prepare($query);
     $statement->execute($params);
 
     while ($obj = $statement->fetch()) {
@@ -53,6 +47,9 @@ class Faq
         "contenu" => htmlspecialchars($obj["contenu"]),
       ];
     }
+
+    $statement->closeCursor();
+    $statement = null;
 
     return $vue;
   }
@@ -66,11 +63,11 @@ class Faq
    */
   public function insertQuestion(string $titre, string $contenu)
   {
-    $bdd = Faq::connect();
-
     $sql = "INSERT INTO faq (titre, contenu) VALUES (?,?)";
-    $stmt = $bdd->prepare($sql);
+    $stmt = $this->bdd->prepare($sql);
     $stmt->execute([$titre, $contenu]);
+    $stmt->closeCursor();
+    $stmt = null;
     return $stmt;
   }
 
@@ -85,16 +82,16 @@ class Faq
    */
   public function updateQuestion(string $id, string $titre, string $contenu)
   {
-    $bdd = Faq::connect();
-
     $sql =
       "UPDATE faq SET titre=:newTitre, contenu=:newContenu WHERE idquestion=:id";
-    $stmt = $bdd->prepare($sql);
+    $stmt = $this->bdd->prepare($sql);
     $stmt->execute([
       "newTitre" => $titre,
       "newContenu" => $contenu,
       "id" => $id,
     ]);
+    $stmt->closeCursor();
+    $stmt = null;
     echo "Faq updated!";
     echo "</br>";
     echo "id : " . $id . " et nouveau titre : " . $titre;
@@ -109,11 +106,11 @@ class Faq
    */
   public function deleteQuestion(string $id)
   {
-    $bdd = Faq::connect();
-
     $sql = "DELETE FROM faq WHERE idquestion = :id ";
 
-    $stmt = $bdd->prepare($sql);
+    $stmt = $this->bdd->prepare($sql);
     $stmt->execute(["id" => $id]);
+    $stmt->closeCursor();
+    $stmt = null;
   }
 }

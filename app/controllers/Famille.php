@@ -14,7 +14,24 @@ class Famille extends Controller
    */
   public function index()
   {
-    $this->view("famille/index");
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "famille") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $prenomFamille = $this->model("FamilleModel");
+
+    $prenomFamille = new FamilleModel();
+
+    // on va appeler la fonction qui permet de recuperer tous les elements de la faq
+    $prenomFamille->fetch = $prenomFamille->getFamillePrenom($_SESSION["user"]);
+    $this->view("famille/index", ["prenom" => $prenomFamille->fetch]);
   }
 
   public function error()
