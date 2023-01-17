@@ -15,6 +15,7 @@ class PatientModel
   {
     $this->connect();
   }
+
   public function __destruct()
   {
     $this->bdd = null;
@@ -88,18 +89,6 @@ class PatientModel
     $statement = $this->bdd->prepare($query);
     $statement->execute($params);
     $return = $statement->fetchAll();
-    $statement->closeCursor();
-    $statement = null;
-    return $return;
-  }
-
-  public function getNbPatient()
-  {
-    $query = "SELECT COUNT(*) FROM patient";
-    $params = [];
-    $statement = $this->bdd->prepare($query);
-    $statement->execute($params);
-    $return = $statement->fetchColumn();
     $statement->closeCursor();
     $statement = null;
     return $return;

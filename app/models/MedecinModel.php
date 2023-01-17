@@ -108,23 +108,6 @@ class MedecinModel
     return $return;
   }
 
-  /**
-   * getNbMedecin : recupere le nombre de medecins actuels
-   *
-   * @return void
-   */
-  public function getNbMedecin()
-  {
-    $query = "SELECT COUNT(*) FROM medecin";
-    $params = [];
-    $statement = $this->bdd->prepare($query);
-    $statement->execute($params);
-    $return = $statement->fetchColumn();
-    $statement->closeCursor();
-    $statement = null;
-    return $return;
-  }
-
   public function searchPatient(
     string $prenom = "",
     string $nom = "",

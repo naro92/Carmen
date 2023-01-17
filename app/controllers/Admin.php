@@ -81,22 +81,16 @@ class Admin extends Controller
       exit();
     }
 
-    $patient = $this->model("PatientModel");
+    $admin = $this->model("AdminModel");
+    $admin = new AdminModel();
 
-    $patient = new PatientModel();
-    $patient->nbPatient = $patient->getNbPatient();
-
-    $medecin = $this->model("MedecinModel");
-
-    $medecin = new MedecinModel();
-    $medecin->nbMedecin = $medecin->getNbMedecin();
+    $admin->nombres = $admin->getNb();
 
     $this->view("admin/index", [
-      "nbPatient" => $patient->nbPatient,
-      "nbMedecin" => $medecin->nbMedecin,
+      "nbPatient" => $admin->nombres[0]["patients"],
+      "nbMedecin" => $admin->nombres[0]["medecins"],
     ]);
-    unset($patient);
-    unset($medecin);
+    unset($admin);
   }
 
   public function ajoutAdmin()

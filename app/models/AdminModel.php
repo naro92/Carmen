@@ -54,4 +54,14 @@ class AdminModel
     $statement = null;
     return $connectionSuccessful;
   }
+
+  public function getNb()
+  {
+    $query =
+      "SELECT (SELECT COUNT(*) FROM medecin) as 'medecins', (SELECT COUNT(*) FROM patient) as 'patients';";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute([]);
+    $return = $statement->fetchAll();
+    return $return;
+  }
 }
