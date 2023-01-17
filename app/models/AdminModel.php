@@ -55,6 +55,48 @@ class AdminModel
     return $connectionSuccessful;
   }
 
+  public function inscriptionAdmin(
+    string $name,
+    string $firstname,
+    string $naissance,
+    string $sexe,
+    string $adresse,
+    string $email,
+    string $password
+  ) {
+    $query = "SELECT * FROM administrateur WHERE adresse_mail=:email";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["email" => $email]);
+    $count = $statement->rowCount();
+    if ($count > 0) {
+      // S'il est deja utilisé on dit que la personne est deja inscrite
+      return "Un utilisateur possède déjà votre adresse mail !";
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql =
+        "INSERT INTO administrateur(idadministrateur, nom, prenom, date_naissance, sexe, mdp, adresse, adresse_mail) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        $name,
+        $firstname,
+        $naissance,
+        $sexe,
+        $password,
+        $adresse,
+        $email,
+      ]);
+      if ($exec) {
+        $return = "inscription réussie !";
+      } else {
+        $return = "Il y a une erreur !";
+      }
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $return;
+  }
+
   public function getNb()
   {
     $query =

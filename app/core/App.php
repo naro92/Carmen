@@ -18,10 +18,18 @@ class App
   public function __construct()
   {
     $url = $this->parseUrl();
+    echo $_SERVER["DOCUMENT_ROOT"] . "/app/controllers/";
 
     // si la premiere valeur du tableau est un fichier qui existe
     if (isset($url[0])) {
-      if (file_exists($_SERVER['DOCUMENT_ROOT'].'/app/controllers/' . ucfirst($url[0]) . ".php")) {
+      if (
+        file_exists(
+          $_SERVER["DOCUMENT_ROOT"] .
+            "/app/controllers/" .
+            ucfirst($url[0]) .
+            ".php"
+        )
+      ) {
         $this->controller = ucfirst($url[0]);
         unset($url[0]);
       } else {
@@ -34,7 +42,10 @@ class App
     }
 
     // on l'appele
-    require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/' . $this->controller . ".php");
+    require_once $_SERVER["DOCUMENT_ROOT"] .
+      "/app/controllers/" .
+      $this->controller .
+      ".php";
 
     $this->controller = new $this->controller();
 

@@ -104,7 +104,43 @@ class Admin extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("admin/ajoutAdmin");
+    $retour = "";
+    if ($_POST["submit-btn"]) {
+      if (
+        isset($_POST["name"]) &&
+        isset($_POST["firstname"]) &&
+        isset($_POST["naissance"]) &&
+        isset($_POST["sexe"]) &&
+        isset($_POST["address"]) &&
+        isset($_POST["mail"]) &&
+        isset($_POST["password"])
+      ) {
+        $name = $_POST["name"];
+        $firstname = $_POST["firstname"];
+        $naissance = $_POST["naissance"];
+        $sexe = $_POST["sexe"];
+        $address = $_POST["address"];
+        $email = $_POST["mail"];
+        $password = hash("sha3-256", $_POST["password"]);
+
+        $admin = $this->model("AdminModel");
+
+        $admin = new AdminModel();
+
+        $admin->inscription = $admin->inscriptionAdmin(
+          $name,
+          $firstname,
+          $naissance,
+          $sexe,
+          $address,
+          $email,
+          $password
+        );
+
+        $retour = $admin->inscription;
+      }
+    }
+    $this->view("admin/ajoutAdmin", ["error" => $retour]);
   }
 
   public function ajoutCapteurs()
@@ -132,7 +168,40 @@ class Admin extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("admin/ajoutMedecin");
+    $retour = "";
+    if ($_POST["submit-btn"]) {
+      if (
+        isset($_POST["name"]) &&
+        isset($_POST["firstname"]) &&
+        isset($_POST["naissance"]) &&
+        isset($_POST["mail"])
+      ) {
+        $name = $_POST["name"];
+        $firstname = $_POST["firstname"];
+        $naissance = $_POST["naissance"];
+        $email = $_POST["mail"];
+
+        $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $length_of_string = 7;
+
+        $codeMedecin = substr(str_shuffle($str_result), 0, $length_of_string);
+
+        $medecin = $this->model("MedecinModel");
+
+        $medecin = new MedecinModel();
+
+        $medecin->inscription = $medecin->inscriptionMedecin(
+          $name,
+          $firstname,
+          $naissance,
+          $email,
+          $codeMedecin
+        );
+
+        $retour = $medecin->inscription;
+      }
+    }
+    $this->view("admin/ajoutMedecin", ["error" => $retour]);
   }
 
   public function ajoutPatient()
@@ -166,6 +235,55 @@ class Admin extends Controller
     $length_of_string = 7;
 
     $codePatient = substr(str_shuffle($str_result), 0, $length_of_string);
+  }
+
+  public function addMedecinFunc()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $retour = "";
+    if ($_POST["submit-btn"]) {
+      if (
+        isset($_POST["name"]) &&
+        isset($_POST["firstname"]) &&
+        isset($_POST["naissance"]) &&
+        isset($_POST["mail"])
+      ) {
+        $name = $_POST["name"];
+        $firstname = $_POST["firstname"];
+        $naissance = $_POST["naissance"];
+        $email = $_POST["mail"];
+
+        $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $length_of_string = 7;
+
+        $codeMedecin = substr(str_shuffle($str_result), 0, $length_of_string);
+
+        $medecin = $this->model("MedecinModel");
+
+        $medecin = new MedecinModel();
+
+        $medecin->inscription = $medecin->inscriptionMedecin(
+          $name,
+          $firstname,
+          $naissance,
+          $email,
+          $codeMedecin
+        );
+
+        echo $medecin->inscription;
+
+        //echo $retour;
+      }
+    }
   }
 
   public function faqModif()

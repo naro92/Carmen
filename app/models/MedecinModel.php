@@ -62,27 +62,36 @@ class MedecinModel
    * @return void
    */
   public function inscriptionMedecin(
-    string $nom,
+    string $name,
+    string $firstname,
+    string $naissance,
     string $email,
-    string $password
+    string $codeMedecin
   ) {
-    $query = "SELECT * FROM patient WHERE adresse_mail=:mail";
+    $query = "SELECT * FROM medecin WHERE adresse_mail=:email";
 
     $statement = $this->bdd->prepare($query);
-    $statement->execute(["mail" => $email]);
+    $statement->execute(["email" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
       // S'il est deja utilisé on dit que la personne est deja inscrite
       return "Un utilisateur possède déjà votre adresse mail !";
     } else {
       // Sinon on ajoute toutes les données dans la database
-      $sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
-      $stmt = $bdd->prepare($sql);
-      $exec = $stmt->execute([$email, $nom, $password]);
+      $sql =
+        "INSERT INTO medecin(idmedecin, nom, prenom, date_naissance, adresse_mail, mdp, codeMedecin) VALUES (NULL,?,?,?,?,NULL,?)";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        $name,
+        $firstname,
+        $naissance,
+        $email,
+        $codeMedecin,
+      ]);
       if ($exec) {
-        $return = "inscription successful !";
+        $return = "inscription réussie !";
       } else {
-        $return = "Il y a une erreur";
+        $return = "Il y a une erreur !";
       }
     }
     $statement->closeCursor();

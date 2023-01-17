@@ -25,9 +25,10 @@ function load_header($view, $data = [])
   
 
   <div class="admin-add">
-  <form class="form-container">
+  <form class="form-container" method="post" action="/public/admin/ajoutMedecin">
   <header>
     <h1 class="title">Ajouter un médecin</h1>
+    <p><?php echo $data["error"]; ?></p>
   </header>
 
   <div class="form">
@@ -52,7 +53,7 @@ function load_header($view, $data = [])
     </div>
 
     <div class="btn-container">
-      <button class="btn" type="submit">Save All</button>
+      <button class="btn" type="submit" name="submit-btn" value="Save All">Save All</button>
     </div>
     
 </form>
