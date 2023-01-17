@@ -99,6 +99,41 @@ class MedecinModel
     return $return;
   }
 
+  public function verificationInscription(
+    string $code,
+    string $email,
+    string $password
+  ) {
+    $query =
+      "SELECT * FROM medecin WHERE adresse_mail=:email AND codeMedecin=:code";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["email" => $email, "code" => $code]);
+    $count = $statement->fetchAll();
+    print_r($count[0]);
+    if ($count[0]["mdp"]) {
+      return "Vous etes déjà incrit !";
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql =
+        "UPDATE medecin SET mdp=:motdepasse WHERE adresse_mail=:email AND codeMedecin=:code";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        "motdepasse" => $password,
+        "email" => $email,
+        "code" => $code,
+      ]);
+      if ($exec) {
+        $return = "Vous vous êtes bien inscrit !";
+      } else {
+        $return = "Il y a une erreur !";
+      }
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $return;
+  }
+
   /**
    * getPrenom
    *

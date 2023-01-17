@@ -18,7 +18,6 @@ class App
   public function __construct()
   {
     $url = $this->parseUrl();
-    echo $_SERVER["DOCUMENT_ROOT"] . "/app/controllers/";
 
     // si la premiere valeur du tableau est un fichier qui existe
     if (isset($url[0])) {

@@ -199,6 +199,9 @@ class Admin extends Controller
         );
 
         $retour = $medecin->inscription;
+        if ($retour == "inscription réussie !") {
+          echo "message à envoyer !";
+        }
       }
     }
     $this->view("admin/ajoutMedecin", ["error" => $retour]);

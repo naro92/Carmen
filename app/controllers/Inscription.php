@@ -87,4 +87,31 @@ class Inscription extends Controller
 
     echo $patient->inscriptionPatient;
   }
+
+  public function inscriptionMedecin()
+  {
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["code"]) &&
+        isset($_POST["email"]) &&
+        isset($_POST["password"]) &&
+        isset($_POST["passwordRepeat"]) &&
+        $_POST["password"] == $_POST["passwordRepeat"]
+      ) {
+        $codeMedecin = $_POST["code"];
+        $email = $_POST["email"];
+        $password = hash("sha3-256", $_POST["password"]);
+        $medecin = $this->model("MedecinModel");
+        $medecin = new MedecinModel();
+
+        $medecin->inscription = $medecin->verificationInscription(
+          $codeMedecin,
+          $email,
+          $password
+        );
+
+        echo $medecin->inscription;
+      }
+    }
+  }
 }
