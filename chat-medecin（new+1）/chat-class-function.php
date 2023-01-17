@@ -57,12 +57,9 @@ class db {
 		return $data;
 	  }
 	  
-	  function getpid($userID){   //根据医生的ID查找病人ID  Trouver un patient ID par identifiant de medecin
-		$sql = "SELECT `idPatient` from `patient` where `Médecin_idMédecin` = '$userID'";
-		$tmp = self::$cennct->query($sql); 
-		$data = $tmp->Fetch(PDO::FETCH_ASSOC);
-		$data = (int)$data;
-		return $data;
+	  function getpid(){   //根据医生的ID查找病人ID  Trouver un patient ID par identifiant de medecin
+		$patientID = isset($_GET['patientID'])?$_GET['patientID']:'';
+		return $patientID;
 	  }
 
 	  function getfamailleID(){   //根据病人的ID查找家庭id  Trouver un famillid par identifiant de patient
