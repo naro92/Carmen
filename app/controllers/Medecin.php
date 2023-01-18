@@ -176,4 +176,35 @@ class Medecin extends Controller
     echo $patient->constantes;
     unset($patient);
   }
+
+  public function ecrireBilan(int $id = 0)
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $error = "";
+
+    if (isset($_POST["submit-btn"])) {
+      if (isset($_POST["bilan"])) {
+        $texte = $_POST["bilan"];
+
+        $medecin = $this->model("MedecinModel");
+
+        $medecin = new MedecinModel();
+
+        $medecin->bilans = $medecin->bilanDatabase($id, $texte);
+        $error = $medecin->bilans;
+      }
+    }
+
+    $this->view("medecin/ecrireBilan", ["error" => $error, "idPatient" => $id]);
+  }
 }

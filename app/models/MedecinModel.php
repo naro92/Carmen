@@ -270,4 +270,36 @@ class MedecinModel
     $statement = null;
     return $vue;
   }
+
+  public function bilanDatabase(int $id, string $text)
+  {
+    $requete1 = "SELECT idfamille from famille where patient_idpatient = ?";
+    $requete2 = "SELECT medecin_idmedecin FROM patient where idpatient = ?";
+
+    $stmt1 = $this->bdd->prepare($requete1);
+    $stmt1->execute([$id]);
+    $resultat = $stmt1->fetch();
+    $famille_idfamille = $resultat["idfamille"];
+
+    $stmt2 = $this->bdd->prepare($requete2);
+    $stmt2->execute([$id]);
+    $resultat = $stmt2->fetch();
+    $patient_medecin_idmedecin = $resultat["medecin_idmedecin"];
+
+    $sql =
+      "INSERT INTO rapport (texte_rapport,famille_idfamille,patient_idpatient,patient_medecin_idmedecin) VALUES(?, ?, ?, ?)";
+    $stmt = $this->bdd->prepare($sql);
+    $exec = $stmt->execute([
+      $text,
+      $famille_idfamille,
+      $id,
+      $patient_medecin_idmedecin,
+    ]);
+    if ($exec) {
+      $return = "Rapport bien enregistré !";
+    } else {
+      $return = "Il y a une erreur !";
+    }
+    return $return;
+  }
 }

@@ -106,4 +106,47 @@ class AdminModel
     $return = $statement->fetchAll();
     return $return;
   }
+
+  public function getCapteurs()
+  {
+    $vue = [];
+    $params = [];
+    $query = "SELECT * FROM capteurs";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute($params);
+
+    while ($obj = $statement->fetch()) {
+      $vue["capteurs"][] = [
+        "id" => htmlspecialchars($obj["idcapteurs"]),
+        "type" => htmlspecialchars($obj["type"]),
+        "chambre" => htmlspecialchars($obj["chambre_numero"]),
+      ];
+    }
+
+    $statement->closeCursor();
+    $statement = null;
+
+    return $vue;
+  }
+
+  public function addCapteur(string $type, string $chambre, string $id)
+  {
+    $sql =
+      "INSERT INTO capteurs(idcapteurs, type, chambre_numero, valeurs_donnees, date_mesures, medecin_idmedecin) VALUES (NULL,?, ?, NULL, NULL, ?)";
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute([$type, $chambre, $id]);
+    $stmt->closeCursor();
+    $stmt = null;
+    return $stmt;
+  }
+
+  public function deleteCapteur(string $id)
+  {
+    $sql = "DELETE FROM capteurs WHERE idcapteurs = :id ";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute(["id" => $id]);
+    $stmt->closeCursor();
+    $stmt = null;
+  }
 }

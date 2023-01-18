@@ -1,0 +1,48 @@
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+}
+
+.btn_retour {
+  margin-left: 100px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background-color: var(--green);
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.btn_retour a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+}
+
+.main_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main_container #form_bilan {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main_container #form_bilan textarea {
+  width: 90vw;
+  height: 400px;
+}
+
+.main_container #btn_submit {
+  margin-top: 25px;
+}

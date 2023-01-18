@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 
 define(
   "ROOT_PATH",
@@ -9,11 +9,11 @@ define(
   )
 );
 
-define("HOST", "");
+define("HOST", "176.31.132.185");
 define("PORT", "3306");
-define("DBNAME", "");
-define("USERNAME", "");
-define("PASSWORD", "");
+define("DBNAME", "tfqtbp_carmenws_db");
+define("USERNAME", "tfqtbp_carmenws_db");
+define("PASSWORD", "!5*R_Cdb9P4%hLk3");
 
 // permet de bootstrapper tout le reste de l'application
 

@@ -39,8 +39,8 @@ function load_header($view, $data = [])
     <div class="liens">
     <a href="/public/admin/ajoutAdmin">Ajouter des administrateurs</a>
     <a href="/public/admin/ajoutMedecin">Ajouter des medecins</a>
-    <a href="/public/admin/ajoutCapteurs">Ajouter des capteurs</a>
     <a href="/public/admin/ajoutPatient">Ajouter des patients</a>
+    <a href="/public/admin/gererCapteurs">Ajouter des capteurs</a>
     <a href="/public/admin/faqModif">Modifier la faq</a>
 </div>
   </div>

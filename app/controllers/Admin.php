@@ -385,4 +385,77 @@ class Admin extends Controller
       exit();
     }
   }
+
+  public function gererCapteurs()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    $admin = $this->model("AdminModel");
+
+    $admin = new AdminModel();
+
+    $admin->capteurs = $admin->getCapteurs();
+
+    $this->view("admin/gestionCapteurs", ["capteurs" => $admin->capteurs]);
+  }
+
+  public function addCapteurAction()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    if (isset($_POST["add-btn"])) {
+      $type = $_POST["select_type"];
+      $chambre = $_POST["chambre"];
+      $idmedecin = $_POST["id_medecin"];
+
+      // echo $type;
+      // echo $chambre;
+      // echo $idmedecin;
+
+      $admin = $this->model("AdminModel");
+
+      $admin = new AdminModel();
+
+      $admin->add = $admin->addCapteur($type, $chambre, $idmedecin);
+      header("Location: /public/admin/gererCapteurs");
+    }
+  }
+
+  public function supprimerCapteurAction()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    if (isset($_POST["supress-btn"])) {
+      $actualId = $_POST["id"];
+
+      $admin = $this->model("AdminModel");
+
+      $admin = new AdminModel();
+
+      $admin->delete = $admin->deleteCapteur($actualId);
+      header("Location: /public/admin/gererCapteurs");
+      unset($faq);
+    }
+  }
 }

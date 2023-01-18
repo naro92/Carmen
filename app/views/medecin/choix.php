@@ -41,7 +41,9 @@ function load_header($view, $data = [])
       <div class="main_bloc" id="rapport_medical">
         <img src="<?php echo ROOT_PATH . "/assets/profil.png"; ?>" />
         <div class="btn_rapport_medical">
-          <a href="#rapport">Rapport médical</a>
+          <a href="<?php echo ROOT_PATH .
+            "/medecin/ecrireBilan/" .
+            $data["idPatient"]; ?>">Rapport médical</a>
         </div>
       </div>
     </div>
