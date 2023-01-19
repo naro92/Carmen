@@ -43,19 +43,28 @@ function load_header($view, $data = [])
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($data["data"]["patients"] as $row) {
+          <?php if (empty($data["data"]["patients"])) {
             echo "<tr>";
-            echo '<td height="50">' . $row["id"] . "</td>";
-            echo "<td>" . $row["prenom"] . "</td>";
-            echo "<td>" . $row["nom"] . "</td>";
-            echo '<td id="case_mail">' . $row["email"] . "</td>";
-            echo '<td><div class="btn_container"><a href="supprimer.php?id=' .
-              $row["id"] .
-              '">Supprimer</a></div></td>';
-            echo '<td><div class="btn_container"><a href="/public/medecin/choix/' .
-              $row["id"] .
-              '">Choix</a></div></td>';
+            echo '<td height="50">vide</td>';
+            echo "<td>vide</td>";
+            echo "<td>vide</td>";
+            echo '<td id="case_mail">vide</td>';
             echo "</tr>";
+          } else {
+            foreach ($data["data"]["patients"] as $row) {
+              echo "<tr>";
+              echo '<td height="50">' . $row["id"] . "</td>";
+              echo "<td>" . $row["prenom"] . "</td>";
+              echo "<td>" . $row["nom"] . "</td>";
+              echo '<td id="case_mail">' . $row["email"] . "</td>";
+              echo '<td><div class="btn_container"><a href="supprimer.php?id=' .
+                $row["id"] .
+                '">Supprimer</a></div></td>';
+              echo '<td><div class="btn_container"><a href="/public/medecin/choix/' .
+                $row["id"] .
+                '">Choix</a></div></td>';
+              echo "</tr>";
+            }
           } ?>
         </tbody>
       </table>

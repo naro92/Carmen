@@ -246,6 +246,7 @@ class MedecinModel
 
   public function getPatient(string $email)
   {
+    $vue = "";
     $sql =
       "SELECT p.* FROM patient p INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin WHERE m.adresse_mail like '" .
       $email .
@@ -301,5 +302,59 @@ class MedecinModel
       $return = "Il y a une erreur !";
     }
     return $return;
+  }
+
+  public function getProfil(string $email)
+  {
+    $sql = "SELECT * FROM medecin WHERE adresse_mail = :identification";
+
+    $statement = $this->bdd->prepare($sql);
+    $statement->execute(["identification" => $email]);
+
+    if ($statement === false) {
+      die("Erreur");
+    }
+
+    while ($obj = $statement->fetch()) {
+      $vue["medecin"][] = [
+        "id" => htmlspecialchars($obj["idmedecin"]),
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+        "date" => htmlspecialchars($obj["date_naissance"]),
+        "email" => htmlspecialchars($obj["adresse_mail"]),
+      ];
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $vue;
+  }
+
+  public function modifierProfilDatabase(
+    string $nom,
+    string $prenom,
+    string $date,
+    string $email,
+    string $id
+  ) {
+    $sql =
+      "UPDATE medecin SET nom = :nom , prenom = :prenom , date_naissance = :date, adresse_mail = :email WHERE idmedecin = :id";
+    $stmt = $this->bdd->prepare($sql);
+    $exec = $stmt->execute([
+      "nom" => $nom,
+      "prenom" => $prenom,
+      "date" => $date,
+      "email" => $email,
+      "id" => $id,
+    ]);
+    if ($exec) {
+      $stmt->closeCursor();
+      $stmt = null;
+      return true;
+    } else {
+      $stmt->closeCursor();
+      $stmt = null;
+      return false;
+    }
+    echo "Record updated";
   }
 }

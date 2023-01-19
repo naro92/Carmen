@@ -73,7 +73,7 @@ function load_header($view, $data = [])
 
         <div class="list_profil">
           <img src="<?php echo ROOT_PATH . "/assets/profil.png"; ?>" />
-          <a href="#profil" class="tableauLink">Mon Profil</a>
+          <a href="/public/medecin/modifierProfil" class="tableauLink">Mon Profil</a>
         </div>
       </div>
     </div>

@@ -118,6 +118,34 @@ class PatientModel
     return $vue;
   }
 
+  public function getProfil(string $email)
+  {
+    $sql = "SELECT * FROM patient WHERE adresse_mail = :identification";
+
+    $statement = $this->bdd->prepare($sql);
+    $statement->execute(["identification" => $email]);
+
+    if ($statement === false) {
+      die("Erreur");
+    }
+
+    while ($obj = $statement->fetch()) {
+      $vue["patients"][] = [
+        "id" => htmlspecialchars($obj["idpatient"]),
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+        "age" => htmlspecialchars($obj["age"]),
+        "sexe" => htmlspecialchars($obj["sexe"]),
+        "telephone" => htmlspecialchars($obj["telephone"]),
+        "adresse" => htmlspecialchars($obj["adresse"]),
+        "email" => htmlspecialchars($obj["adresse_mail"]),
+      ];
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $vue;
+  }
+
   public function getConstantesPatient()
   {
     $sql =
@@ -130,5 +158,50 @@ class PatientModel
     $stmt->closeCursor();
     $stmt = null;
     return $row["valeurs_donnees"];
+  }
+
+  public function getPrenom($email)
+  {
+    $query = "SELECT prenom FROM patient WHERE adresse_mail=:mail";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["mail" => $email]);
+    $return = $statement->fetchColumn();
+    return $return;
+  }
+
+  public function modifierProfilDatabase(
+    string $nom,
+    string $prenom,
+    string $age,
+    string $sexe,
+    string $telephone,
+    string $adresse,
+    string $mail,
+    string $id
+  ) {
+    $sql =
+      "UPDATE patient SET nom=:nom,age=:age,sexe=:sexe,adresse=:adresse,telephone=:phone,prenom=:prenom,adresse_mail= :mail WHERE idpatient = :id";
+    $stmt = $this->bdd->prepare($sql);
+    $exec = $stmt->execute([
+      "nom" => $nom,
+      "age" => $age,
+      "sexe" => $sexe,
+      "adresse" => $adresse,
+      "phone" => $telephone,
+      "prenom" => $prenom,
+      "mail" => $mail,
+      "id" => $id,
+    ]);
+    if ($exec) {
+      $stmt->closeCursor();
+      $stmt = null;
+      return true;
+    } else {
+      $stmt->closeCursor();
+      $stmt = null;
+      return false;
+    }
+    echo "Record updated";
   }
 }

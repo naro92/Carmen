@@ -23,19 +23,11 @@ class Patient extends Controller
       header("Location: /public/");
       exit();
     }
-    $bdd = new PDO(
-      "mysql:host=" . HOST . ":" . PORT . ";dbname=" . DBNAME . ";charset=utf8",
-      USERNAME,
-      PASSWORD,
-      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $patient = $this->model("PatientModel");
+    $patient = new PatientModel();
 
-    $query = "SELECT prenom FROM patient WHERE adresse_mail=:mail";
-
-    $statement = $bdd->prepare($query);
-    $statement->execute(["mail" => $_SESSION["user"]]);
-    $return = $statement->fetchColumn();
-    $this->view("patient/index", ["prenom" => $return]);
+    $patient->nom = $patient->getPrenom($_SESSION["user"]);
+    $this->view("patient/index", ["prenom" => $patient->nom]);
   }
 
   public function error()
@@ -54,7 +46,41 @@ class Patient extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("patient/modifProfil");
+    $retour = "";
+    $patient = $this->model("PatientModel");
+    $patient = new PatientModel();
+
+    $patient->infos = $patient->getProfil($_SESSION["user"]);
+    if (isset($_POST["submit-btn"])) {
+      $id = $_POST["id"];
+      $nom = $_POST["nom"];
+      $prenom = $_POST["prenom"];
+      $age = $_POST["age"];
+      $sexe = $_POST["sexe"];
+      $telephone = $_POST["phone"];
+      $adresse = $_POST["adresse"];
+      $mail = $_POST["mail"];
+
+      $patient->modifProfilAction = $patient->modifierProfilDatabase(
+        $nom,
+        $prenom,
+        $age,
+        $sexe,
+        $telephone,
+        $adresse,
+        $mail,
+        $id
+      );
+      if ($patient->modifProfilAction) {
+        $retour = "Votre profil a été modifié !";
+      } else {
+        $retour = "il y a eu une erreur !";
+      }
+    }
+    $this->view("patient/modifProfil", [
+      "infos" => $patient->infos["patients"][0],
+      "error" => $retour,
+    ]);
   }
 
   public function modifierProfilAction()

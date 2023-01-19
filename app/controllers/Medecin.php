@@ -207,4 +207,46 @@ class Medecin extends Controller
 
     $this->view("medecin/ecrireBilan", ["error" => $error, "idPatient" => $id]);
   }
+
+  public function modifierProfil()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    $retour = "";
+    $medecin = $this->model("MedecinModel");
+    $medecin = new MedecinModel();
+
+    $medecin->infos = $medecin->getProfil($_SESSION["user"]);
+    if (isset($_POST["submit-btn"])) {
+      $id = $_POST["id"];
+      $nom = $_POST["nom"];
+      $prenom = $_POST["prenom"];
+      $date = $_POST["dateNaissance"];
+      $mail = $_POST["mail"];
+
+      $medecin->modifProfilAction = $medecin->modifierProfilDatabase(
+        $nom,
+        $prenom,
+        $date,
+        $mail,
+        $id
+      );
+      if ($medecin->modifProfilAction) {
+        $retour = "Votre profil a été modifié !";
+      } else {
+        $retour = "il y a eu une erreur !";
+      }
+    }
+    $this->view("medecin/modifProfil", [
+      "infos" => $medecin->infos["medecin"][0],
+      "error" => $retour,
+    ]);
+  }
 }

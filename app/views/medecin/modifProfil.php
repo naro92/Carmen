@@ -29,7 +29,7 @@ function load_header($view, $data = [])
        </div>
        <h1 style="text-align: center;">Modifier profil :</h1>
        <p><?php echo $data["error"]; ?></p>
-        <form class="form" action="/public/patient/modifierProfil" method="post">
+        <form class="form" action="/public/medecin/modifierProfil" method="post">
         <input type="hidden" name="id" value="<?php echo $data["infos"][
           "id"
         ]; ?>" required /></td>
@@ -46,28 +46,10 @@ function load_header($view, $data = [])
               <label>Prénom</label>
           </div>
           <div class="form-group">
-            <input type="text" title="Enter valid email address" name="age" value="<?php print_r(
-              htmlspecialchars($data["infos"]["age"])
+            <input type="text" pattern=".{4,}" title="Enter valid email address" name="dateNaissance" value="<?php print_r(
+              htmlspecialchars($data["infos"]["date"])
             ); ?>"/>
-              <label>age</label>
-          </div>
-          <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="sexe" value="<?php print_r(
-              htmlspecialchars($data["infos"]["sexe"])
-            ); ?>"/>
-              <label>sexe</label>
-          </div>
-          <div class="form-group">
-            <input type="text" pattern="[0-9]{9}" title="Entrez un numéro de téléphone valide" name="phone" value="<?php print_r(
-              htmlspecialchars($data["infos"]["telephone"])
-            ); ?>"/>
-              <label>Télephone</label>
-          </div>
-          <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="adresse" value="<?php print_r(
-              htmlspecialchars($data["infos"]["adresse"])
-            ); ?>"/>
-              <label>Adresse</label>
+              <label>date de naissance</label>
           </div>
           <div class="form-group">
             <input type="text" required pattern=".{4,}" title="Enter valid email address" name="mail" value="<?php print_r(
@@ -75,7 +57,7 @@ function load_header($view, $data = [])
             ); ?>"/>
               <label>Adresse email</label>
           </div>
-          <button type="submit" class="button-validate" name="submit-btn", value="Valider">
+          <button type="submit" class="button-validate" name="submit-btn" value="Valider">
             Valider
           </button>
         </form>
