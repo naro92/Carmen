@@ -14,7 +14,7 @@ class db {
 	 * Méthodes de connexion aux bases de données
 	 */
 	private function conn(){
-		$pdo = new PDO('mysql:host=localhost;dbname=mydb;charset=utf8','root','woaiai123');	// 连接数据库Connexion à la base de données
+		$pdo = new PDO('mysql:host=localhost:3306;dbname=mydb;charset=utf8','root','root');	// 连接数据库Connexion à la base de données
 		$pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);		// 存储过程设置Paramètres de la procédure
 		return $pdo;								// 返回Dos
 	}
