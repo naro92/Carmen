@@ -120,4 +120,49 @@ class Patient extends Controller
 
     $conn  =  null;
   }
+
+  public function rapports()
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "patient") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $patient = $this->model("PatientModel");
+
+    $patient = new PatientModel();
+    $patient->rapports = $patient->getAllRapports($_SESSION["user"]);
+    $this->view("patient/voirBilan", ["rapports" => $patient->rapports]);
+  }
+
+  public function voirRapport()
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "patient") {
+      header("Location: /public/");
+      exit();
+    }
+    $retour = "";
+    if (isset($_POST["voir-btn"])) {
+      $id = $_POST["id"];
+      $patient = $this->model("PatientModel");
+
+      $patient = new PatientModel();
+      $patient->rapport = $patient->getRapportTexte($id);
+      $retour = $patient->rapport[0]["texte_rapport"];
+    }
+
+    $this->view("patient/voirRapport", ["texteRapport" => $retour]);
+  }
 }

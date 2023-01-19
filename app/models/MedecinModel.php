@@ -246,20 +246,19 @@ class MedecinModel
 
   public function getPatient(string $email)
   {
-    $vue = "";
+    $vue = [];
     $sql =
-      "SELECT p.* FROM patient p INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin WHERE m.adresse_mail like '" .
-      $email .
-      "'";
+      "SELECT p.* FROM patient p INNER JOIN medecin m ON p.medecin_idmedecin = m.idmedecin WHERE m.adresse_mail like ?";
 
     $statement = $this->bdd->prepare($sql);
-    $statement->execute([]);
+    $statement->execute([$email]);
+    $objets = $statement->fetchAll();
 
     if ($statement === false) {
       die("Erreur");
     }
 
-    while ($obj = $statement->fetch()) {
+    foreach ($objets as $obj) {
       $vue["patients"][] = [
         "id" => htmlspecialchars($obj["idpatient"]),
         "nom" => htmlspecialchars($obj["nom"]),

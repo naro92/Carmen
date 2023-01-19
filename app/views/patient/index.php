@@ -44,7 +44,7 @@ function load_header($view, $data = [])
         <h1>Vos Bilans</h1>
         <img src="<?php echo ROOT_PATH . "/assets/bilan_1.png"; ?>">
         <div class="btn_bilan">
-          <a href="#rapport">accéder à vos bilans</a>
+          <a href="/public/patient/rapports">accéder à vos bilans</a>
         </div>
       </div>
     </div>

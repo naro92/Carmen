@@ -204,4 +204,30 @@ class PatientModel
     }
     echo "Record updated";
   }
+
+  public function getAllrapports(string $email)
+  {
+    $vue = [];
+    $query =
+      "SELECT * from rapport WHERE famille_idfamille = (SELECT idpatient from patient WHERE adresse_mail = ?) ORDER BY date_rapport DESC";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute([$email]);
+
+    while ($obj = $statement->fetch()) {
+      $vue["rapports"][] = [
+        "id" => htmlspecialchars($obj["idrapport"]),
+        "date" => htmlspecialchars($obj["date_rapport"]),
+      ];
+    }
+    return $vue;
+  }
+
+  public function getRapporttexte(string $id)
+  {
+    $query = "SELECT texte_rapport from rapport WHERE idrapport = ?";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute([$id]);
+    $exec = $statement->fetchAll();
+    return $exec;
+  }
 }
