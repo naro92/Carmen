@@ -76,7 +76,7 @@ function load_header($view, $data = [])
       </div>
       <div class="img_chat">
         <img src="<?php echo ROOT_PATH . "/assets/chat.png"; ?>" />
-        <a href="#chat" class="button_chat">Chat</a>
+        <a href="chat-famille/chat.php?user=<?php echo $data["prenom"];?>" class="button_chat">Chat</a> 
       </div>
     </div>
 
