@@ -1,27 +1,12 @@
-<?php
-function load_header($view, $data = [])
-{
-  require_once "../app/views/" . $view . ".php";
-} ?>
 
 <head>
         <title>Chambres</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH .
-          "/style/chambres.css.css"; ?>" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH .
-          "/style/header.css"; ?>" />
-        <link rel="stylesheet" href="<?php echo ROOT_PATH .
-          "/style/footer.css"; ?>" />
+        <link rel="stylesheet" href="chambres.css">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
-  <?php load_header("/header/index", [
-    "button" => "Deconnexion",
-    "link" => "/public/connexion/deconnexion",
-  ]); ?>
-
   <div class="header-container">
     <h1 class="title">Gestion des Lits</h1>
   </div>
@@ -33,234 +18,40 @@ function load_header($view, $data = [])
       <div id="4e-etage-btn">4e étage</div>
     </div>
     <div class="liste-chambres">
-      <div id="liste-1etage">
-        <div class="chambre01">
-          <div class="chambre-label">101</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre02">
-          <div class="chambre-label">102</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre03">
-          <div class="chambre-label">103</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre04">
-          <div class="chambre-label">104</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre05">
-          <div class="chambre-label">105</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre06">
-          <div class="chambre-label">106</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre07">
-          <div class="chambre-label">107</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre08">
-          <div class="chambre-label">108</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre09">
-          <div class="chambre-label">109</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-      </div>
-      <div id="liste-2etage">
-        <div class="chambre01">
-          <div class="chambre-label">201</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre02">
-          <div class="chambre-label">202</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre03">
-          <div class="chambre-label">203</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre04">
-          <div class="chambre-label">204</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre05">
-          <div class="chambre-label">205</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre06">
-          <div class="chambre-label">206</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre07">
-          <div class="chambre-label">207</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre08">
-          <div class="chambre-label">208</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre09">
-          <div class="chambre-label">209</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-      </div>
-      <div id="liste-3etage">
-        <div class="chambre01">
-          <div class="chambre-label">301</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre02">
-          <div class="chambre-label">302</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre03">
-          <div class="chambre-label">303</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre04">
-          <div class="chambre-label">304</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre05">
-          <div class="chambre-label">305</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre06">
-          <div class="chambre-label">306</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre07">
-          <div class="chambre-label">307</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre08">
-          <div class="chambre-label">308</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre09">
-          <div class="chambre-label">309</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-      </div>
-      <div id="liste-4etage">
-        <div class="chambre01">
-          <div class="chambre-label">401</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre02">
-          <div class="chambre-label">402</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre03">
-          <div class="chambre-label">403</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre04">
-          <div class="chambre-label">404</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre05">
-          <div class="chambre-label">405</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre06">
-          <div class="chambre-label">406</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre07">
-          <div class="chambre-label">407</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre08">
-          <div class="chambre-label">408</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-        <div class="chambre09">
-          <div class="chambre-label">409</div>
-          <div class="chambre_image">
-            <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
-          </div>
-        </div>
-      </div>
+      
+      <?php
+      try {
+        $db = new PDO('mysql:host=127.0.0.1;port=3307;dbname=carmen', 'root', '');
+        $stmt = $db->prepare("SELECT * FROM chambres WHERE id LIKE ?");
+        for ($i = 1; $i <= 4; $i++) {
+          $id = $i . "%";
+          $stmt->execute([$id]);
+          $data = $stmt -> fetchAll();
+
+          echo '<div id="liste-' . $i . 'etage">';
+
+          foreach($data as $row) {
+            echo '<div class="chambre0' . $row['id'] - 100*$i . '">
+            <div class="chambre-label">' . $row['id'] . '</div>
+            <div class="chambre_image">
+              <img src="assets/lit_vide.png" alt="lit_vide" class="lit_vide" />
+            </div>
+            </div>';
+          }
+
+          echo '</div>';
+        }
+      }
+      catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+      }
+
+      ?>
     </div>
   </div>
 
-  <?php require_once "../app/views/footer/index.php"; ?>
+
 
   <script>
     const firstList = document.getElementById("liste-1etage");
