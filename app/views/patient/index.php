@@ -48,7 +48,6 @@ function load_header($view, $data = [])
         </div>
       </div>
     </div>
-  </div>
 
   <div class="faq_container">
     <div class="title_container">
@@ -67,6 +66,7 @@ function load_header($view, $data = [])
       </div>
 
     </div>
+</div>
 
   </div>
 

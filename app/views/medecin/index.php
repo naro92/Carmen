@@ -63,7 +63,7 @@ function load_header($view, $data = [])
 
         <div class="list_chat">
           <img src="<?php echo ROOT_PATH . "/assets/chat_2.png"; ?>" />
-          <a href="chat-medecin/rechercher.php?user=<?php echo $data['prenom'];?>" class="tableauLink">Chat</a>
+          <a href="#Chat" class="tableauLink">Chat</a>
         </div>
 
         <div class="list_FAQ">

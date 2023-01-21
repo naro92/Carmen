@@ -34,13 +34,13 @@ function load_header($view, $data = [])
           "id"
         ]; ?>" required /></td>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="nom" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="nom" value="<?php print_r(
               htmlspecialchars($data["infos"]["nom"])
             ); ?>"/>
               <label>Nom</label>
           </div>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="prenom" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="prenom" value="<?php print_r(
               htmlspecialchars($data["infos"]["prenom"])
             ); ?>"/>
               <label>Prénom</label>
@@ -52,7 +52,7 @@ function load_header($view, $data = [])
               <label>age</label>
           </div>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="sexe" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="sexe" value="<?php print_r(
               htmlspecialchars($data["infos"]["sexe"])
             ); ?>"/>
               <label>sexe</label>
@@ -64,13 +64,13 @@ function load_header($view, $data = [])
               <label>Télephone</label>
           </div>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="adresse" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="adresse" value="<?php print_r(
               htmlspecialchars($data["infos"]["adresse"])
             ); ?>"/>
               <label>Adresse</label>
           </div>
           <div class="form-group">
-            <input type="text" required pattern=".{4,}" title="Enter valid email address" name="mail" value="<?php print_r(
+            <input type="text" required pattern=".{1,}" title="Enter valid email address" name="mail" value="<?php print_r(
               htmlspecialchars($data["infos"]["email"])
             ); ?>"/>
               <label>Adresse email</label>

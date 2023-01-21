@@ -33,7 +33,7 @@ function load_header($view, $data = [])
             <!-- table heading -->
             <thead>
                 <tr>
-                    <th>ID Rapport</th>
+                    <th>Numéro Rapport</th>
                     <th>Date</th>
                     <th>Action</th>
                 </tr>
@@ -48,11 +48,12 @@ function load_header($view, $data = [])
               echo "<td>vide</td>";
               echo "</tr>";
             } else {
+              $i = 1;
               foreach ($data["rapports"]["rapports"] as $row) {
                 echo "<tr>";
                 echo '<form method="POST">';
                 echo '<td data-label="Id">' .
-                  $row["id"] .
+                  $i .
                   '<input type="hidden" name="id" value="' .
                   $row["id"] .
                   '" required /></td>';
@@ -62,6 +63,7 @@ function load_header($view, $data = [])
                 echo "</td>";
                 echo "</form>";
                 echo "</tr>";
+                $i = $i + 1;
               }
             } ?>
             </tbody>

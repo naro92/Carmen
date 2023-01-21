@@ -23,11 +23,14 @@ function load_header($view, $data = [])
     "link" => "/public/connexion/deconnexion",
   ]); ?>
     <div class="btn_retour">
-      <a href="<?php echo ROOT_PATH . "/medecin"; ?>"> &#10229 Retour</a>
+      <a href="<?php echo ROOT_PATH .
+        "/medecin/patient"; ?>"> &#10229 Retour</a>
     </div>
 
     <div class="title_container">
-      <h1>Tableau de bord du patient [NOM] [Prenom]</h1>
+      <h1>Tableau de bord du patient <?php echo htmlspecialchars(
+        $data["nom"] . " " . $data["prenom"]
+      ); ?></h1>
     </div>
     <div class="main">
       <div class="main_bloc" id="constante_vitale">
@@ -42,9 +45,11 @@ function load_header($view, $data = [])
         <img src="<?php echo ROOT_PATH . "/assets/profil.png"; ?>" />
         <div class="btn_rapport_medical">
           <a href="<?php echo ROOT_PATH .
-            "/medecin/ecrireBilan/" .
+            "/medecin/bilans/" .
             $data["idPatient"]; ?>">Rapport médical</a>
         </div>
       </div>
     </div>
+
+    <?php require_once "../app/views/footer/index.php"; ?>
 </body>

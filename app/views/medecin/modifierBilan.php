@@ -30,9 +30,14 @@ function load_header($view, $data = [])
 
     <div class="main_container">
 	    <p id="p_error"><?php echo $data["error"]; ?></p>
-        <form action="<?php echo "/public/medecin/ecrireBilan/" .
+        <form action="<?php echo "/public/medecin/modifierBilan/" .
           $data["idPatient"]; ?>" id="form_bilan" method="post">
-            <textarea name="bilan" id="bilan"></textarea>
+          <input type="hidden" name="id" value="<?php echo $data[
+            "idRapport"
+          ]; ?>" />
+            <textarea name="bilan" id="bilan"><?php print_r(
+              $data["text"]
+            ); ?></textarea>
             <input type="submit" id="btn_submit" name="submit-btn" value="Envoyer" onclick = "return check()">
         </form>
     </div>

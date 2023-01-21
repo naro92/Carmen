@@ -40,7 +40,7 @@ function load_header($view, $data = [])
         <div class="main_text">
           <h1>Bilans quotidiens</h1>
           <p>accédez aux bilans de santé de <br />[nom] grâce à Carmen</p>
-          <a href="#bilans" class="button_bilan">Bilans</a>
+          <a href="/public/famille/rapports" class="button_bilan">Bilans</a>
         </div>
       </div>
       <div class="description-container">
@@ -76,7 +76,7 @@ function load_header($view, $data = [])
       </div>
       <div class="img_chat">
         <img src="<?php echo ROOT_PATH . "/assets/chat.png"; ?>" />
-        <a href="chat-famille/chat.php?user=<?php echo $data["prenom"];?>" class="button_chat">Chat</a> 
+        <a href="#chat" class="button_chat">Chat</a>
       </div>
     </div>
 
@@ -93,7 +93,7 @@ function load_header($view, $data = [])
         </p>
         <hr />
         <div class="button_container">
-          <a href="#FAQ" class="button_faq">FAQ</a>
+          <a href="/public/home/faq" class="button_faq">FAQ</a>
           <img src="<?php echo ROOT_PATH . "/assets/faq2.png"; ?>" />
         </div>
       </div>

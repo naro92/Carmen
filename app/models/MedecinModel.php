@@ -300,6 +300,23 @@ class MedecinModel
     } else {
       $return = "Il y a une erreur !";
     }
+    $stmt->closeCursor();
+    $stmt = null;
+    return $return;
+  }
+
+  public function bilanUpdateDatabase(int $id, string $text)
+  {
+    $sql = "UPDATE rapport SET texte_rapport = ? WHERE idrapport = ?";
+    $stmt = $this->bdd->prepare($sql);
+    $exec = $stmt->execute([$text, $id]);
+    if ($exec) {
+      $return = "Rapport bien enregistré !";
+    } else {
+      $return = "Il y a une erreur !";
+    }
+    $stmt->closeCursor();
+    $stmt = null;
     return $return;
   }
 
@@ -355,5 +372,26 @@ class MedecinModel
       return false;
     }
     echo "Record updated";
+  }
+
+  public function getRapporttexte(string $id)
+  {
+    $query = "SELECT texte_rapport from rapport WHERE idrapport = ?";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute([$id]);
+    $exec = $statement->fetchAll();
+    $statement->closeCursor();
+    $statement = null;
+    return $exec;
+  }
+
+  public function deleteBilan(string $id)
+  {
+    $sql = "DELETE FROM rapport WHERE idrapport = :id ";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute(["id" => $id]);
+    $stmt->closeCursor();
+    $stmt = null;
   }
 }

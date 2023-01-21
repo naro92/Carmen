@@ -31,12 +31,12 @@ function load_header($view, $data = [])
             <label>Code Famille</label>
         </div>
         <div class="form-group">
-          <input type="text" required pattern=".{4,}" title="Enter valid email address" />
+          <input type="text" required pattern=".{1,}" title="Enter valid email address" />
             <label>Nom</label>
         </div>
         <div class="form-group">
           <input type="text" required pattern="[0][0-9]{9}" title="Entrez un numéro de téléphone valide" />
-            <label>Contact - Télephone</label>
+            <label>Email</label>
         </div>
         <div class="form-group">
           <input type="password" required pattern=".{4,}" title="Enter valid email address" />

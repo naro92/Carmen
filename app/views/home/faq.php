@@ -23,7 +23,7 @@ function load_header($view, $data = [])
   "link" => ROOT_PATH . "/" . $data["dashboard"],
 ]); ?>
   <h1>Foire aux questions</h1>
-  <p class="description-faq">Une question, un soucis ?<br/> Peut être que les réponses à celles-ci sont-ici :</p>
+  <p class="description-faq">Une question, un souci ?<br/> Peut être que les réponses à celles-ci sont-ici :</p>
   <div class="question">
   <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
 

@@ -219,6 +219,29 @@ class PatientModel
         "date" => htmlspecialchars($obj["date_rapport"]),
       ];
     }
+
+    $statement->closeCursor();
+    $statement = null;
+    return $vue;
+  }
+
+  public function getAllrapportsId(int $id)
+  {
+    $vue = [];
+    $query =
+      "SELECT * from rapport WHERE famille_idfamille = (SELECT idpatient from patient WHERE idpatient = ?) ORDER BY date_rapport DESC";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute([$id]);
+
+    while ($obj = $statement->fetch()) {
+      $vue["rapports"][] = [
+        "id" => htmlspecialchars($obj["idrapport"]),
+        "date" => htmlspecialchars($obj["date_rapport"]),
+      ];
+    }
+
+    $statement->closeCursor();
+    $statement = null;
     return $vue;
   }
 
@@ -228,6 +251,8 @@ class PatientModel
     $statement = $this->bdd->prepare($query);
     $statement->execute([$id]);
     $exec = $statement->fetchAll();
+    $statement->closeCursor();
+    $statement = null;
     return $exec;
   }
 }

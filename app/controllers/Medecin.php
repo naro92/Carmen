@@ -66,7 +66,21 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("medecin/choix", ["idPatient" => $id]);
+
+    $patient = $this->model("PatientModel");
+
+    $patient = new PatientModel();
+
+    $patient->info = $patient->getInformations($id);
+
+    $nom = $patient->info["patients"][0]["nom"];
+    $prenom = $patient->info["patients"][0]["prenom"];
+
+    $this->view("medecin/choix", [
+      "idPatient" => $id,
+      "prenom" => $prenom,
+      "nom" => $nom,
+    ]);
   }
 
   public function patient()
@@ -208,6 +222,31 @@ class Medecin extends Controller
     $this->view("medecin/ecrireBilan", ["error" => $error, "idPatient" => $id]);
   }
 
+  public function bilans(int $id = 0)
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $patient = $this->model("PatientModel");
+
+    $patient = new patientModel();
+
+    $patient->bilans = $patient->getAllrapportsId($id);
+
+    $this->view("medecin/bilans", [
+      "idPatient" => $id,
+      "rapports" => $patient->bilans["rapports"],
+    ]);
+  }
+
   public function modifierProfil()
   {
     session_start();
@@ -248,5 +287,79 @@ class Medecin extends Controller
       "infos" => $medecin->infos["medecin"][0],
       "error" => $retour,
     ]);
+  }
+
+  public function modifierBilan(int $idPatient)
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+
+    $error = "";
+    $id = $_POST["id"];
+
+    if (isset($id) && isset($_POST["submit-btn"])) {
+      if (isset($_POST["bilan"])) {
+        $id = $_POST["id"];
+        $texte = $_POST["bilan"];
+
+        $medecin = $this->model("MedecinModel");
+
+        $medecin = new MedecinModel();
+
+        $medecin->bilans = $medecin->bilanUpdateDatabase($id, $texte);
+        $error = $medecin->bilans;
+
+        $patient = "";
+
+        $medecin->texte = $medecin->getRapporttexte($id);
+      } else {
+        $patient = $this->model("PatientModel");
+
+        $patient = new PatientModel();
+
+        $patient->texte = $patient->getRapporttexte($id);
+      }
+    }
+
+    $this->view("medecin/modifierBilan", [
+      "error" => $error,
+      "idPatient" => $idPatient,
+      "text" => isset($patient->texte)
+        ? $patient->texte[0]["texte_rapport"]
+        : $medecin->texte[0]["texte_rapport"],
+      "idRapport" => $id,
+    ]);
+  }
+
+  public function supprimerBilanAction(int $idPatient)
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    if (isset($_POST["supress-btn"])) {
+      $actualId = $_POST["id"];
+
+      $medecin = $this->model("MedecinModel");
+
+      $medecin = new MedecinModel();
+
+      $medecin->deleteBilan = $medecin->deleteBilan($actualId);
+      header("Location: /public/medecin/bilans/" . $idPatient);
+      unset($faq);
+    }
   }
 }

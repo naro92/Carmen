@@ -16,7 +16,7 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body > <!--onload="myFunction();"-->
+<body onload="myFunction();"> <!--onload="myFunction();"-->
 
   <?php load_header("/header/index", [
     "button" => ucfirst($data["dashboard"]),

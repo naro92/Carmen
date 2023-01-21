@@ -34,25 +34,25 @@ function load_header($view, $data = [])
           "id"
         ]; ?>" required /></td>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="nom" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="nom" value="<?php print_r(
               htmlspecialchars($data["infos"]["nom"])
             ); ?>"/>
               <label>Nom</label>
           </div>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="prenom" value="<?php print_r(
+            <input type="text" pattern=".{1,}" title="Enter valid email address" name="prenom" value="<?php print_r(
               htmlspecialchars($data["infos"]["prenom"])
             ); ?>"/>
               <label>Prénom</label>
           </div>
           <div class="form-group">
-            <input type="text" pattern=".{4,}" title="Enter valid email address" name="dateNaissance" value="<?php print_r(
+            <input type="date" title="Enter valid email address" name="dateNaissance" value="<?php print_r(
               htmlspecialchars($data["infos"]["date"])
             ); ?>"/>
               <label>date de naissance</label>
           </div>
           <div class="form-group">
-            <input type="text" required pattern=".{4,}" title="Enter valid email address" name="mail" value="<?php print_r(
+            <input type="text" required pattern=".{1,}" title="Enter valid email address" name="mail" value="<?php print_r(
               htmlspecialchars($data["infos"]["email"])
             ); ?>"/>
               <label>Adresse email</label>

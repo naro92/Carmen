@@ -27,7 +27,7 @@ function load_header($view, $data = [])
       <h1 class="title">Inscription Personnel</h1>
       <form class="form" method="post" action="/public/inscription/inscriptionMedecin">
         <div class="form-group">
-          <input required type="text" name="code" title="Enter valid email address" />
+          <input required type="text" pattern=".{4,}" required name="code" title="Enter valid email address" />
             <label>Code Personnel</label>
         </div>
         <div class="form-group">
