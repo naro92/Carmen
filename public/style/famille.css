@@ -300,6 +300,7 @@ body {
   .bilan_container .description-container {
     gap: 5px;
     padding-bottom: 10px;
+    flex-direction: column;
   }
 
   .chat_container {
