@@ -1,5 +1,12 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "PHPMailer/src/Exception.php";
+require "PHPMailer/src/PHPMailer.php";
+require "PHPMailer/src/SMTP.php";
+
 /**
  * Classe Medecin
  *
@@ -105,7 +112,7 @@ class Admin extends Controller
       exit();
     }
     $retour = "";
-    if ($_POST["submit-btn"]) {
+    if (isset($_POST["submit-btn"])) {
       if (
         isset($_POST["name"]) &&
         isset($_POST["firstname"]) &&
@@ -169,6 +176,7 @@ class Admin extends Controller
       exit();
     }
     $retour = "";
+    $status = "";
     if ($_POST["submit-btn"]) {
       if (
         isset($_POST["name"]) &&
@@ -200,11 +208,57 @@ class Admin extends Controller
 
         $retour = $medecin->inscription;
         if ($retour == "inscription réussie !") {
-          echo "message à envoyer !";
+          try {
+            $mail = new PHPMailer(true);
+            //Enable verbose debug output
+            $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "contact.carmen.app@gmail.com"; //Adresse email à utiliser
+            $mail->Password = "lpobpflmrecwwhkn"; //Mot de passe de l'adresse email à utiliser
+
+            //Enable SSL encryption;
+            $mail->SMTPSecure = "ssl";
+
+            $mail->Port = 465; // port for ssl
+
+            $mail->isHTML(true);
+            $mail->CharSet = "utf-8";
+
+            $mail->setFrom("contact@carmen.wstr.fr", "Contact Admin"); // sender's email and name
+
+            $mail->addAddress($email, $name); // receiver's email and name
+
+            $mail->Subject = "Inscription";
+
+            $mail->Body =
+              "<h1>Voici le code pour vous inscrire :</h1>" .
+              "<br>" .
+              "<p>" .
+              $codePatient .
+              "</p>" .
+              "<br>" .
+              "<p>Cliquez sur ce lien pour finaliser votre inscription : <a href='carmen.wstr.fr/public/inscription/patient'>Terminer votre inscription</a>";
+
+            $mail->send();
+
+            $status = "Le message a bien été envoyé !";
+            echo $status;
+
+            $mail->smtpClose();
+          } catch (Exception $e) {
+            // handle error.
+
+            $status = "Le message n'a pas pu être envoyé !"; //, $mail->ErrorInfo;
+          }
         }
       }
     }
-    $this->view("admin/ajoutMedecin", ["error" => $retour]);
+    $this->view("admin/ajoutMedecin", [
+      "error" => $retour,
+      "status" => $status,
+    ]);
   }
 
   public function ajoutPatient()
@@ -218,26 +272,96 @@ class Admin extends Controller
       header("Location: /public/");
       exit();
     }
-    $this->view("admin/ajoutPatient");
-  }
+    $retour = "";
+    $status = "";
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["name"]) &&
+        isset($_POST["firstname"]) &&
+        isset($_POST["naissance"]) &&
+        isset($_POST["mail"])
+      ) {
+        $name = $_POST["name"];
+        $firstname = $_POST["firstname"];
+        $naissance = $_POST["naissance"];
+        $email = $_POST["mail"];
+        $sexe = $_POST["sexe"];
+        $adresse = $_POST["adresse"];
+        $tel = $_POST["telephone"];
 
-  public function addPatientFunc()
-  {
-    session_start();
-    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
-      header("Location: /public/");
-      exit();
-    }
-    if ($_SESSION["role"] != "admin") {
-      header("Location: /public/");
-      exit();
-    }
-    // Generer un code patient aléatoire
-    // il faudra vérifier que le code patient ne soit pas deja utilisé par un autre patient
-    $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $length_of_string = 7;
+        $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $length_of_string = 7;
 
-    $codePatient = substr(str_shuffle($str_result), 0, $length_of_string);
+        $codePatient = substr(str_shuffle($str_result), 0, $length_of_string);
+
+        $patient = $this->model("PatientModel");
+
+        $patient = new PatientModel();
+
+        $patient->inscription = $patient->inscriptionPatient(
+          $name,
+          $firstname,
+          $naissance,
+          $email,
+          $codePatient,
+          $sexe,
+          $adresse,
+          $tel
+        );
+
+        $retour = $patient->inscription;
+        if ($retour == "inscription réussie !") {
+          try {
+            $mail = new PHPMailer(true);
+            //Enable verbose debug output
+            $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "contact.carmen.app@gmail.com"; //Adresse email à utiliser
+            $mail->Password = "lpobpflmrecwwhkn"; //Mot de passe de l'adresse email à utiliser
+
+            //Enable SSL encryption;
+            $mail->SMTPSecure = "ssl";
+
+            $mail->Port = 465; // port for ssl
+
+            $mail->isHTML(true);
+            $mail->CharSet = "utf-8";
+
+            $mail->setFrom("contact@carmen.wstr.fr", "Contact Admin"); // sender's email and name
+
+            $mail->addAddress($email, $name); // receiver's email and name
+
+            $mail->Subject = "Inscription";
+
+            $mail->Body =
+              "<h1>Voici le code pour vous inscrire :</h1>" .
+              "<br>" .
+              "<p>" .
+              $codePatient .
+              "</p>" .
+              "<br>" .
+              "<p>Cliquez sur ce lien pour finaliser votre inscription : <a href='carmen.wstr.fr/public/inscription/patient'>Terminer votre inscription</a>";
+
+            $mail->send();
+
+            $status = "Le message a bien été envoyé !";
+            echo $status;
+
+            $mail->smtpClose();
+          } catch (Exception $e) {
+            // handle error.
+
+            $status = "Le message n'a pas pu être envoyé !"; //, $mail->ErrorInfo;
+          }
+        }
+      }
+    }
+    $this->view("admin/ajoutPatient", [
+      "status" => $status,
+      "error" => $retour,
+    ]);
   }
 
   public function addMedecinFunc()

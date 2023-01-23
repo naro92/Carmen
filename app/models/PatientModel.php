@@ -53,35 +53,6 @@ class PatientModel
     return $connectionSuccessful;
   }
 
-  public function inscriptionPatient(
-    string $nom,
-    string $email,
-    string $password
-  ) {
-    $query = "SELECT * FROM patient WHERE adresse_mail=:email";
-
-    $statement = $this->bdd->prepare($query);
-    $statement->execute(["email" => $email]);
-    $count = $statement->rowCount();
-    if ($count > 0) {
-      // S'il est deja utilisé on dit que la personne est deja inscrite
-      return "Un utilisateur possède déjà votre adresse mail !";
-    } else {
-      // Sinon on ajoute toutes les données dans la database
-      $sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
-      $stmt = $bdd->prepare($sql);
-      $exec = $stmt->execute([$email, $nom, $password]);
-      if ($exec) {
-        $return = "inscription successful !";
-      } else {
-        $return = "Il y a une erreur";
-      }
-    }
-    $statement->closeCursor();
-    $statement = null;
-    return $return;
-  }
-
   public function getAllPatient()
   {
     $query = "SELECT * FROM patient";
@@ -254,5 +225,84 @@ class PatientModel
     $statement->closeCursor();
     $statement = null;
     return $exec;
+  }
+
+  public function inscriptionPatient(
+    string $name,
+    string $firstname,
+    string $naissance,
+    string $email,
+    string $codePatient,
+    string $sexe,
+    string $adresse,
+    string $tel
+  ) {
+    $query = "SELECT * FROM patient WHERE adresse_mail=:email";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["email" => $email]);
+    $count = $statement->rowCount();
+    if ($count > 0) {
+      // S'il est deja utilisé on dit que la personne est deja inscrite
+      $return = "Un utilisateur possède déjà votre adresse mail !";
+      return $return;
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql =
+        "INSERT INTO patient(idpatient, nom, date_naissance, sexe, mdp, adresse, medecin_idmedecin, date_arrivee, date_depart, telephone, codepatient, prenom, adresse_mail) VALUES (NULL, ?, ?, ?, NULL, ?, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        $name,
+        $naissance,
+        $sexe,
+        $adresse,
+        $tel,
+        $codePatient,
+        $firstname,
+        $email,
+      ]);
+      if ($exec) {
+        $return = "inscription réussie !";
+      } else {
+        $return = "Il y a une erreur !";
+      }
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $return;
+  }
+
+  public function verificationInscriptionPatient(
+    string $code,
+    string $email,
+    string $password
+  ) {
+    $query =
+      "SELECT * FROM patient WHERE adresse_mail=:email AND codepatient=:code";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["email" => $email, "code" => $code]);
+    $count = $statement->fetchAll();
+    if (!$count or $count[0]["mdp"]) {
+      return "Vous etes déjà incrit !";
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql =
+        "UPDATE patient SET mdp=:motdepasse WHERE adresse_mail=:email AND codepatient=:code";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        "motdepasse" => $password,
+        "email" => $email,
+        "code" => $code,
+      ]);
+      if ($exec) {
+        $return = "Vous vous êtes bien inscrit !";
+      } else {
+        $return = "Il y a une erreur !";
+      }
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $return;
   }
 }

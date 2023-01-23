@@ -34,7 +34,31 @@ class Inscription extends Controller
    */
   public function personnel()
   {
-    $this->view("inscription/personnel");
+    $return = "";
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["code"]) &&
+        isset($_POST["email"]) &&
+        isset($_POST["password"]) &&
+        isset($_POST["passwordRepeat"]) &&
+        $_POST["password"] == $_POST["passwordRepeat"]
+      ) {
+        $codeMedecin = $_POST["code"];
+        $email = $_POST["email"];
+        $password = hash("sha3-256", $_POST["password"]);
+        $medecin = $this->model("MedecinModel");
+        $medecin = new MedecinModel();
+
+        $medecin->inscription = $medecin->verificationInscription(
+          $codeMedecin,
+          $email,
+          $password
+        );
+
+        $return = $medecin->inscription;
+      }
+    }
+    $this->view("inscription/personnel", ["error" => $return]);
   }
 
   /**
@@ -44,7 +68,31 @@ class Inscription extends Controller
    */
   public function patient()
   {
-    $this->view("inscription/patient");
+    $return = "";
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["code"]) &&
+        isset($_POST["email"]) &&
+        isset($_POST["password"]) &&
+        isset($_POST["passwordRepeat"]) &&
+        $_POST["password"] == $_POST["passwordRepeat"]
+      ) {
+        $codePatient = $_POST["code"];
+        $email = $_POST["email"];
+        $password = hash("sha3-256", $_POST["password"]);
+        $patient = $this->model("PatientModel");
+        $patient = new PatientModel();
+
+        $patient->inscription = $patient->verificationInscriptionPatient(
+          $codePatient,
+          $email,
+          $password
+        );
+
+        $return = $patient->inscription;
+      }
+    }
+    $this->view("inscription/patient", ["error" => $return]);
   }
 
   /**
@@ -55,37 +103,6 @@ class Inscription extends Controller
   public function famille()
   {
     $this->view("inscription/famille");
-  }
-
-  /**
-   * inscriptionPatient
-   *
-   * Permet au patient de s'inscrire'
-   *
-   * @return void
-   */
-  public function inscriptionPatient()
-  {
-    if (
-      isset($_POST["nom"]) &&
-      !empty($_POST["nom"]) &&
-      (isset($_POST["email"]) && !empty($_POST["email"])) &&
-      (isset($_POST["password"]) && !empty($_POST["password"]))
-    ) {
-      $nom = $_POST["nom"];
-      $email = $_POST["email"];
-      $password = hash("sha3-256", $_POST["password"]);
-    }
-
-    $patient = $this->model("Patient");
-
-    $patient->inscriptionPatient = $patient->inscriptionPatient(
-      $nom,
-      $email,
-      $password
-    );
-
-    echo $patient->inscriptionPatient;
   }
 
   public function inscriptionMedecin()

@@ -29,6 +29,7 @@ function load_header($view, $data = [])
   <header>
     <h1 class="title">Ajouter un médecin</h1>
     <p><?php echo $data["error"]; ?></p>
+    <p><?php echo $data["status"]; ?></p>
   </header>
 
   <div class="form">
