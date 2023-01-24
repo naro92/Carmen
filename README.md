@@ -4,7 +4,7 @@ Dossier MVC
 
 Contient le code mvc du site internet
 
-Chaque dossier corepsond à une partie du site.
+Chaque dossier correspond à une partie du site.
 
 - le dossier public : correspond à la partie que l'utilisateur aura accès
 - le dossier app : correspond à tous les fichiers du site.
