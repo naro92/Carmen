@@ -53,18 +53,6 @@ class PatientModel
     return $connectionSuccessful;
   }
 
-  public function getAllPatient()
-  {
-    $query = "SELECT * FROM patient";
-    $params = [];
-    $statement = $this->bdd->prepare($query);
-    $statement->execute($params);
-    $return = $statement->fetchAll();
-    $statement->closeCursor();
-    $statement = null;
-    return $return;
-  }
-
   public function getInformations(int $id)
   {
     $sql = "SELECT * FROM patient WHERE idpatient = :identification";

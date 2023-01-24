@@ -110,8 +110,7 @@ class MedecinModel
     $statement = $this->bdd->prepare($query);
     $statement->execute(["email" => $email, "code" => $code]);
     $count = $statement->fetchAll();
-    print_r($count[0]);
-    if ($count[0]["mdp"]) {
+    if (!$count or $count[0]["mdp"]) {
       return "Vous etes déjà incrit !";
     } else {
       // Sinon on ajoute toutes les données dans la database

@@ -54,36 +54,82 @@ class FamilleModel
     return $connectionSuccessful;
   }
 
-  /**
-   * inscriptionFamille
-   *
-   * @param  string $nom
-   * @param  string $email
-   * @param  string $password
-   * @return void
-   */
   public function inscriptionFamille(
-    string $nom,
+    string $name,
+    string $firstname,
     string $email,
-    string $password
+    string $codeFamille,
+    string $idpatient
   ) {
-    $query = "SELECT * FROM patient WHERE adresse_mail=:email";
+    $query = "SELECT * FROM famille WHERE adresse_mail=:email";
 
     $statement = $this->bdd->prepare($query);
     $statement->execute(["email" => $email]);
     $count = $statement->rowCount();
     if ($count > 0) {
       // S'il est deja utilisé on dit que la personne est deja inscrite
-      return "Un utilisateur possède déjà votre adresse mail !";
+      $return = "Un utilisateur possède déjà votre adresse mail !";
+      return $return;
     } else {
       // Sinon on ajoute toutes les données dans la database
-      $sql = "INSERT INTO patient(adresse_mail, nom, mdp) VALUES (?, ?, ?)";
+      $query1 = "SELECT medecin_idmedecin from patient where idpatient = ?";
+      $state = $this->bdd->prepare($query1);
+      $state->execute([$idpatient]);
+      $idmedecin = $state->fetchColumn();
+      $state->closeCursor();
+      $state = null;
+      $sql =
+        "INSERT INTO famille(idfamille, nom, prenom, adresse_mail, mdp, medecin_idmedecin, patient_idpatient, patient_medecin_idmedecin, codefamille) VALUES (NULL, ?, ?, ?, NULL, ?, ?, ?, ?)";
       $stmt = $this->bdd->prepare($sql);
-      $exec = $stmt->execute([$email, $nom, $password]);
+      $exec = $stmt->execute([
+        $name,
+        $firstname,
+        $email,
+        $idmedecin,
+        $idpatient,
+        $idmedecin,
+        $codeFamille,
+      ]);
       if ($exec) {
-        $return = "inscription successful !";
+        $return = "inscription réussie !";
       } else {
-        $return = "Il y a une erreur";
+        $return = "Il y a une erreur !";
+      }
+    }
+    $statement->closeCursor();
+    $statement = null;
+    $stmt->closeCursor();
+    $stmt = null;
+    return $return;
+  }
+
+  public function verificationInscriptionPatient(
+    string $code,
+    string $email,
+    string $password
+  ) {
+    $query =
+      "SELECT * FROM patient WHERE adresse_mail=:email AND codepatient=:code";
+
+    $statement = $this->bdd->prepare($query);
+    $statement->execute(["email" => $email, "code" => $code]);
+    $count = $statement->fetchAll();
+    if (!$count or $count[0]["mdp"]) {
+      return "Vous etes déjà incrit !";
+    } else {
+      // Sinon on ajoute toutes les données dans la database
+      $sql =
+        "UPDATE patient SET mdp=:motdepasse WHERE adresse_mail=:email AND codepatient=:code";
+      $stmt = $this->bdd->prepare($sql);
+      $exec = $stmt->execute([
+        "motdepasse" => $password,
+        "email" => $email,
+        "code" => $code,
+      ]);
+      if ($exec) {
+        $return = "Vous vous êtes bien inscrit !";
+      } else {
+        $return = "Il y a une erreur !";
       }
     }
     $statement->closeCursor();
@@ -127,5 +173,25 @@ class FamilleModel
     $statement->execute([$id]);
     $exec = $statement->fetchAll();
     return $exec;
+  }
+
+  public function getAllPatient()
+  {
+    $vue = [];
+    $query = "SELECT * FROM patient";
+    $params = [];
+    $statement = $this->bdd->prepare($query);
+    $statement->execute($params);
+    //$return = $statement->fetchAll();
+    while ($obj = $statement->fetch()) {
+      $vue["patients"][] = [
+        "id" => htmlspecialchars($obj["idpatient"]),
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+      ];
+    }
+    $statement->closeCursor();
+    $statement = null;
+    return $vue;
   }
 }

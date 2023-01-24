@@ -236,10 +236,10 @@ class Admin extends Controller
               "<h1>Voici le code pour vous inscrire :</h1>" .
               "<br>" .
               "<p>" .
-              $codePatient .
+              $codeMedecin .
               "</p>" .
               "<br>" .
-              "<p>Cliquez sur ce lien pour finaliser votre inscription : <a href='carmen.wstr.fr/public/inscription/patient'>Terminer votre inscription</a>";
+              "<p>Cliquez sur ce lien pour finaliser votre inscription : <a href='carmen.wstr.fr/public/connexion/personnel'>Terminer votre inscription</a>";
 
             $mail->send();
 
@@ -279,6 +279,9 @@ class Admin extends Controller
         isset($_POST["name"]) &&
         isset($_POST["firstname"]) &&
         isset($_POST["naissance"]) &&
+        isset($_POST["sexe"]) &&
+        isset($_POST["adresse"]) &&
+        isset($_POST["telephone"]) &&
         isset($_POST["mail"])
       ) {
         $name = $_POST["name"];
@@ -364,7 +367,7 @@ class Admin extends Controller
     ]);
   }
 
-  public function addMedecinFunc()
+  public function ajoutFamille()
   {
     session_start();
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
@@ -375,42 +378,92 @@ class Admin extends Controller
       header("Location: /public/");
       exit();
     }
+    $famille = $this->model("FamilleModel");
 
+    $famille = new FamilleModel();
+
+    $famille->ids = $famille->getAllPatient();
     $retour = "";
-    if ($_POST["submit-btn"]) {
+    $status = "";
+    if (isset($_POST["submit-btn"])) {
       if (
         isset($_POST["name"]) &&
         isset($_POST["firstname"]) &&
-        isset($_POST["naissance"]) &&
+        isset($_POST["idpatient"]) &&
         isset($_POST["mail"])
       ) {
         $name = $_POST["name"];
         $firstname = $_POST["firstname"];
-        $naissance = $_POST["naissance"];
         $email = $_POST["mail"];
+        $idpatient = $_POST["idpatient"];
 
         $str_result = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $length_of_string = 7;
 
-        $codeMedecin = substr(str_shuffle($str_result), 0, $length_of_string);
+        $codeFamille = substr(str_shuffle($str_result), 0, $length_of_string);
 
-        $medecin = $this->model("MedecinModel");
-
-        $medecin = new MedecinModel();
-
-        $medecin->inscription = $medecin->inscriptionMedecin(
+        $famille->inscription = $famille->inscriptionFamille(
           $name,
           $firstname,
-          $naissance,
           $email,
-          $codeMedecin
+          $codeFamille,
+          $idpatient
         );
 
-        echo $medecin->inscription;
+        $retour = $famille->inscription;
+        if ($retour == "inscription réussie !") {
+          try {
+            $mail = new PHPMailer(true);
+            //Enable verbose debug output
+            $mail->SMTPDebug = 0; //SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "contact.carmen.app@gmail.com"; //Adresse email à utiliser
+            $mail->Password = "lpobpflmrecwwhkn"; //Mot de passe de l'adresse email à utiliser
 
-        //echo $retour;
+            //Enable SSL encryption;
+            $mail->SMTPSecure = "ssl";
+
+            $mail->Port = 465; // port for ssl
+
+            $mail->isHTML(true);
+            $mail->CharSet = "utf-8";
+
+            $mail->setFrom("contact@carmen.wstr.fr", "Contact Admin"); // sender's email and name
+
+            $mail->addAddress($email, $name); // receiver's email and name
+
+            $mail->Subject = "Inscription";
+
+            $mail->Body =
+              "<h1>Voici le code pour vous inscrire :</h1>" .
+              "<br>" .
+              "<p>" .
+              $codeFamille .
+              "</p>" .
+              "<br>" .
+              "<p>Cliquez sur ce lien pour finaliser votre inscription : <a href='carmen.wstr.fr/public/inscription/famille'>Terminer votre inscription</a>";
+
+            $mail->send();
+
+            $status = "Le message a bien été envoyé !";
+            echo $status;
+
+            $mail->smtpClose();
+          } catch (Exception $e) {
+            // handle error.
+
+            $status = "Le message n'a pas pu être envoyé !"; //, $mail->ErrorInfo;
+          }
+        }
       }
     }
+    $this->view("admin/ajoutFamille", [
+      "status" => $status,
+      "error" => $retour,
+      "patients" => $famille->ids,
+    ]);
   }
 
   public function faqModif()
