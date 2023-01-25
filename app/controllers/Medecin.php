@@ -362,4 +362,23 @@ class Medecin extends Controller
       unset($faq);
     }
   }
+
+  public function chambres()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    $admin = $this->model("AdminModel");
+
+    $admin = new AdminModel();
+
+    $admin->chambres = $admin->getChambres();
+    $this->view("medecin/chambres", ["chambres" => $admin->chambres]);
+  }
 }

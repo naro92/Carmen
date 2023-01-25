@@ -149,4 +149,66 @@ class AdminModel
     $stmt->closeCursor();
     $stmt = null;
   }
+
+  public function getChambres()
+  {
+    $vue = [];
+    $params = [];
+    $query = "SELECT * FROM chambre";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute($params);
+
+    while ($obj = $statement->fetch()) {
+      $vue["capteurs"][] = [
+        "numero" => htmlspecialchars($obj["numero"]),
+      ];
+    }
+
+    $statement->closeCursor();
+    $statement = null;
+
+    return $vue;
+  }
+
+  public function addChambre(string $numero)
+  {
+    $sql = "INSERT INTO `chambre`(`numero`) VALUES (?)";
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute([$numero]);
+    $stmt->closeCursor();
+    $stmt = null;
+    return $stmt;
+  }
+
+  public function deleteChambre(string $numero)
+  {
+    $sql = "DELETE FROM chambre WHERE numero = :numero ";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute(["numero" => $numero]);
+    $stmt->closeCursor();
+    $stmt = null;
+  }
+
+  public function getMedecins()
+  {
+    $vue = [];
+    $params = [];
+    $query = "SELECT * FROM medecin";
+    $statement = $this->bdd->prepare($query);
+    $statement->execute($params);
+
+    while ($obj = $statement->fetch()) {
+      $vue["medecins"][] = [
+        "id_medecin" => htmlspecialchars($obj["idmedecin"]),
+        "nom" => htmlspecialchars($obj["nom"]),
+        "prenom" => htmlspecialchars($obj["prenom"]),
+      ];
+    }
+
+    $statement->closeCursor();
+    $statement = null;
+
+    return $vue;
+  }
 }

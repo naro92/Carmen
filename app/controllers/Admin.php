@@ -580,7 +580,15 @@ class Admin extends Controller
 
     $admin->capteurs = $admin->getCapteurs();
 
-    $this->view("admin/gestionCapteurs", ["capteurs" => $admin->capteurs]);
+    $admin->medecins = $admin->getMedecins();
+
+    $admin->chambres = $admin->getChambres();
+
+    $this->view("admin/gestionCapteurs", [
+      "capteurs" => $admin->capteurs,
+      "medecins" => $admin->medecins,
+      "chambres" => $admin->chambres,
+    ]);
   }
 
   public function addCapteurAction()
@@ -609,6 +617,7 @@ class Admin extends Controller
 
       $admin->add = $admin->addCapteur($type, $chambre, $idmedecin);
       header("Location: /public/admin/gererCapteurs");
+      exit();
     }
   }
 
@@ -633,6 +642,76 @@ class Admin extends Controller
       $admin->delete = $admin->deleteCapteur($actualId);
       header("Location: /public/admin/gererCapteurs");
       unset($faq);
+      exit();
+    }
+  }
+
+  public function gererChambres()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    $admin = $this->model("AdminModel");
+
+    $admin = new AdminModel();
+
+    $admin->capteurs = $admin->getChambres();
+
+    $this->view("admin/gererChambres", ["capteurs" => $admin->capteurs]);
+  }
+
+  public function supprimerChambreAction()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    if (isset($_POST["supress-btn"])) {
+      $actualNumero = $_POST["id"];
+
+      $admin = $this->model("AdminModel");
+
+      $admin = new AdminModel();
+
+      $admin->delete = $admin->deleteChambre($actualNumero);
+      header("Location: /public/admin/gererChambres");
+      unset($faq);
+      exit();
+    }
+  }
+
+  public function addChambreAction()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "admin") {
+      header("Location: /public/");
+      exit();
+    }
+    if (isset($_POST["add-btn"])) {
+      $chambre = $_POST["chambre"];
+
+      $admin = $this->model("AdminModel");
+
+      $admin = new AdminModel();
+
+      $admin->add = $admin->addChambre($chambre);
+      header("Location: /public/admin/gererChambres");
+      exit();
     }
   }
 }

@@ -25,28 +25,25 @@ function load_header($view, $data = [])
 
     <div class="form-container">
       <h1 class="title">Inscription Famille</h1>
-      <form class="form">
+      <p><?php echo $data["error"]; ?></p>
+      <form class="form" method="post" action="/public/inscription/famille">
         <div class="form-group">
-          <input required type="text" pattern=".{4,}" title="Enter valid email address" />
-            <label>Code Famille</label>
+          <input required type="text" name="code" pattern=".{4,}" title="Enter valid email address" />
+            <label>Code Patient</label>
         </div>
         <div class="form-group">
-          <input type="text" required pattern=".{1,}" title="Enter valid email address" />
-            <label>Nom</label>
+          <input type="mail" required pattern=".{1,}" title="Enter valid email adress" name="email"/>
+            <label>Adresse mail</label>
         </div>
         <div class="form-group">
-          <input type="text" required pattern="[0][0-9]{9}" title="Entrez un numéro de téléphone valide" />
-            <label>Email</label>
-        </div>
-        <div class="form-group">
-          <input type="password" required pattern=".{4,}" title="Enter valid email address" />
+          <input type="password" required pattern=".{4,}" title="Enter valid email address" name="password"/>
             <label>Mot de passe</label>
         </div>
         <div class="form-group">
-          <input type="password" required pattern=".{4,}" title="Enter valid email address" />
+          <input type="password" required pattern=".{4,}" title="Enter valid email address" name="passwordRepeat" />
             <label>Répeter le mot de passe</label>
         </div>
-        <button type="submit" class="button-validate">
+        <button type="submit" class="button-validate" name="submit-btn" value="sinscrire">
           S'inscrire
         </button>
       </form>

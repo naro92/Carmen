@@ -1,92 +1,61 @@
-* {
-    font-family: sans-serif;
+:root {
+  --primary: #697068;
+  --green: #c9e265;
+  --green-back: #c9e26540;
+  --red: rgb(252, 50, 50);
 }
 
-.header-container {
-    display: flex;
-    justify-content: center;
-    margin: 50px;
+html {
+  scroll-behavior: smooth;
 }
 
-.title {
-    font-size: 35px;
+body {
+  margin: 0;
 }
 
-.profile {
-    height: 50px;
-    width: 50px;
+.title-chambres {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Rambla", sans-serif;
+  font-size: 80px;
 }
 
-.index-chambres {
-    display: flex;
-    height: 300px;
+.container {
+  margin-bottom: 1em;
 }
 
-.choix-etages {
-    display : flex;
-    flex-direction: column;
-    width: 10%;
-    justify-content: space-around;
-    align-items: center;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.choix-etages > div {
-    background-color: rgb(222, 237, 199);
-    padding: 8px;
-    font-weight: bold;
-    font-size: 18px;
+.container:empty {
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-.choix-etages > div:hover {
-    cursor: pointer;
+.container .child {
+  flex: 1 1 calc(100% / 5);
+  /*Start Run Code Snippet output CSS*/
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #000;
+  /*End Run Code Snippet output CSS*/
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
 }
 
-.liste-chambres {
-    width: 90%;
+.ok {
+  background-color: var(--green);
 }
 
-.liste-chambres > div {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    height: 100%;
-}
-
-#liste-1etage {
-    display: flex;
-}
-
-#liste-2etage {
-    display: none;
-}
-
-#liste-3etage {
-    display: none;
-}
-
-#liste-4etage {
-    display: none;
-}
-
-div[class^="chambre0"] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 20px;
-    flex : 0 0 33.33%;
-}
-
-.chambre-label {
-    background-color: rgb(222, 237, 199);
-    padding: 3px 20px;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    width: 20%;
-}
-
-div[class^="chambre0"]:hover div img {
-    border: 2px solid gray;
+.probleme {
+  background-color: var(--red);
 }

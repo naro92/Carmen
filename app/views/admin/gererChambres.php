@@ -25,7 +25,7 @@ function load_header($view, $data = [])
 
 <div class="main_container">
 	<div class="title_container">
-		<h1>Gestion des capteurs</h1>
+		<h1>Gestion des chambres</h1>
 	</div>
 	<div class="main">
 		<div class="capteurs">
@@ -33,9 +33,7 @@ function load_header($view, $data = [])
             <!-- table heading -->
             <thead>
                 <tr>
-                    <th>ID Capteur</th>
-                    <th>Type</th>
-                    <th>Chambre</th>
+                    <th>Numéro</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -46,14 +44,12 @@ function load_header($view, $data = [])
               echo "<tr>";
               echo '<form method="POST">';
               echo '<td data-label="Id">' .
-                $row["id"] .
+                $row["numero"] .
                 '<input type="hidden" name="id" value="' .
-                $row["id"] .
+                $row["numero"] .
                 '" required /></td>';
-              echo '<td data-label="Type">' . $row["type"] . "</td>";
-              echo '<td data-label="Chambre">' . $row["chambre"] . "</td>";
               echo '<td data-label="Action">';
-              echo '<input id="supress-btn" type="submit" value="Supprimer" name="supress-btn" formaction="/public/admin/supprimerCapteurAction" />';
+              echo '<input id="supress-btn" type="submit" value="Supprimer" name="supress-btn" formaction="/public/admin/supprimerChambreAction" />';
               echo "</td>";
               echo "</form>";
               echo "</tr>";
@@ -62,43 +58,10 @@ function load_header($view, $data = [])
         </table>
 		<div class="add-container">
           <div class="ajouterQuestion">
-            <h3>Ajouter un capteur :</h3>
-            <form method="post" action="/public/admin/addCapteurAction">
-            <label>Type</label>
- 	<select name="select_type">
- 		<option value ="thermique">Thermique</option>
- 		<option value="cardiaque">Cardiaque</option>
-     <option value="sonore">Sonore</option>
-     <option value="lumiere">Intensité lumineuse</option>
- 	</select><br>
- 	<label>Chambre</label>
-   <select name="chambre" class="input">
-        <option value="">--Selectionner une chambre--</option>
-        <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
-
-foreach ($data["chambres"]["capteurs"] as $row) {
-          echo '<option value="' .
-            $row["numero"] .
-            '">' .
-            $row["numero"] .
-            "</option>";
-        } ?>
-      </select><br>
- 	<label>Medecin</label>
- 	<select name="id_medecin" class="input">
-        <option value="">--Selectionner un medecin--</option>
-        <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
-
-foreach ($data["medecins"]["medecins"] as $row) {
-          echo '<option value="' .
-            $row["id_medecin"] .
-            '">' .
-            $row["prenom"] .
-            " " .
-            $row["nom"] .
-            "</option>";
-        } ?>
-      </select>
+            <h3>Ajouter une chambre :</h3>
+            <form method="post" action="/public/admin/addChambreAction">
+ 	<label>Numéro</label>
+ 	<input type="number" name="chambre"><br>
     <input type="submit" value="ajouter" name="add-btn">
             </form>
           </div>

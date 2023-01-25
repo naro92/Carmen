@@ -102,7 +102,33 @@ class Inscription extends Controller
    */
   public function famille()
   {
-    $this->view("inscription/famille");
+    $return = "";
+    if (isset($_POST["submit-btn"])) {
+      if (
+        isset($_POST["code"]) &&
+        isset($_POST["email"]) &&
+        isset($_POST["password"]) &&
+        isset($_POST["passwordRepeat"]) &&
+        $_POST["password"] == $_POST["passwordRepeat"]
+      ) {
+        $codeFamille = $_POST["code"];
+        $email = $_POST["email"];
+        $password = hash("sha3-256", $_POST["password"]);
+        $famille = $this->model("FamilleModel");
+        $famille = new FamilleModel();
+
+        $famille->inscription = $famille->verificationInscriptionFamille(
+          $codeFamille,
+          $email,
+          $password
+        );
+
+        $return = $famille->inscription;
+      }
+    } else {
+      $return = "Il y a une erreur dans le formulaire !";
+    }
+    $this->view("inscription/famille", ["error" => $return]);
   }
 
   public function inscriptionMedecin()

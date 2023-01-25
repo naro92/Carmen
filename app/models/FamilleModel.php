@@ -103,13 +103,13 @@ class FamilleModel
     return $return;
   }
 
-  public function verificationInscriptionPatient(
+  public function verificationInscriptionFamille(
     string $code,
     string $email,
     string $password
   ) {
     $query =
-      "SELECT * FROM patient WHERE adresse_mail=:email AND codepatient=:code";
+      "SELECT * FROM famille WHERE adresse_mail=:email AND codefamille=:code";
 
     $statement = $this->bdd->prepare($query);
     $statement->execute(["email" => $email, "code" => $code]);
@@ -119,7 +119,7 @@ class FamilleModel
     } else {
       // Sinon on ajoute toutes les données dans la database
       $sql =
-        "UPDATE patient SET mdp=:motdepasse WHERE adresse_mail=:email AND codepatient=:code";
+        "UPDATE famille SET mdp=:motdepasse WHERE adresse_mail=:email AND codefamille=:code";
       $stmt = $this->bdd->prepare($sql);
       $exec = $stmt->execute([
         "motdepasse" => $password,
@@ -134,6 +134,8 @@ class FamilleModel
     }
     $statement->closeCursor();
     $statement = null;
+    $stmt->closeCursor();
+    $stmtt = null;
     return $return;
   }
 
