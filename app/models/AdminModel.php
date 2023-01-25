@@ -170,6 +170,36 @@ class AdminModel
     return $vue;
   }
 
+  public function getDonneesChambres()
+  {
+    $table = [];
+    $sql = "SELECT numero FROM chambre";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute([]);
+    $chambres = $stmt->fetchAll();
+    foreach ($chambres as $idChambre) {
+      $data = [];
+      $sql1 = "SELECT chambre.numero, capteurs.type, capteurs.valeurs_donnees
+      FROM chambre
+      INNER JOIN capteurs
+      ON chambre.numero = capteurs.chambre_numero
+      WHERE chambre.numero = ?";
+      $stmt = $this->bdd->prepare($sql1);
+      $stmt->execute([$idChambre["numero"]]);
+      $donnees = $stmt->fetchAll();
+      if (!empty($donnees)) {
+        foreach ($donnees as $donnee) {
+          $data[$donnee["type"]] = $donnee["valeurs_donnees"];
+          $table[$idChambre["numero"]] = [$data];
+        }
+      }
+    }
+    $stmt->closeCursor();
+    $stmt = null;
+    return $table;
+  }
+
   public function addChambre(string $numero)
   {
     $sql = "INSERT INTO `chambre`(`numero`) VALUES (?)";

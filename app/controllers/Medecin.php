@@ -379,6 +379,49 @@ class Medecin extends Controller
     $admin = new AdminModel();
 
     $admin->chambres = $admin->getChambres();
-    $this->view("medecin/chambres", ["chambres" => $admin->chambres]);
+
+    $admin->donnees = $admin->getDonneesChambres();
+
+    $pasok = [];
+
+    foreach ($admin->donnees as $key => $donnee) {
+      foreach ($donnee[0] as $capteur => $data) {
+        if ($capteur == "cardiaque" && $data > 80) {
+          array_push($pasok, $key);
+        } elseif ($capteur == "thermique" && $data > 37.5) {
+          array_push($pasok, $key);
+        } elseif ($capteur == "lumiere" && $data > 40) {
+          array_push($pasok, $key);
+        } elseif ($capteur == "sonore" && $data > 50) {
+          array_push($pasok, $key);
+        }
+      }
+    }
+
+    $this->view("medecin/chambres", [
+      "chambres" => $admin->chambres,
+      "pasok" => $pasok,
+    ]);
+  }
+
+  public function getDonneesChambres()
+  {
+    //session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    $medecin = $this->model("MedecinModel");
+
+    $medecin = new MedecinModel();
+
+    $medecin->donnees = $medecin->getDonneesChambres();
+
+    return $medecin->donnees;
   }
 }

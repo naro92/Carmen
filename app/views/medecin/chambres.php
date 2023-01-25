@@ -28,7 +28,12 @@ function load_header($view, $data = [])
   <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
 
 foreach ($data["chambres"]["capteurs"] as $row) {
-    echo '<div class="child">';
+    if (in_array($row["numero"], $data["pasok"])) {
+      $pasok = "probleme";
+    } else {
+      $pasok = "ok";
+    }
+    echo '<div class="child ' . $pasok . '">';
     echo "Chambre " . $row["numero"];
     echo "</div>";
   } ?>
