@@ -15,8 +15,6 @@ Ceci est réalisé grâce à des fichiers de configurations .htaccess
 
 ## Explications des dossiers :
 
-~~Tous les dossiers sont normalements dans un dossier parent appelé `mvcExample`~~
-
 Les dernieres modifications générales font en sorte de ne plus avoir besoin du dossier parent `mvcExample` !
 
 - dossier public :
