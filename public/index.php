@@ -9,6 +9,7 @@ define(
   )
 );
 
+// Modifier les infos de votre serveur de base de donnees ici !
 define("HOST", "");
 define("PORT", "3306");
 define("DBNAME", "");
