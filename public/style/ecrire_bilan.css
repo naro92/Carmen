@@ -46,3 +46,7 @@
 .main_container #btn_submit {
   margin-top: 25px;
 }
+
+textarea {
+  font-size: 18px;
+}

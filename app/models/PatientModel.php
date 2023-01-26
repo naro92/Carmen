@@ -206,10 +206,17 @@ class PatientModel
     $statement = $this->bdd->prepare($query);
     $statement->execute([$id]);
 
-    while ($obj = $statement->fetch()) {
+    if ($statement->rowCount() > 0) {
+      while ($obj = $statement->fetch()) {
+        $vue["rapports"][] = [
+          "id" => htmlspecialchars($obj["idrapport"]),
+          "date" => htmlspecialchars($obj["date_rapport"]),
+        ];
+      }
+    } else {
       $vue["rapports"][] = [
-        "id" => htmlspecialchars($obj["idrapport"]),
-        "date" => htmlspecialchars($obj["date_rapport"]),
+        "id" => htmlspecialchars(""),
+        "date" => htmlspecialchars(""),
       ];
     }
 
