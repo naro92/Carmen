@@ -2,7 +2,7 @@
 
 Dossier MVC
 
-Contient le code mvc du site internet
+Contient le code mvc du site internet.
 
 Chaque dossier correspond à une partie du site.
 
