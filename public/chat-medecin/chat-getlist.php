@@ -9,9 +9,6 @@ $db = db::getdb();
 
 $nom = db::getmedecinnom();
 
-var_dump($nom);
-
-echo "$nom";
 
 $mi = $db->getmedecinID($nom);
 
