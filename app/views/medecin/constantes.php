@@ -16,23 +16,34 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body onload="table();">
+<body onload="table();tableTemp();">
 
 <script type="text/javascript">
       function table(){
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function(){
           document.getElementById("bpm_text").innerHTML = this.responseText;
-          console.log(this.responseText);
         }
-        xhttp.open("GET", "/public/medecin/getConstantes");
+        xhttp.open("GET", "/public/medecin/getConstantesCardiaque");
         xhttp.send();
         
       }
 
       setInterval(function(){
         table();
+        tableTemp();
       }, 3000);
+
+      function tableTemp(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+          document.getElementById("temp_text").innerHTML = this.responseText;
+        }
+        xhttp.open("GET", "/public/medecin/getConstantesTemp");
+        xhttp.send();
+        
+      }
+
 </script>
 
   <?php load_header("/header/index", [
@@ -64,7 +75,7 @@ function load_header($view, $data = [])
             <h1>Température</h1>
           </div>
           <div class="bpm_container">
-            <p>? °C</p>
+          <p><span id="temp_text"></span> °C</p>
           </div>
         </div>
 
@@ -78,14 +89,17 @@ function load_header($view, $data = [])
             <p>Prénom : <?php echo $data["patient"]["patients"][0][
               "prenom"
             ]; ?></p>
-            <p>Age : <?php echo $data["patient"]["patients"][0]["age"]; ?></p>
+            <p>Naissance : <?php echo $data["patient"]["patients"][0][
+              "age"
+            ]; ?></p>
             <p>Sexe : <?php echo $data["patient"]["patients"][0]["sexe"]; ?></p>
           </div>
           <hr />
           <div class="dernier_bilan_container">
             <h1>Dernier Bilan:</h1>
             <div class="btn_bilan_container">
-              <a href="#Dossier_medical">Dossier médical</a>
+              <a href="<?php echo "/public/medecin/bilans/" .
+                $data["id"]; ?>">Dossier médical</a>
             </div>
           </div>
         </div>
@@ -95,7 +109,8 @@ function load_header($view, $data = [])
             <img src="<?php echo ROOT_PATH . "/assets/logo.png"; ?>" />
           </div>
           <div class="btn_container">
-            <a href="#suivi">Accéder au suivi du patient</a>
+          <a href="<?php echo "/public/medecin/bilans/" .
+            $data["id"]; ?>">Suivi du patient</a>
           </div>
         </div>
       </div>

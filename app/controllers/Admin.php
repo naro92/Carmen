@@ -177,7 +177,7 @@ class Admin extends Controller
     }
     $retour = "";
     $status = "";
-    if ($_POST["submit-btn"]) {
+    if (isset($_POST["submit-btn"])) {
       if (
         isset($_POST["name"]) &&
         isset($_POST["firstname"]) &&

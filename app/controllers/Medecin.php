@@ -136,7 +136,10 @@ class Medecin extends Controller
 
     $patient->info = $patient->getInformations($id);
 
-    $this->view("medecin/constantes", ["patient" => $patient->info]);
+    $this->view("medecin/constantes", [
+      "patient" => $patient->info,
+      "id" => $id,
+    ]);
     unset($patient);
   }
 
@@ -213,7 +216,7 @@ class Medecin extends Controller
     exit();
   }
 
-  public function getConstantes()
+  public function getConstantesCardiaque()
   {
     session_start();
 
@@ -229,7 +232,29 @@ class Medecin extends Controller
 
     $patient = new PatientModel();
 
-    $patient->constantes = $patient->getConstantesPatient();
+    $patient->constantes = $patient->getConstantesPatientCardiaque();
+
+    echo $patient->constantes;
+    unset($patient);
+  }
+
+  public function getConstantesTemp()
+  {
+    session_start();
+
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    $patient = $this->model("PatientModel");
+
+    $patient = new PatientModel();
+
+    $patient->constantes = $patient->getConstantesPatientTemp();
 
     echo $patient->constantes;
     unset($patient);

@@ -68,7 +68,7 @@ class PatientModel
       $vue["patients"][] = [
         "nom" => htmlspecialchars($obj["nom"]),
         "prenom" => htmlspecialchars($obj["prenom"]),
-        "age" => htmlspecialchars($obj["age"]),
+        "age" => htmlspecialchars($obj["date_naissance"]),
         "sexe" => htmlspecialchars($obj["sexe"]),
       ];
     }
@@ -105,10 +105,24 @@ class PatientModel
     return $vue;
   }
 
-  public function getConstantesPatient()
+  public function getConstantesPatientCardiaque()
   {
     $sql =
-      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs)";
+      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs where type = 'cardiaque')";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute([]);
+
+    $row = $stmt->fetch();
+    $stmt->closeCursor();
+    $stmt = null;
+    return $row["valeurs_donnees"];
+  }
+
+  public function getConstantesPatientTemp()
+  {
+    $sql =
+      "SELECT valeurs_donnees FROM capteurs where idcapteurs =(select MAX(idcapteurs) from capteurs where type = 'thermique')";
 
     $stmt = $this->bdd->prepare($sql);
     $stmt->execute([]);
