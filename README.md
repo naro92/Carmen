@@ -38,8 +38,4 @@ index.php : redirige automatiquement l'utilisateur vers le dossier public
 
 
 ## Info importante :
-
-~~Il manque la librairie PHPMailer dans le code présent sur GitHub pour l'instant. Il faudra penser à le rajouter afin de pouvoir envoyer les mails !~~
-La librairie PHPMailer a été rajoutée, il n'y a plus besoin d'y toucher
-
 __Attention__, il faut mettre le fichier `index.php`, le dossier `App`, et le dossier `Public` à la racine de votre httpdocs, sinon le projet ne fonctionnera pas !
