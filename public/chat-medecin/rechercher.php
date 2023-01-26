@@ -37,7 +37,7 @@ $medecinID = $db->getmedecinID($medecinnom);
 
 
 
-$link = mysqli_connect('localhost' , 'root' , 'woaiai123'); //连接数据库 Connexion à la base de données
+$link = mysqli_connect('localhost:3306' , 'root' , 'root'); //连接数据库 Connexion à la base de données
 
 mysqli_set_charset($link , 'utf8');         //设置字符集 Définis le jeu de caractères
 
