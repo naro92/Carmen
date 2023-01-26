@@ -16,27 +16,45 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body>
+<body onload="table();">
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
     "link" => "/public/connexion/deconnexion",
   ]); ?>
 
+<script type="text/javascript">
+      function table(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+          document.getElementById("chambres-container").innerHTML = this.responseText;
+        }
+        xhttp.open("GET", "/public/medecin/getDonneesChambres");
+        xhttp.send();
+        
+      }
+
+      setInterval(function(){
+        table();
+      }, 3000);
+</script>
+
 <h1 class="title-chambres">Gestion des chambres</h1>
 
-<div class="container">
-  <?php // print("<pre>".print_r($data['faq'],true)."</pre>");
+<div class="container" id="chambres-container">
+  <?php
+// print("<pre>".print_r($data['faq'],true)."</pre>");
 
-foreach ($data["chambres"]["capteurs"] as $row) {
-    if (in_array($row["numero"], $data["pasok"])) {
-      $pasok = "probleme";
-    } else {
-      $pasok = "ok";
-    }
-    echo '<div class="child ' . $pasok . '">';
-    echo "Chambre " . $row["numero"];
-    echo "</div>";
-  } ?>
+// foreach ($data["chambres"]["capteurs"] as $row) {
+//     if (in_array($row["numero"], $data["pasok"])) {
+//       $pasok = "probleme";
+//     } else {
+//       $pasok = "ok";
+//     }
+//     echo '<div class="child ' . $pasok . '">';
+//     echo "Chambre " . $row["numero"];
+//     echo "</div>";
+//   }
+?>
 </div>
   
 

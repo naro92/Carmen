@@ -41,6 +41,8 @@ body {
 }
 
 .container .child {
+  position: relative;
+  display: inline-block;
   flex: 1 1 calc(100% / 5);
   /*Start Run Code Snippet output CSS*/
   box-sizing: border-box;
@@ -58,4 +60,24 @@ body {
 
 .probleme {
   background-color: var(--red);
+}
+
+.container .child .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.container .child:hover .tooltiptext {
+  visibility: visible;
 }

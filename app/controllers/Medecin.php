@@ -406,7 +406,7 @@ class Medecin extends Controller
 
   public function getDonneesChambres()
   {
-    //session_start();
+    session_start();
 
     if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
       header("Location: /public/");
@@ -416,12 +416,63 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
-    $medecin = $this->model("MedecinModel");
+    $admin = $this->model("AdminModel");
 
-    $medecin = new MedecinModel();
+    $admin = new AdminModel();
 
-    $medecin->donnees = $medecin->getDonneesChambres();
+    $admin->chambres = $admin->getChambres();
 
-    return $medecin->donnees;
+    $admin->donnees = $admin->getDonneesChambres();
+
+    $pasoktable = [];
+    $pasok = "";
+
+    foreach ($admin->chambres["capteurs"] as $row) {
+      foreach ($admin->donnees as $key => $donnee) {
+        if ($row["numero"] == $key) {
+          //echo $row["numero"] . " " . $key;
+          foreach ($donnee[0] as $capteur => $data) {
+            //echo $capteur . " " . $data;
+            if ($capteur == "cardiaque" && $data > 80) {
+              array_push($pasoktable, $key);
+              //$pasok = "probleme";
+            } elseif ($capteur == "thermique" && $data > 37.5) {
+              array_push($pasoktable, $key);
+              //$pasok = "probleme";
+            } elseif ($capteur == "lumiere" && $data > 40) {
+              array_push($pasoktable, $key);
+              //$pasok = "probleme";
+            } elseif ($capteur == "sonore" && $data > 50) {
+              array_push($pasoktable, $key);
+              //$pasok = "probleme";
+            }
+          }
+        } else {
+          $pasok = "";
+        }
+      }
+    }
+    foreach ($admin->chambres["capteurs"] as $row) {
+      if (in_array($row["numero"], $pasoktable)) {
+        $pasok = "probleme";
+        $tooltip = "";
+        foreach ($admin->donnees[$row["numero"]] as $probleme) {
+          foreach ($probleme as $type => $data) {
+            if (!empty($data)) {
+              $tooltip .= $type . " : " . $data . "<br>";
+            }
+          }
+        }
+
+        //print_r($admin->donnees[$row["numero"]]);
+      } else {
+        $pasok = "ok";
+        $tooltip = "Aucun problème !";
+      }
+      echo '<div class="child ' . $pasok . '">';
+      echo '<span class="tooltiptext">' . $tooltip . "</span>";
+      echo "Chambre " . $row["numero"];
+      echo "</div>";
+    }
   }
 }
