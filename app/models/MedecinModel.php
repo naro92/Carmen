@@ -190,7 +190,7 @@ class MedecinModel
       $test_nom == false and
       $test_email == true
     ) {
-      $sql = "SELECT * from patient WHERE mail like ?";
+      $sql = "SELECT * from patient WHERE adresse_mail like ?";
       $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$email]);
     } elseif (
@@ -206,7 +206,8 @@ class MedecinModel
       $test_nom == false and
       $test_email == true
     ) {
-      $sql = "SELECT * from patient WHERE (prenom like ? and mail like ?)";
+      $sql =
+        "SELECT * from patient WHERE (prenom like ? and adresse_mail like ?)";
       $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom, $email]);
     } elseif (
@@ -214,7 +215,7 @@ class MedecinModel
       $test_nom == true and
       $test_email == true
     ) {
-      $sql = "SELECT * from patient WHERE (nom like ? and mail like ?)";
+      $sql = "SELECT * from patient WHERE (nom like ? and adresse_mail like ?)";
       $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$nom, $email]);
     } elseif (
@@ -223,21 +224,31 @@ class MedecinModel
       $test_email == true
     ) {
       $sql =
-        "SELECT * from patient WHERE (prenom like ? and nom like ? and mail like ?)";
+        "SELECT * from patient WHERE (prenom like ? and nom like ? and adresse_mail like ?)";
       $stmt = $this->bdd->prepare($sql);
       $stmt->execute([$prenom, $nom, $email]);
     } else {
       echo "veuillez remplir des champs";
     }
 
-    while ($obj = $stmt->fetch()) {
+    if ($stmt->rowCount() > 0) {
+      while ($obj = $stmt->fetch()) {
+        $vue["patients"][] = [
+          "id" => htmlspecialchars($obj["idpatient"]),
+          "nom" => htmlspecialchars($obj["nom"]),
+          "prenom" => htmlspecialchars($obj["prenom"]),
+          "email" => htmlspecialchars($obj["adresse_mail"]),
+        ];
+      }
+    } else {
       $vue["patients"][] = [
-        "id" => htmlspecialchars($obj["idpatient"]),
-        "nom" => htmlspecialchars($obj["nom"]),
-        "prenom" => htmlspecialchars($obj["prenom"]),
-        "email" => htmlspecialchars($obj["adresse_mail"]),
+        "id" => htmlspecialchars("Vide"),
+        "nom" => htmlspecialchars("Vide"),
+        "prenom" => htmlspecialchars("Vide"),
+        "email" => htmlspecialchars("Vide"),
       ];
     }
+
     $stmt->closeCursor();
     $stmt = null;
     return $vue;
@@ -442,5 +453,56 @@ class MedecinModel
     $statement = null;
 
     return $vue;
+  }
+
+  public function deleteLink(string $idPatient, string $idMedecin)
+  {
+    $sql = "SELECT idmedecin from medecin WHERE adresse_mail = :mail ";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute(["mail" => $idMedecin]);
+    $idmed = $stmt->fetchColumn();
+    if (!empty($idmed)) {
+      $sql2 = "SELECT medecin_idmedecin from patient WHERE idpatient = :id ";
+      $stmt = $this->bdd->prepare($sql2);
+      $stmt->execute(["id" => $idPatient]);
+      if ($stmt->fetchColumn() == $idmed) {
+        $sql3 = "UPDATE patient SET medecin_idmedecin=1 WHERE idpatient = :id";
+        $stmt = $this->bdd->prepare($sql3);
+        $stmt->execute(["id" => $idPatient]);
+        $return = "Modification effectuées !";
+      } else {
+        $return = "Impossible de modifier ce patient !";
+      }
+    }
+    $stmt->closeCursor();
+    $stmt = null;
+    return $return;
+  }
+
+  public function addLink(string $idPatient, string $idMedecin)
+  {
+    $sql = "SELECT idmedecin from medecin WHERE adresse_mail = :mail ";
+
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute(["mail" => $idMedecin]);
+    $idmed = $stmt->fetchColumn();
+    if (!empty($idmed)) {
+      $sql2 = "SELECT medecin_idmedecin from patient WHERE idpatient = :id ";
+      $stmt = $this->bdd->prepare($sql2);
+      $stmt->execute(["id" => $idPatient]);
+      if ($stmt->fetchColumn() == 1) {
+        $sql3 =
+          "UPDATE patient SET medecin_idmedecin=:idmedecin WHERE idpatient = :id";
+        $stmt = $this->bdd->prepare($sql3);
+        $stmt->execute(["idmedecin" => $idmed, "id" => $idPatient]);
+        $return = "Modification effectuées !";
+      } else {
+        $return = "Impossible de modifier ce patient !";
+      }
+    }
+    $stmt->closeCursor();
+    $stmt = null;
+    return $return;
   }
 }

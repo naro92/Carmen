@@ -94,6 +94,7 @@ class Medecin extends Controller
       header("Location: /public/");
       exit();
     }
+    $error = "";
 
     $medecin = $this->model("MedecinModel");
 
@@ -101,7 +102,19 @@ class Medecin extends Controller
 
     $medecin->patients = $medecin->getPatient($_SESSION["user"]);
 
-    $this->view("medecin/gestionPatient", ["data" => $medecin->patients]);
+    if (isset($_POST["supress-btn"])) {
+      $idPatient = $_POST["id"];
+
+      $error = $medecin->deleteLink = $medecin->deleteLink(
+        $idPatient,
+        $_SESSION["user"]
+      );
+    }
+
+    $this->view("medecin/gestionPatient", [
+      "data" => $medecin->patients,
+      "error" => $error,
+    ]);
     unset($medecin);
   }
 
@@ -155,6 +168,8 @@ class Medecin extends Controller
       exit();
     }
 
+    $retour = "";
+
     $prenom = $_POST["prenom"];
     $nom = $_POST["nom"];
     $email = $_POST["email"];
@@ -165,8 +180,37 @@ class Medecin extends Controller
 
     $medecin->recherche = $medecin->searchPatient($prenom, $nom, $email);
 
-    $this->view("medecin/resultat", ["recherche" => $medecin->recherche]);
+    $this->view("medecin/resultat", [
+      "recherche" => $medecin->recherche,
+      "error" => $retour,
+    ]);
     unset($medecin);
+  }
+
+  public function addLink()
+  {
+    session_start();
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["role"])) {
+      header("Location: /public/");
+      exit();
+    }
+    if ($_SESSION["role"] != "medecin") {
+      header("Location: /public/");
+      exit();
+    }
+    $medecin = $this->model("MedecinModel");
+
+    $medecin = new MedecinModel();
+    if (isset($_POST["add-btn"])) {
+      $idPatient = $_POST["id"];
+
+      $error = $medecin->addLink = $medecin->addLink(
+        $idPatient,
+        $_SESSION["user"]
+      );
+    }
+    header("Location: /public/medecin/patient");
+    exit();
   }
 
   public function getConstantes()

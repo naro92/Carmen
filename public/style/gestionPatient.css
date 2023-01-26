@@ -147,6 +147,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .title_container h1 {
   font-family: Arial, Helvetica, sans-serif;

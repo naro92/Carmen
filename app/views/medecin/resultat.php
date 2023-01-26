@@ -28,6 +28,7 @@ function load_header($view, $data = [])
 </div>
 <div class="title_container">
     <h1>Résultat de votre recherche<h1>
+    <p><?php echo $data["error"]; ?></p>
 </div>
 <div class="gestion_container">
 <table id="table_gestion">
@@ -42,15 +43,19 @@ function load_header($view, $data = [])
     </thead>
     <tbody>
     <?php foreach ($data["recherche"]["patients"] as $row) {
+      echo "<form method='post'>";
       echo "<tr>";
-      echo '<td height="50">' . $row["id"] . "</td>";
+      echo '<td height="50"><input type="hidden" name="id" value="' .
+        $row["id"] .
+        '" required />' .
+        $row["id"] .
+        "</td>";
       echo "<td>" . $row["prenom"] . "</td>";
       echo "<td>" . $row["nom"] . "</td>";
       echo '<td id="case_mail">' . $row["email"] . "</td>";
-      echo '<td><div class="btn_container"><a href="ajouter.php?id=' .
-        $row["id"] .
-        '">Ajouter</a></div></td>';
+      echo '<td><input id="supress-btn" type="submit" value="Ajouter" name="add-btn" formaction="/public/medecin/addLink/" class="btn_container"/></td>';
       echo "</tr>";
+      echo "</form>";
     } ?>
     </tbody>
   </table>

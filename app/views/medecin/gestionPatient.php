@@ -29,9 +29,11 @@ function load_header($view, $data = [])
 
     <div class="title_container">
       <h1>Mes Patients</h1>
+      <p><?php echo $data["error"]; ?></p>
     </div>
 
     <div class="gestion_container">
+    
       <table id="table_gestion">
         <thead>
           <tr>
@@ -52,33 +54,26 @@ function load_header($view, $data = [])
             echo "</tr>";
           } else {
             foreach ($data["data"]["patients"] as $row) {
+              echo '<form method="POST">';
               echo "<tr>";
-              echo '<td height="50">' . $row["id"] . "</td>";
+              echo '<td height="50"><input type="hidden" name="id" value="' .
+                $row["id"] .
+                '" required />' .
+                $row["id"] .
+                "</td>";
               echo "<td>" . $row["prenom"] . "</td>";
               echo "<td>" . $row["nom"] . "</td>";
               echo '<td id="case_mail">' . $row["email"] . "</td>";
-              echo '<td><div class="btn_container"><a href="supprimer.php?id=' .
-                $row["id"] .
-                '">Supprimer</a></div></td>';
+              echo '<td><input id="supress-btn" type="submit" value="Supprimer" name="supress-btn" formaction="/public/medecin/patient/" class="btn_container"/></td>';
               echo '<td><div class="btn_container"><a href="/public/medecin/choix/' .
                 $row["id"] .
                 '">Choix</a></div></td>';
               echo "</tr>";
+              echo "</form>";
             }
           } ?>
         </tbody>
       </table>
-    </div>
-
-    <div class="btn_gestion_container">
-      <ul class="list_btn" id="list_btn">
-        <li class="list_btn_att">
-          <a href=".\ajouter_patient_medecin.php">Ajouter</a>
-        </li>
-        <li class="list_btn_att">
-          <a href="#modifier">Modifier</a>
-        </li>
-      </ul>
     </div>
 
     <?php require_once "../app/views/footer/index.php"; ?>
