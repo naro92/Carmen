@@ -16,7 +16,7 @@ function load_header($view, $data = [])
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body onload="table();">
+<body onload="table(); updateData();">
   <?php load_header("/header/index", [
     "button" => "Deconnexion",
     "link" => "/public/connexion/deconnexion",
@@ -33,8 +33,15 @@ function load_header($view, $data = [])
         
       }
 
+      function updateData(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/public/medecin/updateDonneesChambres");
+        xhttp.send();
+      }
+
       setInterval(function(){
         table();
+        updateData();
       }, 3000);
 </script>
 

@@ -289,6 +289,7 @@ class MedecinModel
     $stmt1 = $this->bdd->prepare($requete1);
     $stmt1->execute([$id]);
     $resultat = $stmt1->fetch();
+    print_r($resultat);
     $famille_idfamille = $resultat["idfamille"];
 
     $stmt2 = $this->bdd->prepare($requete2);
