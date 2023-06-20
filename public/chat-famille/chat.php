@@ -17,7 +17,110 @@ $getpatientnom = $db->getdb()->getpatientnom($pi);
 		<meta charset="utf-8" />
 		<script src='./js/ajax4.0.js'></script>
 		<script src='./js/jquery-1.6.js'></script>
-		
+		<style>
+        h1 {
+            position:absolute;
+            top: 12%;
+            left:23%;
+        }
+        
+        #chat-box {
+            overflow:auto;
+            width: 900px;
+            height: 450px;
+            margin: 0 auto;
+            background-color: #FFF;
+            border: 2px solid #DDD;
+			border-radius: 5px;
+            padding: 0px;
+            font-size: 25px;
+            position: absolute;
+            top: 20%;
+            left: 23%;
+        }
+        
+        #chat-input {
+            width:600px;
+            height: 60px;
+            border: 1px solid #DDD;
+            padding: 10px;
+            position: absolute;
+            bottom: 11%;
+            left: 28%;
+            font-size: 20px;
+        }
+        
+        #chat-button {
+            width: 100px;
+            height: 40px;
+            background-color: #C9E265;
+            color: #FFF;
+            border: none;
+            padding: 10px;
+            border-radius: 3px;
+            position: absolute;
+            bottom: 12.3%;
+            left: 70%;
+            right: 27%;
+            font-size: 20px;
+        }
+
+
+		@media screen and (max-width: 1000px) {
+
+			body {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+			#chat-input {
+            width:700px;
+            height: 100px;
+            border: 1px solid #DDD;
+            padding: 10px;
+            position: absolute;
+            bottom: 15%;
+            left: 15%;
+            font-size: 30px;
+        }
+
+			#chat-button {
+            width: 300px;
+            height: 80px;
+            background-color: #C9E265;
+            color: #FFF;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 8%;
+            left: 35%;
+            font-size: 40px;
+        }
+
+        #chat-box {
+            overflow:auto;
+            width: 800px;
+            height: 1000px;
+            margin: 0 auto;
+            background-color: #FFF;
+            border: 3px solid #DDD;
+			border-radius: 5px;
+            padding: 0px;
+            font-size: 40px;
+            position: absolute;
+            top: 15%;
+            left: 10%;
+        }
+
+		h1 {
+            position:absolute;
+            top: 10%;
+            left:15%;
+        }
+
+		}
+    </style>
 
 		<script>
 			var $user=null,say=null;
@@ -58,17 +161,15 @@ $getpatientnom = $db->getdb()->getpatientnom($pi);
 	</head>
 	<body>
 
-		<h1 style="position:absolute;top: 12%;left:23%"><?php echo "Dr." . "$getmedecinnom";?></h1>
+		<h1><?php echo "Dr." . "$getmedecinnom";?></h1>
 		<!-- 聊天框 Chat Box-->
-		<div id='chat-box' style="overflow:auto;width: 900px;height: 450px;margin: 0 auto; background-color: #FFF;border: 1px solid #DDD;padding: 0px;font-size: 25px;    position: absolute;top: 20%;left: 23%;"></div> 
+		<div id='chat-box'></div> 
 
  		<!-- 输入栏 Champ de saisie-->
-		<input id="chat-input" style="width:600px;height: 60px; border: 1px solid #DDD;padding: 10px;position: absolute;bottom: 11%;left: 28%;font-size: 20px;" type='text' name='say' onkeypress="keyup(event)" />
+		<input id="chat-input" type='text' name='say' onkeypress="keyup(event)" />
 
 
-		<input id="chat-button" style="width: 100px;height: 40px;background-color: #C9E265;color: #FFF;border: none; padding: 10px;border-radius: 3px;position: absolute;bottom: 12.3%;left: 70%;right: 27%;font-size: 20px;"
-
-		type='button' value='Envoyer' onclick="envoyer()" />       
+		<input id="chat-button" type='button' value='Envoyer' onclick="envoyer()" />       
  
 
 

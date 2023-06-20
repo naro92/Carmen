@@ -9,7 +9,50 @@
         a{
             color: #C9E265;
             text-decoration:none
-        
+        }
+
+        div{
+            position: absolute;
+            top: 25%;
+            left: 30%;
+        }
+
+        h2{
+            position:relative; 
+            left:70px; 
+            color: #C9E265;
+        }
+
+        @media screen and (max-width: 1000px) {
+
+            body {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            h2{
+
+                 display: none;
+
+            }
+
+            a{
+            color: #C9E265;
+            text-decoration:none;
+            position:relative; 
+            right: 40%; 
+            }
+
+            div {
+                width: 60%;
+                margin: 0 auto;
+            }
+
+            table {
+                width: 70%;
+                position:relative; 
+                right: 30%; 
+            }
         }
 
     </style>
@@ -17,9 +60,11 @@
 <body>
 
 
-<div style="position: absolute;top: 25%;left: 30%;">
 
-<h2 style="position:relative; left:70px; color: #C9E265;">Veuillez sélectionner un patient de chat</h2>
+<div>
+
+<h2>Veuillez sélectionner un patient de chat</h2>
+
 <?php
 
 require_once("./chat-class-function.php"); 
@@ -37,7 +82,7 @@ $medecinID = $db->getmedecinID($medecinnom);
 
 
 
-$link = mysqli_connect('localhost:3306' , 'root' , 'root'); //连接数据库 Connexion à la base de données
+$link = mysqli_connect('localhost' , 'root' , 'woaiai123'); //连接数据库 Connexion à la base de données
 
 mysqli_set_charset($link , 'utf8');         //设置字符集 Définis le jeu de caractères
 
